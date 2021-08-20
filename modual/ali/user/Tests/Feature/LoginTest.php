@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace ali\user\Tests\Feature;
 
 use ali\user\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

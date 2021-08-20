@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace  ali\user\Tests\Unit;
 
 use ali\user\Rules\ValidMobile;
 use PHPUnit\Framework\TestCase;
