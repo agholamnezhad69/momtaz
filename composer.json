@@ -36,7 +36,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "ali\\user\\": "modual/ali/user"
         },
         "classmap": [
             "database/seeds",
