@@ -7,7 +7,12 @@
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests/Unit" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/modual/ali/user" isTestSource="false" packagePrefix="ali\user\" />
+      <sourceFolder url="file://$MODULE_DIR$/modual/ali/Category" isTestSource="false" packagePrefix="ali\Category\" />
+      <sourceFolder url="file://$MODULE_DIR$/modual/ali/Dashboard" isTestSource="false" packagePrefix="ali\Dashboard\" />
+      <sourceFolder url="file://$MODULE_DIR$/modual/ali/RolePermissions" isTestSource="false" packagePrefix="ali\RolePermissions\" />
+      <sourceFolder url="file://$MODULE_DIR$/modual/ali/User" isTestSource="false" packagePrefix="ali\User\" />
+      <sourceFolder url="file://$MODULE_DIR$/modual/ali/Course" isTestSource="false" packagePrefix="ali\Course\" />
+      <sourceFolder url="file://$MODULE_DIR$/modual/ali/Media" isTestSource="false" packagePrefix="ali\Media\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/inflector" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mockery/mockery" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/php-text-template" />
@@ -119,6 +124,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/egulias/email-validator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/ui" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-permission" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/intervention/image" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ali/common" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

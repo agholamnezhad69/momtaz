@@ -1609,7 +1609,7 @@
                         return $instance->viaRequest($driver, $callback);
         }
                     /**
-         * Get the user resolver callback.
+         * Get the User resolver callback.
          *
          * @return \Closure
          * @static
@@ -1669,7 +1669,7 @@
                         return $instance->hasResolvedGuards();
         }
                     /**
-         * Create the user provider implementation for the driver.
+         * Create the User provider implementation for the driver.
          *
          * @param string|null $provider
          * @return \Illuminate\Contracts\Auth\UserProvider|null
@@ -1682,7 +1682,7 @@
                         return $instance->createUserProvider($provider);
         }
                     /**
-         * Get the default user provider name.
+         * Get the default User provider name.
          *
          * @return string
          * @static
@@ -1693,7 +1693,7 @@
                         return $instance->getDefaultUserProvider();
         }
                     /**
-         * Get the currently authenticated user.
+         * Get the currently authenticated User.
          *
          * @return \App\User|null
          * @static
@@ -1704,7 +1704,7 @@
                         return $instance->user();
         }
                     /**
-         * Get the ID for the currently authenticated user.
+         * Get the ID for the currently authenticated User.
          *
          * @return int|string|null
          * @static
@@ -1715,7 +1715,7 @@
                         return $instance->id();
         }
                     /**
-         * Log a user into the application without sessions or cookies.
+         * Log a User into the application without sessions or cookies.
          *
          * @param array $credentials
          * @return bool
@@ -1727,7 +1727,7 @@
                         return $instance->once($credentials);
         }
                     /**
-         * Log the given user ID into the application without sessions or cookies.
+         * Log the given User ID into the application without sessions or cookies.
          *
          * @param mixed $id
          * @return \App\User|false
@@ -1739,7 +1739,7 @@
                         return $instance->onceUsingId($id);
         }
                     /**
-         * Validate a user's credentials.
+         * Validate a User's credentials.
          *
          * @param array $credentials
          * @return bool
@@ -1777,7 +1777,7 @@
                         return $instance->onceBasic($field, $extraConditions);
         }
                     /**
-         * Attempt to authenticate a user using the given credentials.
+         * Attempt to authenticate a User using the given credentials.
          *
          * @param array $credentials
          * @param bool $remember
@@ -1790,7 +1790,7 @@
                         return $instance->attempt($credentials, $remember);
         }
                     /**
-         * Log the given user ID into the application.
+         * Log the given User ID into the application.
          *
          * @param mixed $id
          * @param bool $remember
@@ -1803,7 +1803,7 @@
                         return $instance->loginUsingId($id, $remember);
         }
                     /**
-         * Log a user into the application.
+         * Log a User into the application.
          *
          * @param \Illuminate\Contracts\Auth\Authenticatable $user
          * @param bool $remember
@@ -1816,7 +1816,7 @@
                         $instance->login($user, $remember);
         }
                     /**
-         * Log the user out of the application.
+         * Log the User out of the application.
          *
          * @return void
          * @static
@@ -1827,7 +1827,7 @@
                         $instance->logout();
         }
                     /**
-         * Log the user out of the application on their current device only.
+         * Log the User out of the application on their current device only.
          *
          * @return void
          * @static
@@ -1838,7 +1838,7 @@
                         $instance->logoutCurrentDevice();
         }
                     /**
-         * Invalidate other sessions for the current user.
+         * Invalidate other sessions for the current User.
          *
          * The application must be using the AuthenticateSession middleware.
          *
@@ -1865,7 +1865,7 @@
                         $instance->attempting($callback);
         }
                     /**
-         * Get the last user we attempted to authenticate.
+         * Get the last User we attempted to authenticate.
          *
          * @return \App\User
          * @static
@@ -1898,7 +1898,7 @@
                         return $instance->getRecallerName();
         }
                     /**
-         * Determine if the user was authenticated via "remember me" cookie.
+         * Determine if the User was authenticated via "remember me" cookie.
          *
          * @return bool
          * @static
@@ -1967,7 +1967,7 @@
                         return $instance->getSession();
         }
                     /**
-         * Return the currently cached user.
+         * Return the currently cached User.
          *
          * @return \App\User|null
          * @static
@@ -1978,7 +1978,7 @@
                         return $instance->getUser();
         }
                     /**
-         * Set the current user.
+         * Set the current User.
          *
          * @param \Illuminate\Contracts\Auth\Authenticatable $user
          * @return \Illuminate\Auth\SessionGuard
@@ -2013,7 +2013,7 @@
                         return $instance->setRequest($request);
         }
                     /**
-         * Determine if current user is authenticated. If not, throw an exception.
+         * Determine if current User is authenticated. If not, throw an exception.
          *
          * @return \App\User
          * @throws \Illuminate\Auth\AuthenticationException
@@ -2025,7 +2025,7 @@
                         return $instance->authenticate();
         }
                     /**
-         * Determine if the guard has a user instance.
+         * Determine if the guard has a User instance.
          *
          * @return bool
          * @static
@@ -2036,7 +2036,7 @@
                         return $instance->hasUser();
         }
                     /**
-         * Determine if the current user is authenticated.
+         * Determine if the current User is authenticated.
          *
          * @return bool
          * @static
@@ -2047,7 +2047,7 @@
                         return $instance->check();
         }
                     /**
-         * Determine if the current user is a guest.
+         * Determine if the current User is a guest.
          *
          * @return bool
          * @static
@@ -2058,7 +2058,7 @@
                         return $instance->guest();
         }
                     /**
-         * Get the user provider used by the guard.
+         * Get the User provider used by the guard.
          *
          * @return \Illuminate\Contracts\Auth\UserProvider
          * @static
@@ -2069,7 +2069,7 @@
                         return $instance->getProvider();
         }
                     /**
-         * Set the user provider used by the guard.
+         * Set the User provider used by the guard.
          *
          * @param \Illuminate\Contracts\Auth\UserProvider $provider
          * @return void
@@ -5676,7 +5676,7 @@
                         return $instance->after($callback);
         }
                     /**
-         * Determine if the given ability should be granted for the current user.
+         * Determine if the given ability should be granted for the current User.
          *
          * @param string $ability
          * @param array|mixed $arguments
@@ -5689,7 +5689,7 @@
                         return $instance->allows($ability, $arguments);
         }
                     /**
-         * Determine if the given ability should be denied for the current user.
+         * Determine if the given ability should be denied for the current User.
          *
          * @param string $ability
          * @param array|mixed $arguments
@@ -5702,7 +5702,7 @@
                         return $instance->denies($ability, $arguments);
         }
                     /**
-         * Determine if all of the given abilities should be granted for the current user.
+         * Determine if all of the given abilities should be granted for the current User.
          *
          * @param \Illuminate\Auth\Access\iterable|string $abilities
          * @param array|mixed $arguments
@@ -5715,7 +5715,7 @@
                         return $instance->check($abilities, $arguments);
         }
                     /**
-         * Determine if any one of the given abilities should be granted for the current user.
+         * Determine if any one of the given abilities should be granted for the current User.
          *
          * @param \Illuminate\Auth\Access\iterable|string $abilities
          * @param array|mixed $arguments
@@ -5728,7 +5728,7 @@
                         return $instance->any($abilities, $arguments);
         }
                     /**
-         * Determine if all of the given abilities should be denied for the current user.
+         * Determine if all of the given abilities should be denied for the current User.
          *
          * @param \Illuminate\Auth\Access\iterable|string $abilities
          * @param array|mixed $arguments
@@ -5741,7 +5741,7 @@
                         return $instance->none($abilities, $arguments);
         }
                     /**
-         * Determine if the given ability should be granted for the current user.
+         * Determine if the given ability should be granted for the current User.
          *
          * @param string $ability
          * @param array|mixed $arguments
@@ -5755,7 +5755,7 @@
                         return $instance->authorize($ability, $arguments);
         }
                     /**
-         * Inspect the user for the given ability.
+         * Inspect the User for the given ability.
          *
          * @param string $ability
          * @param array|mixed $arguments
@@ -5819,7 +5819,7 @@
                         return $instance->resolvePolicy($class);
         }
                     /**
-         * Get a gate instance for the given user.
+         * Get a gate instance for the given User.
          *
          * @param \Illuminate\Contracts\Auth\Authenticatable|mixed $user
          * @return static
@@ -7303,9 +7303,9 @@
      * @method static mixed reset(array $credentials, \Closure $callback)
      * @method static string sendResetLink(array $credentials)
      * @method static \Illuminate\Contracts\Auth\CanResetPassword getUser(array $credentials)
-     * @method static string createToken(\Illuminate\Contracts\Auth\CanResetPassword $user)
-     * @method static void deleteToken(\Illuminate\Contracts\Auth\CanResetPassword $user)
-     * @method static bool tokenExists(\Illuminate\Contracts\Auth\CanResetPassword $user, string $token)
+     * @method static string createToken(\Illuminate\Contracts\Auth\CanResetPassword $User)
+     * @method static void deleteToken(\Illuminate\Contracts\Auth\CanResetPassword $User)
+     * @method static bool tokenExists(\Illuminate\Contracts\Auth\CanResetPassword $User, string $token)
      * @method static \Illuminate\Auth\Passwords\TokenRepositoryInterface getRepository()
      * @see \Illuminate\Auth\Passwords\PasswordBroker
      */
@@ -8078,7 +8078,7 @@
                         return \Illuminate\Http\Request::capture();
         }
                     /**
-         * Return the Request instance.
+         * Return the Requests instance.
          *
          * @return \Illuminate\Http\Request
          * @static
@@ -8293,7 +8293,7 @@
                         return $instance->ips();
         }
                     /**
-         * Get the client user agent.
+         * Get the client User agent.
          *
          * @return string|null
          * @static
@@ -8431,7 +8431,7 @@
                         $instance->setLaravelSession($session);
         }
                     /**
-         * Get the user making the request.
+         * Get the User making the request.
          *
          * @param string|null $guard
          * @return mixed
@@ -8480,7 +8480,7 @@
                         return $instance->setJson($json);
         }
                     /**
-         * Get the user resolver callback.
+         * Get the User resolver callback.
          *
          * @return \Closure
          * @static
@@ -8491,7 +8491,7 @@
                         return $instance->getUserResolver();
         }
                     /**
-         * Set the user resolver callback.
+         * Set the User resolver callback.
          *
          * @param \Closure $callback
          * @return \Illuminate\Http\Request
@@ -8600,7 +8600,7 @@
          * @static
          */
         public static function initialize($query = [], $request = [], $attributes = [], $cookies = [], $files = [], $server = [], $content = null)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->initialize($query, $request, $attributes, $cookies, $files, $server, $content);
         }
@@ -8611,11 +8611,11 @@
          * @static
          */
         public static function createFromGlobals()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         return \Illuminate\Http\Request::createFromGlobals();
         }
                     /**
-         * Creates a Request based on a given URI and configuration.
+         * Creates a Requests based on a given URI and configuration.
          *
          * The information contained in the URI always take precedence
          * over the other information (server and parameters).
@@ -8631,20 +8631,20 @@
          * @static
          */
         public static function create($uri, $method = 'GET', $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         return \Illuminate\Http\Request::create($uri, $method, $parameters, $cookies, $files, $server, $content);
         }
                     /**
-         * Sets a callable able to create a Request instance.
+         * Sets a callable able to create a Requests instance.
          *
-         * This is mainly useful when you need to override the Request class
+         * This is mainly useful when you need to override the Requests class
          * to keep BC with an existing system. It should not be used for any
          * other purpose.
          *
          * @static
          */
         public static function setFactory($callable)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         return \Illuminate\Http\Request::setFactory($callable);
         }
                     /**
@@ -8656,7 +8656,7 @@
          * @static
          */
         public static function overrideGlobals()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->overrideGlobals();
         }
@@ -8666,11 +8666,11 @@
          * You should only list the reverse proxies that you manage directly.
          *
          * @param array $proxies A list of trusted proxies, the string 'REMOTE_ADDR' will be replaced with $_SERVER['REMOTE_ADDR']
-         * @param int $trustedHeaderSet A bit field of Request::HEADER_*, to set which headers to trust from your proxies
+         * @param int $trustedHeaderSet A bit field of Requests::HEADER_*, to set which headers to trust from your proxies
          * @static
          */
         public static function setTrustedProxies($proxies, $trustedHeaderSet)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         return \Illuminate\Http\Request::setTrustedProxies($proxies, $trustedHeaderSet);
         }
                     /**
@@ -8680,17 +8680,17 @@
          * @static
          */
         public static function getTrustedProxies()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         return \Illuminate\Http\Request::getTrustedProxies();
         }
                     /**
          * Gets the set of trusted headers from trusted proxies.
          *
-         * @return int A bit field of Request::HEADER_* that defines which headers are trusted from your proxies
+         * @return int A bit field of Requests::HEADER_* that defines which headers are trusted from your proxies
          * @static
          */
         public static function getTrustedHeaderSet()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         return \Illuminate\Http\Request::getTrustedHeaderSet();
         }
                     /**
@@ -8702,7 +8702,7 @@
          * @static
          */
         public static function setTrustedHosts($hostPatterns)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         return \Illuminate\Http\Request::setTrustedHosts($hostPatterns);
         }
                     /**
@@ -8712,7 +8712,7 @@
          * @static
          */
         public static function getTrustedHosts()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         return \Illuminate\Http\Request::getTrustedHosts();
         }
                     /**
@@ -8721,11 +8721,11 @@
          * It builds a normalized query string, where keys/value pairs are alphabetized,
          * have consistent escaping and unneeded delimiters are removed.
          *
-         * @return string A normalized query string for the Request
+         * @return string A normalized query string for the Requests
          * @static
          */
         public static function normalizeQueryString($qs)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         return \Illuminate\Http\Request::normalizeQueryString($qs);
         }
                     /**
@@ -8742,7 +8742,7 @@
          * @static
          */
         public static function enableHttpMethodParameterOverride()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         return \Illuminate\Http\Request::enableHttpMethodParameterOverride();
         }
                     /**
@@ -8752,7 +8752,7 @@
          * @static
          */
         public static function getHttpMethodParameterOverride()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         return \Illuminate\Http\Request::getHttpMethodParameterOverride();
         }
                     /**
@@ -8763,7 +8763,7 @@
          * @static
          */
         public static function hasPreviousSession()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->hasPreviousSession();
         }
@@ -8771,14 +8771,14 @@
          * Whether the request contains a Session object.
          *
          * This method does not give any information about the state of the session object,
-         * like whether the session is started or not. It is just a way to check if this Request
+         * like whether the session is started or not. It is just a way to check if this Requests
          * is associated with a Session instance.
          *
-         * @return bool true when the Request contains a Session object, false otherwise
+         * @return bool true when the Requests contains a Session object, false otherwise
          * @static
          */
         public static function hasSession()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->hasSession();
         }
@@ -8788,7 +8788,7 @@
          * @static
          */
         public static function setSession($session)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->setSession($session);
         }
@@ -8799,7 +8799,7 @@
          * @static
          */
         public static function setSessionFactory($factory)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->setSessionFactory($factory);
         }
@@ -8817,7 +8817,7 @@
          * @static
          */
         public static function getClientIps()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getClientIps();
         }
@@ -8832,7 +8832,7 @@
          *
          * If your reverse proxy uses a different header name than "X-Forwarded-For",
          * ("Client-Ip" for instance), configure it via the $trustedHeaderSet
-         * argument of the Request::setTrustedProxies() method instead.
+         * argument of the Requests::setTrustedProxies() method instead.
          *
          * @return string|null The client IP address
          * @see getClientIps()
@@ -8840,7 +8840,7 @@
          * @static
          */
         public static function getClientIp()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getClientIp();
         }
@@ -8851,7 +8851,7 @@
          * @static
          */
         public static function getScriptName()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getScriptName();
         }
@@ -8871,7 +8871,7 @@
          * @static
          */
         public static function getPathInfo()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getPathInfo();
         }
@@ -8889,7 +8889,7 @@
          * @static
          */
         public static function getBasePath()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getBasePath();
         }
@@ -8905,7 +8905,7 @@
          * @static
          */
         public static function getBaseUrl()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getBaseUrl();
         }
@@ -8916,7 +8916,7 @@
          * @static
          */
         public static function getScheme()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getScheme();
         }
@@ -8932,18 +8932,18 @@
          * @static
          */
         public static function getPort()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getPort();
         }
                     /**
-         * Returns the user.
+         * Returns the User.
          *
          * @return string|null
          * @static
          */
         public static function getUser()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getUser();
         }
@@ -8954,18 +8954,18 @@
          * @static
          */
         public static function getPassword()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getPassword();
         }
                     /**
-         * Gets the user info.
+         * Gets the User info.
          *
-         * @return string A user name and, optionally, scheme-specific information about how to gain authorization to access the server
+         * @return string A User name and, optionally, scheme-specific information about how to gain authorization to access the server
          * @static
          */
         public static function getUserInfo()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getUserInfo();
         }
@@ -8978,7 +8978,7 @@
          * @static
          */
         public static function getHttpHost()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getHttpHost();
         }
@@ -8989,33 +8989,33 @@
          * @static
          */
         public static function getRequestUri()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getRequestUri();
         }
                     /**
          * Gets the scheme and HTTP host.
          *
-         * If the URL was called with basic authentication, the user
+         * If the URL was called with basic authentication, the User
          * and the password are not added to the generated string.
          *
          * @return string The scheme and HTTP host
          * @static
          */
         public static function getSchemeAndHttpHost()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getSchemeAndHttpHost();
         }
                     /**
-         * Generates a normalized URI (URL) for the Request.
+         * Generates a normalized URI (URL) for the Requests.
          *
-         * @return string A normalized URI (URL) for the Request
+         * @return string A normalized URI (URL) for the Requests
          * @see getQueryString()
          * @static
          */
         public static function getUri()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getUri();
         }
@@ -9027,12 +9027,12 @@
          * @static
          */
         public static function getUriForPath($path)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getUriForPath($path);
         }
                     /**
-         * Returns the path as relative reference from the current Request path.
+         * Returns the path as relative reference from the current Requests path.
          *
          * Only the URIs path component (no schema, host etc.) is relevant and must be given.
          * Both paths must be absolute and not contain relative parts.
@@ -9050,21 +9050,21 @@
          * @static
          */
         public static function getRelativeUriForPath($path)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getRelativeUriForPath($path);
         }
                     /**
-         * Generates the normalized query string for the Request.
+         * Generates the normalized query string for the Requests.
          *
          * It builds a normalized query string, where keys/value pairs are alphabetized
          * and have consistent escaping.
          *
-         * @return string|null A normalized query string for the Request
+         * @return string|null A normalized query string for the Requests
          * @static
          */
         public static function getQueryString()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getQueryString();
         }
@@ -9080,7 +9080,7 @@
          * @static
          */
         public static function isSecure()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->isSecure();
         }
@@ -9097,7 +9097,7 @@
          * @static
          */
         public static function getHost()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getHost();
         }
@@ -9107,7 +9107,7 @@
          * @static
          */
         public static function setMethod($method)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->setMethod($method);
         }
@@ -9127,7 +9127,7 @@
          * @static
          */
         public static function getMethod()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getMethod();
         }
@@ -9139,7 +9139,7 @@
          * @static
          */
         public static function getRealMethod()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getRealMethod();
         }
@@ -9150,7 +9150,7 @@
          * @static
          */
         public static function getMimeType($format)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getMimeType($format);
         }
@@ -9161,7 +9161,7 @@
          * @static
          */
         public static function getMimeTypes($format)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         return \Illuminate\Http\Request::getMimeTypes($format);
         }
                     /**
@@ -9171,7 +9171,7 @@
          * @static
          */
         public static function getFormat($mimeType)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getFormat($mimeType);
         }
@@ -9182,7 +9182,7 @@
          * @static
          */
         public static function setFormat($format, $mimeTypes)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->setFormat($format, $mimeTypes);
         }
@@ -9191,7 +9191,7 @@
          *
          * Here is the process to determine the format:
          *
-         *  * format defined by the user (with setRequestFormat())
+         *  * format defined by the User (with setRequestFormat())
          *  * _format request attribute
          *  * $default
          *
@@ -9200,7 +9200,7 @@
          * @static
          */
         public static function getRequestFormat($default = 'html')
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getRequestFormat($default);
         }
@@ -9210,7 +9210,7 @@
          * @static
          */
         public static function setRequestFormat($format)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->setRequestFormat($format);
         }
@@ -9221,7 +9221,7 @@
          * @static
          */
         public static function getContentType()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getContentType();
         }
@@ -9231,7 +9231,7 @@
          * @static
          */
         public static function setDefaultLocale($locale)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->setDefaultLocale($locale);
         }
@@ -9242,7 +9242,7 @@
          * @static
          */
         public static function getDefaultLocale()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getDefaultLocale();
         }
@@ -9252,7 +9252,7 @@
          * @static
          */
         public static function setLocale($locale)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->setLocale($locale);
         }
@@ -9263,7 +9263,7 @@
          * @static
          */
         public static function getLocale()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getLocale();
         }
@@ -9275,7 +9275,7 @@
          * @static
          */
         public static function isMethod($method)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->isMethod($method);
         }
@@ -9287,7 +9287,7 @@
          * @static
          */
         public static function isMethodSafe()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->isMethodSafe();
         }
@@ -9298,7 +9298,7 @@
          * @static
          */
         public static function isMethodIdempotent()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->isMethodIdempotent();
         }
@@ -9310,7 +9310,7 @@
          * @static
          */
         public static function isMethodCacheable()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->isMethodCacheable();
         }
@@ -9327,7 +9327,7 @@
          * @static
          */
         public static function getProtocolVersion()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getProtocolVersion();
         }
@@ -9339,7 +9339,7 @@
          * @static
          */
         public static function getContent($asResource = false)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getContent($asResource);
         }
@@ -9350,7 +9350,7 @@
          * @static
          */
         public static function getETags()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getETags();
         }
@@ -9361,7 +9361,7 @@
          * @static
          */
         public static function isNoCache()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->isNoCache();
         }
@@ -9376,7 +9376,7 @@
          * @static
          */
         public static function getPreferredFormat($default = 'html')
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getPreferredFormat($default);
         }
@@ -9388,18 +9388,18 @@
          * @static
          */
         public static function getPreferredLanguage($locales = null)
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getPreferredLanguage($locales);
         }
                     /**
          * Gets a list of languages acceptable by the client browser.
          *
-         * @return array Languages ordered in the user browser preferences
+         * @return array Languages ordered in the User browser preferences
          * @static
          */
         public static function getLanguages()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getLanguages();
         }
@@ -9410,7 +9410,7 @@
          * @static
          */
         public static function getCharsets()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getCharsets();
         }
@@ -9421,7 +9421,7 @@
          * @static
          */
         public static function getEncodings()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getEncodings();
         }
@@ -9432,7 +9432,7 @@
          * @static
          */
         public static function getAcceptableContentTypes()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getAcceptableContentTypes();
         }
@@ -9447,7 +9447,7 @@
          * @static
          */
         public static function isXmlHttpRequest()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->isXmlHttpRequest();
         }
@@ -9458,7 +9458,7 @@
          * @static
          */
         public static function preferSafeContent()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->preferSafeContent();
         }
@@ -9472,7 +9472,7 @@
          * @static
          */
         public static function isFromTrustedProxy()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request
+        {            //Method inherited from \Symfony\Component\HttpFoundation\Requests
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->isFromTrustedProxy();
         }

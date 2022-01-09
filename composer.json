@@ -9,12 +9,15 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "ali/common": "dev-main",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
+        "intervention/image": "^2.7",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "2.4"
+        "laravel/ui": "2.4",
+        "spatie/laravel-permission": "^5.3"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "2.8",
@@ -24,6 +27,12 @@
         "nunomaduro/collision": "^4.1",
         "phpunit/phpunit": "^8.5"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "modual/ali/Common"
+        }
+    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
@@ -37,7 +46,12 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "ali\\user\\": "modual/ali/user"
+            "ali\\User\\": "modual/ali/User",
+            "ali\\Dashboard\\": "modual/ali/Dashboard",
+            "ali\\Category\\": "modual/ali/Category",
+            "ali\\RolePermissions\\": "modual/ali/RolePermissions",
+            "ali\\Course\\": "modual/ali/Course",
+            "ali\\Media\\": "modual/ali/Media"
         },
         "classmap": [
             "database/seeds",
@@ -49,6 +63,7 @@
             "Tests\\": "tests/"
         }
     },
+
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {

@@ -13,11 +13,23 @@
         </testsuite>
 
         <testsuite name="Unit">
-            <directory suffix="Test.php">./modual/ali/user/Tests/Unit</directory>
+            <directory suffix="Test.php">./modual/ali/User/Tests/Unit</directory>
         </testsuite>
         <testsuite name="Feature">
-            <directory suffix="Test.php">./modual/ali/user/Tests/Feature</directory>
+            <directory suffix="Test.php">./modual/ali/User/Tests/Feature</directory>
         </testsuite>
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./modual/ali/Category/Tests/Feature</directory>
+        </testsuite>
+
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./modual/ali/Course/Tests/Feature</directory>
+        </testsuite>
+
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./modual/ali/RolePermissions/Tests/Feature</directory>
+        </testsuite>
+
 
     </testsuites>
     <filter>
@@ -31,8 +43,9 @@
         <server name="CACHE_DRIVER" value="array"/>
         <server name="DB_CONNECTION" value="sqlite"/>
         <server name="DB_DATABASE" value=":memory:"/>
-        <server name="MAIL_MAILER" value="array"/>
+        <server name="MAIL_MAILER" value="smtp"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
+        <server name="TELESCOPE_ENABLED" value="FALSE"/>
     </php>
 </phpunit>

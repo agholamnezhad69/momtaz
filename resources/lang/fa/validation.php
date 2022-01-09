@@ -127,6 +127,12 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+
+        'verify_code' => [
+            'between' => 'کد وارد شده معتبر نمی باشد!',
+        ],
+
+
     ],
     'attributes'           => [
         'address'               => 'نشانی',
@@ -164,5 +170,6 @@ return [
         'title'                 => 'عنوان',
         'username'              => 'نام کاربری',
         'year'                  => 'سال',
+
     ],
 ];

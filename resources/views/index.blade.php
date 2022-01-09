@@ -148,12 +148,12 @@
                 <div class="join-teachers">
                     <a href="become-a-teacher.html">تدریس در وب آموز</a>
                 </div>
-                <!--                                <div class="user-menu-account">-->
-                <!--                                    <div class="user-image">-->
+                <!--                                <div class="User-menu-account">-->
+                <!--                                    <div class="User-image">-->
                 <!--                                        <img src="img/profile.jpg" alt="desction">-->
                 <!--                                    </div>-->
                 <!--                                    <span>پروفایل کاربری من </span>-->
-                <!--                                    <div class="user-menu-account-dropdown">-->
+                <!--                                    <div class="User-menu-account-dropdown">-->
                 <!--                                        <ul>-->
                 <!--                                            <li><a href="">مشاهده پروفایل</a></li>-->
                 <!--                                            <li><a href="">خرید های من</a></li>-->

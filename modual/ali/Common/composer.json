@@ -1,0 +1,19 @@
+{
+    "name": "ali/common",
+    "autoload": {
+        "psr-4": {
+            "ali\\Common\\" : "src"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "\\ali\\Common\\Providers\\CommonServiceProvider"
+            ]
+        }
+    }
+}
+
