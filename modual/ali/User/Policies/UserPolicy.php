@@ -10,7 +10,7 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function index(User $user)
+    public function index( $user)
     {
 
         if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_USERS)) return true;
@@ -18,7 +18,7 @@ class UserPolicy
 
     }
 
-    public function edit(User $user)
+    public function edit( $user)
     {
 
         if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_USERS)) return true;
@@ -26,7 +26,7 @@ class UserPolicy
 
     }
 
-    public function addRole(User $user)
+    public function addRole( $user)
     {
 
         if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_USERS)) return true;
@@ -34,7 +34,7 @@ class UserPolicy
 
     }
 
-    public function removeRole(User $user)
+    public function removeRole( $user)
     {
 
         if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_USERS)) return true;
@@ -42,7 +42,7 @@ class UserPolicy
 
     }
 
-    public function delete(User $user)
+    public function delete( $user)
     {
 
         if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_USERS)) return true;
@@ -50,10 +50,18 @@ class UserPolicy
 
     }
 
-    public function manualVerify(User $user)
+    public function manualVerify( $user)
     {
 
         if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_USERS)) return true;
+
+
+    }
+
+    public function editProfile($user)
+    {
+
+        if (auth()->check()) return true;
 
 
     }

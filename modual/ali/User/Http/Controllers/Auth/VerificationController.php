@@ -64,8 +64,5 @@ class VerificationController extends Controller
 
     }
 
-    public function resend ()
-    {
-        dd("resend");
-    }
+
 }

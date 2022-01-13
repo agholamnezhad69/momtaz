@@ -1,16 +1,31 @@
 <?php
+Route::group([
+    'namespace' => 'ali\User\Http\Controllers',
+    'middleware' => ['web', 'auth']
+], function () {
 
+
+    Route::get('users/profile', 'UserController@profile')->name('users.profile');
+    Route::post('users/profile', 'UserController@updateProfile')->name('users.profile');
+
+});
+Route::group([
+    'namespace' => 'ali\User\Http\Controllers',
+    'middleware' => ['web', 'auth', 'verified']
+], function () {
+    Route::post('users/{user}/add/role', 'UserController@addRole')->name('users.addRole');
+    Route::delete('users/{user}/remove/{role}/role', 'UserController@removeRole')->name('users.removeRole');
+    Route::patch('users/{user}/manualVerify/', 'UserController@manualVerify')->name('users.manualVerify');
+    Route::post('users/photo', 'UserController@updatePhoto')->name('users.photo');
+    Route::get('tutors/{username}', 'UserController@viewProfile')->name('viewProfile');
+    Route::resource('users', 'UserController');
+
+});
 
 Route::group([
     'namespace' => 'ali\User\Http\Controllers',
     'middleware' => 'web',
 ], function () {
-
-
-    Route::resource('users', 'UserController');
-    Route::post('users/{user}/add/role', 'UserController@addRole')->name('users.addRole');
-    Route::delete('users/{user}/remove/{role}/role', 'UserController@removeRole')->name('users.removeRole');
-    Route::patch('users/{user}/manualVerify/', 'UserController@manualVerify')->name('users.manualVerify');
 
 
     Route::post('/email/verify', 'Auth\VerificationController@verify')->name('verification.verify');

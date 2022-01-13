@@ -6,6 +6,8 @@ use ali\Common\Responses\AjaxResponses;
 use ali\Media\Services\MediaFileService;
 use ali\RolePermissions\Repositories\RoleRepo;
 use ali\User\Http\Requests\AddRoleRequest;
+use ali\User\Http\Requests\UpdateProfileInformationRequest;
+use ali\User\Http\Requests\UpdateUserPhotoRequest;
 use ali\User\Http\Requests\UpdateUserRequest;
 use ali\User\Models\User;
 use ali\User\Repositories\UserRepo;
@@ -102,6 +104,41 @@ class UserController extends Controller
         $user->markEmailAsVerified();
         return AjaxResponses::successResponse();
 
+    }
+
+    public function updatePhoto(UpdateUserPhotoRequest $request)
+    {
+        $media = MediaFileService::upload($request->file('userPhoto'));
+        if (auth()->user()->image) {
+            auth()->user()->image->delete();
+        }
+        auth()->user()->image_id = $media->id;
+        auth()->user()->save();
+        newFeedbacks();
+        return back();
+
+
+    }
+
+    public function profile()
+    {
+        $this->authorize('editProfile', User::class);
+        return view("User::admin.profile");
+
+    }
+
+    public function updateProfile(UpdateProfileInformationRequest $request)
+    {
+        $this->authorize('editProfile', User::class);
+        $this->userRepo->updateProfile($request);
+        newFeedbacks();
+        return back();
+
+    }
+
+    public function show()
+    {
+        return abort(404);
     }
 
 

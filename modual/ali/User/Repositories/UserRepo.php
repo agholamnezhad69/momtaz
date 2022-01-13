@@ -58,5 +58,45 @@ class UserRepo
         User::query()->where("id", $userId)->update($update);
     }
 
+    public function updateProfile($request)
+    {
+
+        auth()->user()->name = $request->name;
+        auth()->user()->website = $request->website;
+        auth()->user()->linkedin = $request->linkedin;
+        auth()->user()->facebook = $request->facebook;
+        auth()->user()->youtube = $request->youtube;
+        auth()->user()->twitter = $request->twitter;
+        auth()->user()->instagram = $request->instagram;
+        auth()->user()->telegram = $request->telegram;
+
+        if ($request->password) {
+            auth()->user()->password = bcrypt($request->password);
+        }
+
+        if (auth()->user()->email != $request->email) {
+            auth()->user()->email = $request->email;
+            auth()->user()->email_verified_at = null;
+
+        }
+
+        if (auth()->user()->hasPermissionTo(Permission::PERMISSION_TEACH)) {
+
+            auth()->user()->card_number = $request->card_number;
+            auth()->user()->shaba = $request->shaba;
+            auth()->user()->headline = $request->headline;
+            auth()->user()->bio = $request->bio;
+            auth()->user()->username = $request->username;
+
+        }
+
+
+
+
+
+        auth()->user()->save();
+
+    }
+
 
 }

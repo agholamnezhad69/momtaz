@@ -132,4 +132,10 @@ class CourseController extends Controller
 
         return AjaxResponses::failResponse();
     }
+
+    public function show()
+    {
+        return abort(404);
+    }
+
 }

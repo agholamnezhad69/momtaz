@@ -32,6 +32,8 @@ class CreateUsersTable extends Migration
             $table->string('ip')->nullable();
             $table->bigInteger('image_id')->unsigned()->nullable();
 
+            $table->string('card_number', 16)->nullable();
+            $table->string('shaba', 24)->nullable();
 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
