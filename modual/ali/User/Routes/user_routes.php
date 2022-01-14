@@ -9,6 +9,7 @@ Route::group([
     Route::post('users/profile', 'UserController@updateProfile')->name('users.profile');
 
 });
+
 Route::group([
     'namespace' => 'ali\User\Http\Controllers',
     'middleware' => ['web', 'auth', 'verified']
