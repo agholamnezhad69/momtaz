@@ -11,7 +11,8 @@ Route::group([
     $router->patch('seasons/{season}/reject', 'SeasonController@reject')->name('seasons.reject');
     $router->patch('seasons/{season}/lock', 'SeasonController@lock')->name('seasons.lock');
     $router->post('seasons/{course}', 'SeasonController@store')->name('seasons.store');
-
+    $router->get('seasons/{season}', 'SeasonController@edit')->name('seasons.edit');
+    $router->patch('seasons/{season}', 'SeasonController@update')->name('seasons.update');
 
 
 });

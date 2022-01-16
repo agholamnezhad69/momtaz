@@ -4,7 +4,7 @@ namespace ali\Course\Repositories;
 
 use ali\Course\Models\Course;
 use ali\Course\Models\Season;
-use Illuminate\Support\Str;
+
 
 class SeasonRepo
 {
@@ -13,19 +13,7 @@ class SeasonRepo
     {
 
 
-        $courseRepo = new CourseRepo();
-
-        if (is_null($values->number)) {
-
-            $number = $courseRepo->findById($courseId)
-                ->seasons()
-                ->orderBy('number', 'desc')
-                ->firstOrNew([])->number ? : 0;
-            $number++;
-
-        } else {
-            $number = $values->number;
-        }
+        $number = $this->generateNumber($values->number, $courseId);
 
 
         return Season::create([
@@ -36,6 +24,40 @@ class SeasonRepo
             'confirmation_status' => Course::CONFIRMATION_STATUS_PENDING,
         ]);
 
+    }
+
+    public function findById($seasonId)
+    {
+
+        return Season::query()->findOrFail($seasonId);
+    }
+
+    public function update($seasonId, $values)
+    {
+
+        $season = $this->findById($seasonId);
+
+        return Season::query()->where('id', $seasonId)->update([
+            'title' => $values->title,
+            'number' => $this->generateNumber($values->number, $season->course_id),
+
+        ]);
+    }
+
+    public function generateNumber($number, $courseId)
+    {
+        $courseRepo = new CourseRepo();
+
+        if (is_null($number)) {
+
+            $number = $courseRepo->findById($courseId)
+                ->seasons()
+                ->orderBy('number', 'desc')
+                ->firstOrNew([])->number ?: 0;
+            $number++;
+
+        }
+        return $number;
     }
 
 

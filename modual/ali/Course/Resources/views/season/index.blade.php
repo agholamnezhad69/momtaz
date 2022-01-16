@@ -4,7 +4,7 @@
         @csrf
         <x-input name="title" type="text" placeholder="عنوان سرفصل" class="text"/>
         <x-input name="number" type="text" placeholder="شماره سرفصل" class="text"/>
-        <button type="submit" class="btn btn-brand">اضافه کردن</button>
+        <button type="submit" class="btn btn-webamooz_net mt-2">اضافه کردن</button>
     </form>
     <div class="table__box padding-30">
         <table class="table">
@@ -25,7 +25,7 @@
                         <a href="" class="item-delete mlg-15" title="حذف"></a>
                         <a href="" class="item-reject mlg-15" title="رد"></a>
                         <a href="" class="item-confirm mlg-15" title="تایید"></a>
-                        <a href="" class="item-edit " title="ویرایش"></a>
+                        <a href="{{route('seasons.edit',$season->id)}}" class="item-edit " title="ویرایش"></a>
                     </td>
                 </tr>
             @endforeach
