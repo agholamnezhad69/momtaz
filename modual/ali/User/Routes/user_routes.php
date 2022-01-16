@@ -4,7 +4,6 @@ Route::group([
     'middleware' => ['web', 'auth']
 ], function () {
 
-
     Route::get('users/profile', 'UserController@profile')->name('users.profile');
     Route::post('users/profile', 'UserController@updateProfile')->name('users.profile');
 

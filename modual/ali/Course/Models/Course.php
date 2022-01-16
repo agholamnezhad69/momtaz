@@ -53,5 +53,13 @@ class Course extends Model
 
     }
 
+    public function seasons()
+    {
+        return $this->hasMany(Season::class);
+
+    }
+
+
+
 
 }

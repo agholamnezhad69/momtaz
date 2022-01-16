@@ -3,6 +3,7 @@
 namespace ali\User\Models;
 
 use ali\Course\Models\Course;
+use ali\Course\Models\Season;
 use ali\Media\Models\Media;
 use ali\RolePermissions\Models\Role;
 use ali\User\Notifications\ResetPasswordRequestNotification;
@@ -95,6 +96,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Course::class, 'teacher_id');
 
     }
+    public function season()
+    {
+        return $this->hasMany(Season::class,'user_id');
+
+    }
 
     public function profilePath()
     {
@@ -102,5 +108,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return  $this->username ? route("viewProfile",$this->username) : route("viewProfile","username");
 
     }
+
+
 
 }

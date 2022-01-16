@@ -34,6 +34,7 @@ class CourseController extends Controller
             compact("teachers", "categories"));
 
     }
+
     public function store(CourseRequest $request, CourseRepo $courseRepo)
     {
         $request->request->add(['banner_id' => MediaFileService::upload($request->file('image'))->id]);
@@ -136,6 +137,13 @@ class CourseController extends Controller
     public function show()
     {
         return abort(404);
+    }
+
+    public function details($id, CourseRepo $courseRepo)
+    {
+        $course = $courseRepo->findById($id);
+        return view("Courses::details", compact('course'));
+
     }
 
 }
