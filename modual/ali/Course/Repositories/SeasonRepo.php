@@ -39,7 +39,7 @@ class SeasonRepo
 
         return Season::query()->where('id', $seasonId)->update([
             'title' => $values->title,
-            'number' => $this->generateNumber($values->number, $season->course_id),
+            'number' => $this->generateNumber($values->number, $season->course->id),
 
         ]);
     }
@@ -54,10 +54,27 @@ class SeasonRepo
                 ->seasons()
                 ->orderBy('number', 'desc')
                 ->firstOrNew([])->number ?: 0;
-            $number++;
 
+
+            $number++;
         }
         return $number;
+    }
+    public function updateConfirmationStatus($id, string $status)
+    {
+
+        return Season::query()
+            ->where('id', $id)
+            ->update(["confirmation_status" => $status]);
+
+
+    }
+    public function updateStatus($id, string $status)
+    {
+        return Season::query()
+            ->where('id', $id)
+            ->update(["status" => $status]);
+
     }
 
 

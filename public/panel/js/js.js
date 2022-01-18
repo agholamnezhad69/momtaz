@@ -246,8 +246,28 @@ function updateConfirmationStatus(event, route, message, status, field = "confir
             .done(function (response) {
                 if (status == "تایید شده")
                     $(event.target).closest('tr').find('td.' + field).html("<span class='text-success'>" + status + "</span>");
-                else
+                else if (status == "رد شده") {
                     $(event.target).closest('tr').find('td.' + field).html("<span class='text-error'>" + status + "</span>");
+                } else if (status == "باز") {
+                    $(event.target).closest('tr').find('td.' + field).html("<span class='text-success'>" + status + "</span>");
+                    var aTag = $(event.target);
+                    var oldRoute = aTag.attr("onclick");
+                    var newRoute = oldRoute.replace("/unlock", "/lock");
+                    newRoute = newRoute.replace("باز", "قفل شده");
+                    aTag.removeClass('text-success').addClass('text-error');
+
+                    $(event.target).attr("onclick", newRoute);
+                } else if (status == "قفل شده") {
+                    $(event.target).closest('tr').find('td.' + field).html("<span class='text-error'>" + status + "</span>");
+
+                    var aTag = $(event.target);
+                    var oldRoute = aTag.attr("onclick");
+                    var newRoute = oldRoute.replace("/lock", "/unlock");
+                    newRoute = newRoute.replace("قفل شده", "باز");
+                    aTag.removeClass('text-error').addClass('text-success');
+                    $(event.target).attr("onclick", newRoute);
+                }
+
                 $.toast({
                     heading: 'عملیات موفق',
                     text: response.message,

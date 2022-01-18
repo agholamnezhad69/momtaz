@@ -18,6 +18,15 @@ class Season extends Model
             self::CONFIRMATION_STATUS_PENDING
         ];
 
+    const STATUS_OPENED = 'opened';
+    const STATUS_LOCKED = 'locked';
+
+    public static $statuses = [
+        self::STATUS_OPENED,
+        self::STATUS_LOCKED
+    ];
+
+
     protected $guarded = [];
 
     public function course()

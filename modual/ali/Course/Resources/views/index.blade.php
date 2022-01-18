@@ -69,6 +69,7 @@
                                    class="item-reject mlg-15" title="رد">
 
                                 </a>
+
                                 <a href=""
                                    onclick="updateConfirmationStatus(event,'{{route('courses.lock',$row->id)}}',
                                        'آیا از قفل شدن این مورد اطمینان دارید؟',

@@ -2,7 +2,9 @@
 
 namespace ali\Course\Http\Controllers;
 
+use ali\Common\Responses\AjaxResponses;
 use ali\Course\Http\Requests\SeasonRequest;
+use ali\Course\Models\Season;
 use ali\Course\Repositories\SeasonRepo;
 use App\Http\Controllers\Controller;
 
@@ -45,6 +47,53 @@ class SeasonController extends Controller
 
 
     }
+
+    public function destroy($seasonId)
+    {
+
+        $season = $this->seasonRepo->findById($seasonId);
+        $season->delete();
+        return AjaxResponses::successResponse();
+
+    }
+
+    public function accept($id)
+    {
+
+        if ($this->seasonRepo->updateConfirmationStatus($id, Season::CONFIRMATION_STATUS_ACCEPTED)) {
+
+            return AjaxResponses::successResponse();
+        }
+        return AjaxResponses::failResponse();
+    }
+
+    public function reject($id)
+    {
+        if ($this->seasonRepo->updateConfirmationStatus($id, Season::CONFIRMATION_STATUS_REJECTED)) {
+            return AjaxResponses::successResponse();
+        }
+        return AjaxResponses::failResponse();
+    }
+
+    public function lock($id)
+    {
+
+
+        if ($this->seasonRepo->updateStatus($id, Season::STATUS_LOCKED)) {
+
+            return AjaxResponses::successResponse();
+        }
+        return AjaxResponses::failResponse();
+    }
+    public function unLock($id)
+    {
+        if ($this->seasonRepo->updateStatus($id, Season::STATUS_OPENED)) {
+            return AjaxResponses::successResponse();
+        }
+        return AjaxResponses::failResponse();
+    }
+
+
 
 
 }
