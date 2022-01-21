@@ -253,19 +253,21 @@ function updateConfirmationStatus(event, route, message, status, field = "confir
                     var aTag = $(event.target);
                     var oldRoute = aTag.attr("onclick");
                     var newRoute = oldRoute.replace("/unlock", "/lock");
-                    newRoute = newRoute.replace("باز", "قفل شده");
-                    aTag.removeClass('text-success').addClass('text-error');
-
+                    newRoute = newRoute.replace("باز", "قفل شده").replace("باز", "قفل شده");
                     $(event.target).attr("onclick", newRoute);
+                    aTag.removeClass('text-success').addClass('text-error');
+                    aTag.attr("title", "قفل کردن");
+
                 } else if (status == "قفل شده") {
                     $(event.target).closest('tr').find('td.' + field).html("<span class='text-error'>" + status + "</span>");
 
                     var aTag = $(event.target);
                     var oldRoute = aTag.attr("onclick");
                     var newRoute = oldRoute.replace("/lock", "/unlock");
-                    newRoute = newRoute.replace("قفل شده", "باز");
-                    aTag.removeClass('text-error').addClass('text-success');
+                    newRoute = newRoute.replace("قفل شده", "باز").replace("قفل شده", "باز");
                     $(event.target).attr("onclick", newRoute);
+                    aTag.removeClass('text-error').addClass('text-success');
+                    aTag.attr("title", "باز کردن");
                 }
 
                 $.toast({

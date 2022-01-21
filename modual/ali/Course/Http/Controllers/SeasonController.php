@@ -5,6 +5,7 @@ namespace ali\Course\Http\Controllers;
 use ali\Common\Responses\AjaxResponses;
 use ali\Course\Http\Requests\SeasonRequest;
 use ali\Course\Models\Season;
+use ali\Course\Repositories\CourseRepo;
 use ali\Course\Repositories\SeasonRepo;
 use App\Http\Controllers\Controller;
 
@@ -19,10 +20,11 @@ class SeasonController extends Controller
         $this->seasonRepo = $seasonRepo;
     }
 
-    public function store($id, SeasonRequest $request)
+    public function store($courseId, SeasonRequest $request, CourseRepo $courseRepo)
     {
-
-        $this->seasonRepo->store($id, $request);
+        $course = $courseRepo->findById($courseId);
+        $this->authorize('createSeason', $course);
+        $this->seasonRepo->store($courseId, $request);
         newFeedbacks();
         return back();
 
@@ -31,7 +33,8 @@ class SeasonController extends Controller
 
     public function edit($seasonId)
     {
-
+        $season = $this->seasonRepo->findById($seasonId);
+        $this->authorize('edit', $season);
         $season = $this->seasonRepo->findById($seasonId);
         return view("Courses::season.edit", compact('season'));
 
@@ -41,6 +44,8 @@ class SeasonController extends Controller
     public function update($seasonId, SeasonRequest $request)
     {
 
+        $season = $this->seasonRepo->findById($seasonId);
+        $this->authorize('edit', $season);
         $this->seasonRepo->update($seasonId, $request);
         newFeedbacks();
         return back();
@@ -50,7 +55,9 @@ class SeasonController extends Controller
 
     public function destroy($seasonId)
     {
+        $season = $this->seasonRepo->findById($seasonId);
 
+        $this->authorize('delete', $season);
         $season = $this->seasonRepo->findById($seasonId);
         $season->delete();
         return AjaxResponses::successResponse();
@@ -59,7 +66,7 @@ class SeasonController extends Controller
 
     public function accept($id)
     {
-
+        $this->authorize('change_confirmation_status', Season::class);
         if ($this->seasonRepo->updateConfirmationStatus($id, Season::CONFIRMATION_STATUS_ACCEPTED)) {
 
             return AjaxResponses::successResponse();
@@ -69,6 +76,8 @@ class SeasonController extends Controller
 
     public function reject($id)
     {
+        $this->authorize('change_confirmation_status', Season::class);
+
         if ($this->seasonRepo->updateConfirmationStatus($id, Season::CONFIRMATION_STATUS_REJECTED)) {
             return AjaxResponses::successResponse();
         }
@@ -78,6 +87,7 @@ class SeasonController extends Controller
     public function lock($id)
     {
 
+        $this->authorize('change_confirmation_status', Season::class);
 
         if ($this->seasonRepo->updateStatus($id, Season::STATUS_LOCKED)) {
 
@@ -85,15 +95,16 @@ class SeasonController extends Controller
         }
         return AjaxResponses::failResponse();
     }
+
     public function unLock($id)
     {
+        $this->authorize('change_confirmation_status', Season::class);
+
         if ($this->seasonRepo->updateStatus($id, Season::STATUS_OPENED)) {
             return AjaxResponses::successResponse();
         }
         return AjaxResponses::failResponse();
     }
-
-
 
 
 }

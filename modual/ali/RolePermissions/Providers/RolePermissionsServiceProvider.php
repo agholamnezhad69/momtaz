@@ -22,6 +22,7 @@ class RolePermissionsServiceProvider extends ServiceProvider
         \DatabaseSeeder::$seeders[] = RolePermissionTableSeeder::class;
 
         Gate::policy(Role::class, RolePermissionPolicy::class);
+
         Gate::before(function ($user) {
             return $user->hasPermissionTo(Permission::PERMISSION_SUPER_ADMIN) ? true : null;
         });
@@ -33,7 +34,8 @@ class RolePermissionsServiceProvider extends ServiceProvider
         config()->set('sidebar.items.role-permissions', [
             "icon" => "i-role-permissions",
             "title" => "نقش های کاربری",
-            "url" => route("role-permissions.index")
+            "url" => route("role-permissions.index"),
+            'permission' => Permission::PERMISSION_MANAGE_ROLE_PERMISSION
         ]);
     }
 

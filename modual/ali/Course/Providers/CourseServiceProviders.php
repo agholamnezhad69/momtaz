@@ -3,7 +3,10 @@
 namespace ali\Course\Providers;
 
 use ali\Course\Models\Course;
+use ali\Course\Models\Season;
 use ali\Course\policies\CoursePolicy;
+use ali\Course\policies\SeasonPolicy;
+use ali\RolePermissions\Models\Permission;
 use Illuminate\Support\Facades\Gate;
 use  Illuminate\Support\ServiceProvider;
 
@@ -18,6 +21,7 @@ class CourseServiceProviders extends ServiceProvider
         $this->loadJsonTranslationsFrom(__DIR__ . "/../Resources/Lang/");
         $this->loadTranslationsFrom(__DIR__ . "/../Resources/Lang/", "Courses");
         Gate::policy(Course::class, CoursePolicy::class);
+        Gate::policy(Season::class, SeasonPolicy::class);
 
 
     }
@@ -28,7 +32,8 @@ class CourseServiceProviders extends ServiceProvider
         config()->set('sidebar.items.courses', [
             "icon" => "i-courses",
             "title" => "دوره ها",
-            "url" => route("courses.index")
+            "url" => route("courses.index"),
+            'permission' => Permission::PERMISSION_MANAGE_COURSES
         ]);
     }
 

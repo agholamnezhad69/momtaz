@@ -35,63 +35,66 @@
                         </a>
                     </td>
                     <td class="confirmation_status"><a href="">
-                            <span class='@if($season->confirmation_status==\ali\Course\Models\Season::CONFIRMATION_STATUS_ACCEPTED)
-                                text-success
-                                @else
-                                text-error
-                                @endif'>
+                            <span
+                                class='@if($season->confirmation_status==\ali\Course\Models\Season::CONFIRMATION_STATUS_ACCEPTED)
+                                    text-success
+@else
+                                    text-error
+@endif'>
 
                                 @lang($season->confirmation_status)
                             </span>
-                         </a>
+                        </a>
                     </td>
 
                     <td class="status-">
-
                         <a
                             href="#"
                             onclick="deleteItem(event,'{{route('seasons.destroy',$season->id)}}')"
                             class="item-delete mlg-15"
                             title="حذف">
                         </a>
-                        <a href=""
-                           onclick="updateConfirmationStatus(event,'{{route('seasons.accept',$season->id)}}',
-                               'آیا از تایید این مورد اطمینان دارید؟',
-                               '@lang(\ali\Course\Models\Season::CONFIRMATION_STATUS_ACCEPTED)')"
-                           class="item-confirm mlg-15" title="تایید">
-
-                        </a>
-                        <a href=""
-                           onclick="updateConfirmationStatus(event,'{{route('seasons.reject',$season->id)}}',
-                               'آیا از رد شدن این مورد اطمینان دارید؟',
-                               '@lang(\ali\Course\Models\Season::CONFIRMATION_STATUS_REJECTED)')"
-                           class="item-reject mlg-15" title="رد">
-
-                        </a>
-                        @if($season->status==\ali\Course\Models\Season::STATUS_OPENED)
+                        @can(\ali\RolePermissions\Models\Permission::PERMISSION_MANAGE_COURSES)
                             <a href=""
-                               onclick="updateConfirmationStatus(event,'{{route('seasons.lock',$season->id)}}',
-                                   'آیا از تغییر این مورد اطمینان دارید؟',
-                                   '@lang(\ali\Course\Models\Season::STATUS_LOCKED)',
-                                   'status'
-                                   )"
-                               class="item-lock text-error mlg-15" title="تغییر">
+                               onclick="updateConfirmationStatus(event,'{{route('seasons.accept',$season->id)}}',
+                                   'آیا از تایید این مورد اطمینان دارید؟',
+                                   '@lang(\ali\Course\Models\Season::CONFIRMATION_STATUS_ACCEPTED)')"
+                               class="item-confirm mlg-15" title="تایید">
 
                             </a>
-                        @else
                             <a href=""
-                               onclick="updateConfirmationStatus(event,'{{route('seasons.unlock',$season->id)}}',
-                                   'آیا از تغییر این مورد اطمینان دارید؟',
-                                   '@lang(\ali\Course\Models\Season::STATUS_OPENED)',
-                                   'status'
-                                   )"
-                               class="item-lock text-success mlg-15" title="تغییر">
+                               onclick="updateConfirmationStatus(event,'{{route('seasons.reject',$season->id)}}',
+                                   'آیا از رد شدن این مورد اطمینان دارید؟',
+                                   '@lang(\ali\Course\Models\Season::CONFIRMATION_STATUS_REJECTED)')"
+                               class="item-reject mlg-15" title="رد">
 
                             </a>
-                        @endif
+                            @if($season->status==\ali\Course\Models\Season::STATUS_OPENED)
+                                <a href=""
+                                   onclick="updateConfirmationStatus(event,'{{route('seasons.lock',$season->id)}}',
+                                       'آیا از @lang(\ali\Course\Models\Season::STATUS_OPENED) این مورد اطمینان دارید؟',
+                                       '@lang(\ali\Course\Models\Season::STATUS_LOCKED)',
+                                       'status'
+                                       )"
+                                   class="item-lock text-error mlg-15" title="قفل کردن">
+
+                                </a>
+                            @else
+                                <a href=""
+                                   onclick="updateConfirmationStatus(event,'{{route('seasons.unlock',$season->id)}}',
+                                       'آیا از @lang(\ali\Course\Models\Season::STATUS_LOCKED) این مورد اطمینان دارید؟',
+                                       '@lang(\ali\Course\Models\Season::STATUS_OPENED)',
+                                       'status'
+                                       )"
+                                   class="item-lock text-success mlg-15" title="باز کردن">
+
+                                </a>
+                            @endif
+
+                        @endcan
 
 
-                        <a href="{{route('seasons.edit',$season->id)}}" class="item-edit " title="ویرایش"></a>
+                            <a href="{{route('seasons.edit',$season->id)}}" class="item-edit " title="ویرایش"></a>
                     </td>
                 </tr>
             @endforeach

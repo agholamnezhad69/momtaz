@@ -83,12 +83,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
-    public function image()
-    {
 
-        return $this->belongsTo(Media::class, 'image_id');
-
-    }
 
     public function courses()
     {
@@ -96,18 +91,39 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Course::class, 'teacher_id');
 
     }
+
     public function season()
     {
-        return $this->hasMany(Season::class,'user_id');
+        return $this->hasMany(Season::class, 'user_id');
 
     }
 
     public function profilePath()
     {
 
-        return  $this->username ? route("viewProfile",$this->username) : route("viewProfile","username");
+        return $this->username ? route("viewProfile", $this->username) : route("viewProfile", "username");
 
     }
+
+    public function image()
+    {
+
+        return $this->belongsTo(Media::class, 'image_id');
+
+    }
+
+    public function getThumbAttribute()
+    {
+
+        if ($this->image)
+
+            return "/storage/" . $this->image->files[300];
+
+        return "/panel/img/profile.jpg/";
+
+
+    }
+
 
 
 

@@ -1,13 +1,18 @@
+<div class="sidebar__nav border-top border-left  ">
+    <span class="bars d-none padding-0-18"></span>
+    <a class="header__logo  d-none" href=""></a>
+    <x-user-photo/>
 
-    <div class="sidebar__nav border-top border-left  ">
-        <span class="bars d-none padding-0-18"></span>
-        <a class="header__logo  d-none" href=""></a>
-        <x-user-photo/>
-
-        <ul>
+    <ul>
 
 
-            @foreach(config('sidebar.items') as $item)
+        @foreach(config('sidebar.items') as $item)
+
+            @if(! array_key_exists('permission',$item) ||
+                  auth()->user()->hasPermissionTo($item['permission'])||
+                  auth()->user()->hasPermissionTo(\ali\RolePermissions\Models\Permission::PERMISSION_SUPER_ADMIN)
+                   )
+
 
                 <li class="item-li {{$item['icon']}} @if(str_starts_with(request()->url(),$item["url"])) is-active @endif">
 
@@ -15,14 +20,16 @@
 
                 </li>
 
+            @endif
 
-            @endforeach
 
-        </ul>
+        @endforeach
 
-    </div>
+    </ul>
 
-    <script>
-        @include("Common::layouts.feedbacks")
-    </script>
+</div>
+
+<script>
+    @include("Common::layouts.feedbacks")
+</script>
 

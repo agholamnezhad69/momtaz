@@ -4,6 +4,7 @@ namespace ali\Category\Providers;
 
 use ali\Category\Models\Category;
 use ali\Category\policies\CategoryPolicy;
+use ali\RolePermissions\Models\Permission;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,10 +25,9 @@ class CategoryServiceProviders extends ServiceProvider
         config()->set('sidebar.items.categories', [
             "icon" => "i-categories",
             "title" => "دسته بندی ها",
-            "url" => route("categories.index")
+            "url" => route("categories.index"),
+            'permission' => Permission::PERMISSION_MANAGE_CATEGORIES
         ]);
-
-
 
 
     }

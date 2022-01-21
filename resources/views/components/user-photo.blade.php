@@ -2,12 +2,8 @@
     @csrf
     <div class="profile__info border cursor-pointer text-center">
         <div class="avatar__img">
-            @if(auth()->user()->image)
-                <img src=" {{auth()->user()->image->thumb}} " class="avatar___img">
-            @else
-                <img src="/panel/img/pro.jpg" class="avatar___img">
-            @endif
 
+            <img src="{{auth()->user()->thumb}} " class="avatar___img">
 
             <input type="file" accept="image/*" class="hidden avatar-img__input"
                    name="userPhoto"

@@ -4,6 +4,7 @@
 namespace ali\User\Providers;
 
 
+use ali\RolePermissions\Models\Permission;
 use ali\User\Database\seeds\UserTableSeeder;
 use ali\User\Models\User;
 use ali\User\Policies\UserPolicy;
@@ -34,14 +35,16 @@ class UserServiceProvider extends ServiceProvider
         config()->set('sidebar.items.users', [
             "icon" => "i-users",
             "title" => "کاربران",
-            "url" => route("users.index")
+            "url" => route("users.index"),
+            'permission' => Permission::PERMISSION_MANAGE_USERS
         ]);
 
         $this->app->booted(function () {
-            config()->set('sidebar.items.users', [
+            config()->set('sidebar.items.usersInformation', [
                 "icon" => "i-user__inforamtion",
                 "title" => "اطلاعات کاربری",
                 "url" => route("users.profile")
+
             ]);
         });
 

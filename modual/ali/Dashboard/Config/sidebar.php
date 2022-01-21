@@ -3,8 +3,10 @@
 return [
     'items' => [
         'Dashboard' => [],
+        'courses' => [],
         'categories' => [],
+        'users' => [],
         'role-permissions' => [],
-        'users' => []
+        'usersInformation' => [],
     ]
 ];
