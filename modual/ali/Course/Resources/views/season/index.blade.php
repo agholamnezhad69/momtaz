@@ -38,10 +38,9 @@
                             <span
                                 class='@if($season->confirmation_status==\ali\Course\Models\Season::CONFIRMATION_STATUS_ACCEPTED)
                                     text-success
-@else
+                                     @else
                                     text-error
-@endif'>
-
+                                     @endif'>
                                 @lang($season->confirmation_status)
                             </span>
                         </a>
@@ -94,7 +93,7 @@
                         @endcan
 
 
-                            <a href="{{route('seasons.edit',$season->id)}}" class="item-edit " title="ویرایش"></a>
+                        <a href="{{route('seasons.edit',$season->id)}}" class="item-edit " title="ویرایش"></a>
                     </td>
                 </tr>
             @endforeach

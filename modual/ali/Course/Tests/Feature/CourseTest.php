@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 class CourseTest extends TestCase
 {
-    use WithFaker;
-    use RefreshDatabase;
+
     use WithFaker;
     use RefreshDatabase;
     private function createUser()

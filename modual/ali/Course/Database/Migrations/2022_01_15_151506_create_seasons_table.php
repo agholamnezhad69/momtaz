@@ -20,6 +20,7 @@ class CreateSeasonsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->string('title');
             $table->tinyInteger('number')->unsigned();
+
             $table->enum('confirmation_status', [Season::$confirmation_statuses])
                 ->default(Season::CONFIRMATION_STATUS_PENDING);
 

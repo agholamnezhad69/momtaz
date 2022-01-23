@@ -2,6 +2,8 @@
 
 namespace ali\User\Tests\Feature;
 
+use ali\RolePermissions\Database\seeds\RolePermissionTableSeeder;
+use ali\RolePermissions\Models\Permission;
 use ali\User\Models\User;
 use ali\User\Services\verifyCodeService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -51,6 +53,9 @@ class registrationTest extends TestCase
 
     public function test_user_can_see_home_page()
     {
+        $this->seed(RolePermissionTableSeeder::class);
+
+        $this->withoutExceptionHandling();
 
         $this->register_new_user();
         $this->assertAuthenticated();
