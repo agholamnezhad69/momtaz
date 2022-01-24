@@ -16,6 +16,7 @@ class CourseServiceProviders extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__ . "/../Routes/courses_routes.php");
         $this->loadRoutesFrom(__DIR__ . "/../Routes/season_routes.php");
+        $this->loadRoutesFrom(__DIR__ . "/../Routes/lesson_routes.php");
         $this->loadViewsFrom(__DIR__ . '/../Resources/views/', 'Courses');
         $this->loadMigrationsFrom(__DIR__ . '/../Database/migrations');
         $this->loadJsonTranslationsFrom(__DIR__ . "/../Resources/Lang/");

@@ -77,5 +77,13 @@ class SeasonRepo
 
     }
 
+    public function getCourseSeasons($courseId)
+    {
+        return Season::query()
+            ->where('course_id',$courseId)
+            ->where('confirmation_status',Season::CONFIRMATION_STATUS_ACCEPTED)
+            ->orderBy('number')
+            ->get();
+    }
 
 }
