@@ -7,8 +7,9 @@ Route::group([
 ], function ($router) {
 
 
-    $router->get('courses/{course}/lessons/create', 'LessonController@create')
-        ->name('lessons.create');
+    $router->get('courses/{course}/lessons/create', 'LessonController@create')->name('lessons.create');
+    $router->post('courses/{course}/lessons', 'LessonController@store')->name('lessons.store');
+
 
 });
 

@@ -2,6 +2,7 @@
 
 @section('breadcrumb')
     <li><a href="{{route('courses.index')}}" title="دوره">دوره</a></li>
+    <li><a href="{{route('courses.index')}}" title="دوره">دوره</a></li>
     <li><a href="#" title=" ایجاد دوره"> ویرایش دوره</a></li>
 @endsection
 

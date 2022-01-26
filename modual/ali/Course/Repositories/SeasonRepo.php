@@ -60,6 +60,7 @@ class SeasonRepo
         }
         return $number;
     }
+
     public function updateConfirmationStatus($id, string $status)
     {
 
@@ -69,6 +70,7 @@ class SeasonRepo
 
 
     }
+
     public function updateStatus($id, string $status)
     {
         return Season::query()
@@ -80,10 +82,18 @@ class SeasonRepo
     public function getCourseSeasons($courseId)
     {
         return Season::query()
-            ->where('course_id',$courseId)
-            ->where('confirmation_status',Season::CONFIRMATION_STATUS_ACCEPTED)
+            ->where('course_id', $courseId)
+            ->where('confirmation_status', Season::CONFIRMATION_STATUS_ACCEPTED)
             ->orderBy('number')
             ->get();
+    }
+
+    public function finByIdAndCourseId($seasonId, $courseId)
+    {
+        return Season::query()
+            ->where('id', $seasonId)
+            ->where('course_id', $courseId)
+            ->first();
     }
 
 }

@@ -174,10 +174,8 @@
 @endsection
 
 
-@section('js')
-    <script src="/panel/js/tagsInput.js"></script>
 
-@endsection
+
 
 
 
