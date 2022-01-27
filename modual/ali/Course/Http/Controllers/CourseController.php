@@ -8,6 +8,7 @@ use ali\Course\Http\Requests\CourseRequest;
 use ali\Course\Models\Course;
 use ali\Course\Repositories\CourseRepo;
 
+use ali\Course\Repositories\LessonRepo;
 use ali\Media\Services\MediaFileService;
 use ali\User\Http\Requests\UpdateUserRequest;
 use ali\User\Repositories\UserRepo;
@@ -140,13 +141,13 @@ class CourseController extends Controller
         return abort(404);
     }
 
-    public function details($id, CourseRepo $courseRepo)
+    public function details($id, CourseRepo $courseRepo, LessonRepo $lessonRepo)
     {
         $course = $courseRepo->findById($id);
         $this->authorize('detail', $course);
 
-        $course = $courseRepo->findById($id);
-        return view("Courses::details", compact('course'));
+        $lessons = $lessonRepo->paginate($id);
+        return view("Courses::details", compact('course', 'lessons'));
 
     }
 

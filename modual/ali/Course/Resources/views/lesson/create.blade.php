@@ -21,7 +21,7 @@
 
                 <x-input type="text" name="slug" class="text-left" placeholder="  نام انگلیسی درس اختیاری"/>
                 <x-input type="number" name="time" class="text-left" placeholder="مدت زمان جلسه *" required/>
-                <x-input type="number" name="number" class="text-left" placeholder="شماره جلسه" required/>
+                <x-input type="number" name="number" class="text-left" placeholder="شماره جلسه" />
                 @if(count($seasons))
                     <x-select name="season_id" required>
                         <option value="">انتخاب فصل *</option>

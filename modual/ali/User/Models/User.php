@@ -3,6 +3,7 @@
 namespace ali\User\Models;
 
 use ali\Course\Models\Course;
+use ali\Course\Models\Lesson;
 use ali\Course\Models\Season;
 use ali\Media\Models\Media;
 use ali\RolePermissions\Models\Role;
@@ -84,7 +85,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
-
     public function courses()
     {
 
@@ -92,9 +92,15 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
-    public function season()
+    public function seasons()
     {
         return $this->hasMany(Season::class, 'user_id');
+
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
 
     }
 
@@ -123,8 +129,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     }
-
-
 
 
 }

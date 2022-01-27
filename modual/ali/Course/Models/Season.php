@@ -36,6 +36,12 @@ class Season extends Model
 
     }
 
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class, 'season_id');
+
+    }
+
     public function user()
     {
 

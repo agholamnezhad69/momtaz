@@ -2,6 +2,7 @@
 
 namespace ali\Course\Models;
 
+use ali\Media\Models\Media;
 use ali\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,6 +24,29 @@ class Lesson extends Model
         self::STATUS_LOCKED
     ];
     protected $guarded = [];
+
+    public function season()
+    {
+        return $this->belongsTo(Season::class, 'season_id');
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class, 'course_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+
+    }
+
+    public function media()
+    {
+
+        return $this->belongsTo(Media::class);
+
+    }
 
 
 }

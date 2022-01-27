@@ -7,6 +7,7 @@ use ali\Course\Http\Requests\LessonRequest;
 use ali\Course\Repositories\CourseRepo;
 use ali\Course\Repositories\LessonRepo;
 use ali\Course\Repositories\SeasonRepo;
+use ali\Media\Services\MediaFileService;
 use App\Http\Controllers\Controller;
 
 
@@ -33,13 +34,14 @@ class LessonController extends Controller
     public function store($courseId, LessonRequest $request)
     {
 
-        $request->request->add(["media_id" => 51]);
+        $request->request->add(["media_id" => MediaFileService::upload($request->file('lesson_file'))->id]);
         $this->lessonRepo->store($courseId, $request);
         newFeedbacks();
         return redirect(route('courses.details', $courseId));
 
 
     }
+
 
 
 }

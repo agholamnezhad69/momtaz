@@ -11,8 +11,6 @@ class MediaFileService
     {
 
         $extension = strtolower($file->getClientOriginalExtension());
-
-
         switch ($extension) {
 
             case 'jpg':
@@ -28,7 +26,16 @@ class MediaFileService
                 break;
             case 'avi':
             case 'mp4':
-                VideoFileService::upload($file);
+            case 'mkv':
+            case 'zip':
+            case 'rar':
+                $media = new Media();
+                $media->files = VideoFileService::upload($file);
+                $media->type = "video";
+                $media->user_id = auth()->id();
+                $media->filename = $file->getClientOriginalExtension();
+                $media->save();
+                return $media;
                 break;
         }
 
