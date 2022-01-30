@@ -11,11 +11,9 @@ class MediaServiceProviders extends ServiceProvider
     public function register()
     {
 
-    //        $this->loadRoutesFrom(__DIR__ . "/../Routes/courses_routes.php");
-    //        $this->loadViewsFrom(__DIR__ . '/../Resources/views/', 'Courses');
-              $this->loadMigrationsFrom(__DIR__ . '/../Database/migrations');
-    //        $this->loadJsonTranslationsFrom(__DIR__ . "/../Resources/Lang/");
-    //        $this->loadTranslationsFrom(__DIR__ . "/../Resources/Lang/","Courses");
+
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/migrations');
+        $this->mergeConfigFrom(__DIR__ . '/../Config/mediaFile.php','mediaFile');
 
 
     }

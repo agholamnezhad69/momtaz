@@ -11,32 +11,20 @@ class MediaFileService
     {
 
         $extension = strtolower($file->getClientOriginalExtension());
-        switch ($extension) {
 
-            case 'jpg':
-            case 'png':
-            case 'jpeg':
+
+
+        foreach (config('mediaFile.mediaTypeServices') as $key => $service) {
+
+            if (in_array($extension, $service['extensions'])) {
                 $media = new Media();
-                $media->files = ImageFileService::upload($file);
-                $media->type = "image";
+                $media->files = $service['handler']::upload($file);
+                $media->type = $key;
                 $media->user_id = auth()->id();
                 $media->filename = $file->getClientOriginalExtension();
                 $media->save();
                 return $media;
-                break;
-            case 'avi':
-            case 'mp4':
-            case 'mkv':
-            case 'zip':
-            case 'rar':
-                $media = new Media();
-                $media->files = VideoFileService::upload($file);
-                $media->type = "video";
-                $media->user_id = auth()->id();
-                $media->filename = $file->getClientOriginalExtension();
-                $media->save();
-                return $media;
-                break;
+            }
         }
 
 
