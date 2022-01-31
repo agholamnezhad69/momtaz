@@ -10,20 +10,17 @@ class ZipFileService implements FileServiceContract
 {
 
 
-    public static function upload(UploadedFile $file): array
+    public static function upload(UploadedFile $file, string $fileName, string $dir): array
     {
-        $dir = 'private\\';
-        $fileName = uniqid();
-        $extension = $file->getClientOriginalExtension();
 
-        Storage::putFileAs($dir, $file, $fileName . '.' . $extension);
+        Storage::putFileAs($dir, $file, $fileName . '.' . $file->getClientOriginalExtension());
 
-        $path = $dir . $fileName . '.' . $extension;
+        $path = $dir . $fileName . '.' . $file->getClientOriginalExtension();
 
         return ["zip" => $path];
     }
 
-    public static function delete()
+    public static function delete($media)
     {
         // TODO: Implement delete() method.
     }

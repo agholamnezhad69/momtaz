@@ -34,7 +34,7 @@ class LessonController extends Controller
     public function store($courseId, LessonRequest $request)
     {
 
-        $request->request->add(["media_id" => MediaFileService::upload($request->file('lesson_file'))->id]);
+        $request->request->add(["media_id" => MediaFileService::privateUpload($request->file('lesson_file'))->id]);
         $this->lessonRepo->store($courseId, $request);
         newFeedbacks();
         return redirect(route('courses.details', $courseId));

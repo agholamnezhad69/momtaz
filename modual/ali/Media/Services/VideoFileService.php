@@ -2,15 +2,17 @@
 
 namespace ali\Media\Services;
 
+use ali\Media\Contracts\FileServiceContract;
+use ali\Media\Models\Media;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
-class VideoFileService
+class VideoFileService implements FileServiceContract
 {
-    public static function upload($file)
+
+    public static function upload(UploadedFile $file, string $fileName, string $dir): array
     {
 
-        $dir = 'private\\';
-        $fileName = uniqid();
         $extension = $file->getClientOriginalExtension();
 
 
@@ -19,7 +21,10 @@ class VideoFileService
         $path = $dir . $fileName . '.' . $extension;
 
         return ["video" => $path];
-
     }
 
+    public static function delete(Media $media)
+    {
+        // TODO: Implement delete() method.
+    }
 }

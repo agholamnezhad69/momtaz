@@ -71,7 +71,7 @@ class UserController extends Controller
         $user = $this->userRepo->finById($userId);
         if ($request->hasFile('image')) {
             $request->request->add(
-                ['image_id' => MediaFileService::upload($request->file('image'))->id]
+                ['image_id' => MediaFileService::publicUpload($request->file('image'))->id]
             );
             if ($user->image) {
                 $user->image->delete();
@@ -108,7 +108,7 @@ class UserController extends Controller
 
     public function updatePhoto(UpdateUserPhotoRequest $request)
     {
-        $media = MediaFileService::upload($request->file('userPhoto'));
+        $media = MediaFileService::publicUpload($request->file('userPhoto'));
         if (auth()->user()->image) {
             auth()->user()->image->delete();
         }

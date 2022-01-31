@@ -2,28 +2,41 @@
 
 namespace ali\Media\Services;
 
+use ali\Media\Contracts\FileServiceContract;
 use ali\Media\Models\Media;
 
 class MediaFileService
 {
 
-    public static function upload($file)
+    private static $dir;
+    private static $file;
+
+
+    public static function publicUpload($file)
+    {
+        self::$dir = "public/";
+        self::$file = $file;
+        return self::upload();
+    }
+
+    public static function privateUpload($file)
+    {
+        self::$dir = "private/";
+        self::$file = $file;
+        return self::upload();
+    }
+
+    private static function upload()
     {
 
-        $extension = strtolower($file->getClientOriginalExtension());
-
-
+        $extension = self::normalizeExtension();
 
         foreach (config('mediaFile.mediaTypeServices') as $key => $service) {
 
             if (in_array($extension, $service['extensions'])) {
-                $media = new Media();
-                $media->files = $service['handler']::upload($file);
-                $media->type = $key;
-                $media->user_id = auth()->id();
-                $media->filename = $file->getClientOriginalExtension();
-                $media->save();
-                return $media;
+
+                return self::uploadByHandler(new $service['handler'], $key);
+
             }
         }
 
@@ -40,6 +53,32 @@ class MediaFileService
         }
 
 
+    }
+
+
+    private static function normalizeExtension(): string
+    {
+        return strtolower(self::$file->getClientOriginalExtension());
+    }
+
+
+    private static function fileNameGenerator(): string
+    {
+        return uniqid();
+    }
+
+
+    private static function uploadByHandler(FileServiceContract $handler,  $key): Media
+    {
+        $fileName = self::fileNameGenerator();
+
+        $media = new Media();
+        $media->files = $handler::upload(self::$file, $fileName, self::$dir);
+        $media->type = $key;
+        $media->user_id = auth()->id();
+        $media->filename = self::$file->getClientOriginalExtension();
+        $media->save();
+        return $media;
     }
 
 }
