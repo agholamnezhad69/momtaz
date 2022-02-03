@@ -7,7 +7,7 @@ use ali\Media\Models\Media;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
-class VideoFileService implements FileServiceContract
+class VideoFileService extends DefaultFileService implements FileServiceContract
 {
 
     public static function upload(UploadedFile $file, string $fileName, string $dir): array
@@ -18,13 +18,10 @@ class VideoFileService implements FileServiceContract
 
         Storage::putFileAs($dir, $file, $fileName . '.' . $extension);
 
-        $path = $dir . $fileName . '.' . $extension;
+        $path = $fileName . '.' . $extension;
 
         return ["video" => $path];
     }
 
-    public static function delete(Media $media)
-    {
-        // TODO: Implement delete() method.
-    }
+
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace ali\Media\Services;
 
 use ali\Media\Contracts\FileServiceContract;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
-class ZipFileService implements FileServiceContract
+class ZipFileService extends DefaultFileService implements FileServiceContract
 {
 
 
@@ -15,13 +15,10 @@ class ZipFileService implements FileServiceContract
 
         Storage::putFileAs($dir, $file, $fileName . '.' . $file->getClientOriginalExtension());
 
-        $path = $dir . $fileName . '.' . $file->getClientOriginalExtension();
+        $path =  $fileName . '.' . $file->getClientOriginalExtension();
 
         return ["zip" => $path];
     }
 
-    public static function delete($media)
-    {
-        // TODO: Implement delete() method.
-    }
+
 }

@@ -10,12 +10,14 @@ class MediaFileService
 
     private static $dir;
     private static $file;
+    private static $is_private;
 
 
     public static function publicUpload($file)
     {
         self::$dir = "public/";
         self::$file = $file;
+        self::$is_private = false;
         return self::upload();
     }
 
@@ -23,6 +25,7 @@ class MediaFileService
     {
         self::$dir = "private/";
         self::$file = $file;
+        self::$is_private = true;
         return self::upload();
     }
 
@@ -68,7 +71,7 @@ class MediaFileService
     }
 
 
-    private static function uploadByHandler(FileServiceContract $handler,  $key): Media
+    private static function uploadByHandler(FileServiceContract $handler, $key): Media
     {
         $fileName = self::fileNameGenerator();
 
@@ -77,6 +80,7 @@ class MediaFileService
         $media->type = $key;
         $media->user_id = auth()->id();
         $media->filename = self::$file->getClientOriginalExtension();
+        $media->is_private = self::$is_private;
         $media->save();
         return $media;
     }

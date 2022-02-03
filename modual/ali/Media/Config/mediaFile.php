@@ -19,7 +19,7 @@ return [
             "extensions" => [
                 "zip", "rar", "tar"
             ],
-            "handler" => \App\ZipFileService::class
+            "handler" => \ali\Media\Services\ZipFileService::class
         ]
 
     ]

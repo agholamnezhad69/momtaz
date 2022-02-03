@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
-class ImageFileService implements FileServiceContract
+class ImageFileService extends DefaultFileService implements FileServiceContract
 {
     protected static $sizes = ["300", "600"];
 
@@ -35,17 +35,11 @@ class ImageFileService implements FileServiceContract
     {
         $extension = $file->getClientOriginalExtension();
         $path = $dir . $fileName . '.' . $extension;
-        Storage::putFileAs($dir, $file, $fileName . '.' .$extension);
+        Storage::putFileAs($dir, $file, $fileName . '.' . $extension);
 
 
         return self::resize($path, $fileName, $extension, $dir);
     }
 
-    public static function delete($media)
-    {
-        foreach ($media->files as $file) {
 
-            Storage::delete('public\\' . $file);
-        }
-    }
 }

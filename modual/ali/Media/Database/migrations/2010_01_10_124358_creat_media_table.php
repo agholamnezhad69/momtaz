@@ -19,6 +19,7 @@ class CreatMediaTable extends Migration
             $table->enum('type', ['image', 'video', 'audio', 'zip', 'doc']);
             $table->json('files')->nullable();
             $table->string('filename', 255);
+            $table->boolean('is_private');
             $table->timestamps();
             /* $table->foreign('user_id')->references('id')->on('users')->onDelete("SET NULL");*/
 
