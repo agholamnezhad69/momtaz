@@ -11,6 +11,11 @@ use Illuminate\Support\Str;
 class LessonRepo
 {
 
+    public function findById($lessonId)
+    {
+        return Lesson::query()->findOrFail($lessonId);
+    }
+
     public function store($courseId, $request)
     {
 
@@ -52,7 +57,7 @@ class LessonRepo
     public function paginate($course_id)
     {
 
-        return Lesson::query()->where('course_id',$course_id)->orderBy('number')->paginate();
+        return Lesson::query()->where('course_id', $course_id)->orderBy('number')->paginate();
 
     }
 

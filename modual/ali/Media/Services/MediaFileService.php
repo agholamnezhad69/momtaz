@@ -46,18 +46,6 @@ class MediaFileService
 
     }
 
-    public static function delete($media)
-    {
-
-        switch ($media->type) {
-
-            case 'image':
-                ImageFileService::delete($media);
-        }
-
-
-    }
-
 
     private static function normalizeExtension(): string
     {
@@ -85,4 +73,14 @@ class MediaFileService
         return $media;
     }
 
+
+    public static function delete(Media $media)
+    {
+        foreach (config('mediaFile.mediaTypeServices') as $key => $service) {
+            if ($media->type == $key) {
+                $service['handler']::delete($media);
+            }
+        }
+
+    }
 }

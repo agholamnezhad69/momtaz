@@ -3,6 +3,7 @@
 namespace ali\Course\Http\Controllers;
 
 
+use ali\Common\Responses\AjaxResponses;
 use ali\Course\Http\Requests\LessonRequest;
 use ali\Course\Repositories\CourseRepo;
 use ali\Course\Repositories\LessonRepo;
@@ -42,6 +43,17 @@ class LessonController extends Controller
 
     }
 
+    public function destroy($courseId, $lessonId)
+    {
+        $lesson = $this->lessonRepo->findById($lessonId);
+
+        if ($lesson->media) {
+            $lesson->media->delete();
+        }
+        $lesson->delete();
+        AjaxResponses::successResponse();
+
+    }
 
 
 }
