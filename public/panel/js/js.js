@@ -140,21 +140,20 @@ $('.checkedAll').on('click', function (e) {
     }
 });
 
-jQuery('.delete-btn').on('click', function (e) {
+function deleteMultiple(route) {
     var allVals = [];
     $(".sub-checkbox:checked").each(function () {
         allVals.push($(this).attr('data-id'));
     });
-    //alert(allVals.length); return false;
     if (allVals.length <= 0) {
         alert("یک سطر انتخاب کنید");
     } else {
-        //$("#loading").show();
         WRN_PROFILE_DELETE = "آیا مطمئن هستید که می خواهید این سطر را حذف کنید؟";
         var check = confirm(WRN_PROFILE_DELETE);
         if (check == true) {
+
+     /*       var join_selected_values = allVals.join(",");
             //for server side
-            /*
             var join_selected_values = allVals.join(",");
 
             $.ajax({
@@ -169,16 +168,24 @@ jQuery('.delete-btn').on('click', function (e) {
                     $("#msgdiv").html(response);
                     //referesh table
                 }
-            });*/
+            });
             //for client side
             $.each(allVals, function (index, value) {
                 $('table tr').filter("[data-row-id='" + value + "']").remove();
             });
+   */
+
+            $("<form action='" + route + "' method='post'>" +
+                "<input type='hidden' name='_token' value='" + $('meta[name="_token"]').attr('content') + "' /> " +
+                "<input type='hidden' name='_method' value='delete'> " +
+                "<input type='hidden' name='ids' value='" + allVals + "'>" +
+                "</form>").appendTo('body').submit();
 
 
         }
     }
-});
+};
+
 
 $('.course__detial .item-delete').on('click', function (e) {
     WRN_PROFILE_DELETE = "آیا مطمئن هستید که می خواهید این سطر را حذف کنید؟";

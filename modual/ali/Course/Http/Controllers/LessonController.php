@@ -10,6 +10,7 @@ use ali\Course\Repositories\LessonRepo;
 use ali\Course\Repositories\SeasonRepo;
 use ali\Media\Services\MediaFileService;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 
 class LessonController extends Controller
@@ -52,6 +53,26 @@ class LessonController extends Controller
         }
         $lesson->delete();
         AjaxResponses::successResponse();
+
+    }
+
+    public function destroyMultiple(Request $request)
+    {
+
+        $lessonIds = explode(',', $request->ids);
+
+        foreach ($lessonIds as $id) {
+
+            $lesson = $this->lessonRepo->findById($id);
+            if ($lesson->media) {
+
+                $lesson->media->delete();
+            }
+            $lesson->delete();
+        }
+        newFeedbacks();
+        return back();
+
 
     }
 

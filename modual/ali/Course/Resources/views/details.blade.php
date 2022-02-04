@@ -16,7 +16,9 @@
                 <button class="btn all-confirm-btn">تایید همه جلسات</button>
                 <button class="btn confirm-btn">تایید جلسات</button>
                 <button class="btn reject-btn">رد جلسات</button>
-                <button class="btn delete-btn">حذف جلسات</button>
+                <button onclick="deleteMultiple('{{route('lessons.destroyMultiple',$course->id)}}')" class="btn delete-btn">حذف
+                    جلسات
+                </button>
 
             </div>
             <div class="table__box">

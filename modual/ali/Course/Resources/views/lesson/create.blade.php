@@ -17,6 +17,7 @@
                 @csrf
 
 
+
                 <x-input name="title" type="text" placeholder="عنوان جلسه جدید * " required/>
 
                 <x-input type="text" name="slug" class="text-left" placeholder="  نام انگلیسی درس اختیاری"/>
