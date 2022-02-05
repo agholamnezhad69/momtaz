@@ -61,5 +61,15 @@ class LessonRepo
 
     }
 
+    public function updateConfirmationStatus($id, string $status)
+    {
+
+        return Lesson::query()
+            ->where('id', $id)
+            ->update(["confirmation_status" => $status]);
+
+
+    }
+
 
 }

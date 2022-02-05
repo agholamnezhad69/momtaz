@@ -5,6 +5,7 @@ namespace ali\Course\Http\Controllers;
 
 use ali\Common\Responses\AjaxResponses;
 use ali\Course\Http\Requests\LessonRequest;
+use ali\Course\Models\Lesson;
 use ali\Course\Repositories\CourseRepo;
 use ali\Course\Repositories\LessonRepo;
 use ali\Course\Repositories\SeasonRepo;
@@ -72,6 +73,24 @@ class LessonController extends Controller
         }
         newFeedbacks();
         return back();
+
+
+    }
+
+    public function accept($lessonId)
+    {
+
+        $this->lessonRepo->updateConfirmationStatus($lessonId, Lesson::CONFIRMATION_STATUS_ACCEPTED);
+        AjaxResponses::successResponse();
+
+
+    }
+
+    public function reject($lessonId)
+    {
+
+        $this->lessonRepo->updateConfirmationStatus($lessonId, Lesson::CONFIRMATION_STATUS_REJECTED);
+        AjaxResponses::successResponse();
 
 
     }

@@ -16,7 +16,8 @@
                 <button class="btn all-confirm-btn">تایید همه جلسات</button>
                 <button class="btn confirm-btn">تایید جلسات</button>
                 <button class="btn reject-btn">رد جلسات</button>
-                <button onclick="deleteMultiple('{{route('lessons.destroyMultiple',$course->id)}}')" class="btn delete-btn">حذف
+                <button onclick="deleteMultiple('{{route('lessons.destroyMultiple',$course->id)}}')"
+                        class="btn delete-btn">حذف
                     جلسات
                 </button>
 
@@ -59,7 +60,11 @@
                             </td>
 
                             <td>{{$lesson->time}} دقیقه</td>
-                            <td>@lang($lesson->confirmation_status)</td>
+                            <td class="confirmation_status">
+                             <span class="{{$lesson->getConfirmationStatusCssClass()}}">
+                                @lang($lesson->confirmation_status)
+                            </span>
+                            </td>
                             <td>{{$lesson->free ? 'همه':'شرکت کنندگان'}}</td>
                             <td>
                                 <a href=""
@@ -68,9 +73,23 @@
                                    data-id="1"
                                    title="حذف">
                                 </a>
-                                <a href="" class="item-reject mlg-15" title="رد"></a>
+
+                                <a href=""
+                                   onclick="updateConfirmationStatus(event,'{{route('lessons.accept',$lesson->id)}}',
+                                       'آیا از تایید این مورد اطمینان دارید؟',
+                                       '@lang(\ali\Course\Models\Lesson::CONFIRMATION_STATUS_ACCEPTED)')"
+                                   class="item-confirm mlg-15" title="تایید">
+
+                                </a>
+                                <a href=""
+                                   onclick="updateConfirmationStatus(event,'{{route('lessons.reject',$lesson->id)}}',
+                                       'آیا از رد شدن این مورد اطمینان دارید؟',
+                                       '@lang(\ali\Course\Models\Lesson::CONFIRMATION_STATUS_REJECTED)')"
+                                   class="item-reject mlg-15" title="رد">
+
+                                </a>
                                 <a href="" class="item-lock mlg-15" title="قفل "></a>
-                                <a href="" class="item-confirm mlg-15" title="تایید"></a>
+
                                 <a href="" class="item-edit " title="ویرایش"></a>
                             </td>
                         </tr>
