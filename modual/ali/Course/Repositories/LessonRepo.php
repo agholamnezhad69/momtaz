@@ -70,6 +70,13 @@ class LessonRepo
 
 
     }
+    public function updateStatus($id, string $status)
+    {
+        return Lesson::query()
+            ->where('id', $id)
+            ->update(["status" => $status]);
+
+    }
 
 
 }

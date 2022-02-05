@@ -94,6 +94,25 @@ class LessonController extends Controller
 
 
     }
+    public function lock($lessonId)
+    {
+
+        if ($this->lessonRepo->updateStatus($lessonId, Lesson::STATUS_LOCKED)) {
+
+            return AjaxResponses::successResponse();
+        }
+        return AjaxResponses::failResponse();
+    }
+
+    public function unLock($lessonId)
+    {
+
+
+        if ($this->lessonRepo->updateStatus($lessonId, Lesson::STATUS_OPENED)) {
+            return AjaxResponses::successResponse();
+        }
+        return AjaxResponses::failResponse();
+    }
 
 
 }

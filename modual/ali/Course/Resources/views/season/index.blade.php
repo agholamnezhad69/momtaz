@@ -46,7 +46,7 @@
                         </a>
                     </td>
 
-                    <td class="status-">
+                    <td >
                         <a
                             href="#"
                             onclick="deleteItem(event,'{{route('seasons.destroy',$season->id)}}')"

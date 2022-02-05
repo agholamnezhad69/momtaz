@@ -65,7 +65,18 @@
                                 @lang($lesson->confirmation_status)
                             </span>
                             </td>
-                            <td>{{$lesson->free ? 'همه':'شرکت کنندگان'}}</td>
+                            <td class="status">
+                               <span class="{{$lesson->getStatusCssClass()}}">
+
+                                @if($lesson->status == \ali\Course\Models\Lesson::STATUS_OPENED)
+                                       {{$lesson->free ? 'همه':'شرکت کنندگان'}}
+                                   @else
+                                       قفل شده
+                                   @endif
+
+                            </span>
+
+                            </td>
                             <td>
                                 <a href=""
                                    onclick="deleteItem(event,'{{route('lessons.destroy',[$course->id,$lesson->id])}}')"
@@ -88,7 +99,26 @@
                                    class="item-reject mlg-15" title="رد">
 
                                 </a>
-                                <a href="" class="item-lock mlg-15" title="قفل "></a>
+                                @if($lesson->status==\ali\Course\Models\Lesson::STATUS_OPENED)
+                                    <a href=""
+                                       onclick="updateConfirmationStatus(event,'{{route('lessons.lock',$lesson->id)}}',
+                                           'آیا از @lang(\ali\Course\Models\Lesson::STATUS_OPENED) این مورد اطمینان دارید؟',
+                                           '@lang(\ali\Course\Models\Lesson::STATUS_LOCKED)',
+                                           'status'
+                                           )"
+                                       class="item-lock text-error mlg-15" title="قفل کردن">
+                                    </a>
+                                @else
+                                    <a href=""
+                                       onclick="updateConfirmationStatus(event,'{{route('lessons.unlock',$lesson->id)}}',
+                                           'آیا از @lang(\ali\Course\Models\Lesson::STATUS_LOCKED) این مورد اطمینان دارید؟',
+                                           '@lang(\ali\Course\Models\Lesson::STATUS_OPENED)',
+                                           'status'
+                                           )"
+                                       class="item-lock text-success mlg-15" title="باز کردن">
+
+                                    </a>
+                                @endif
 
                                 <a href="" class="item-edit " title="ویرایش"></a>
                             </td>
