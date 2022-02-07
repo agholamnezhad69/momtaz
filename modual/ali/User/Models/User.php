@@ -122,9 +122,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
 
         if ($this->image)
-
             return "/storage/" . $this->image->files[300];
-
         return "/panel/img/profile.jpg/";
 
 

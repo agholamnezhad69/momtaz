@@ -4,11 +4,13 @@
         <input type="file" class="file-upload" id="files" name="{{$name}}" {{$attributes}}/>
     </div>
     <span class="filesize"></span>
-    @if(isset($value->files["original"]))
+    @if(isset($value))
+        <div class="selectedFiles">
+            <p>تصویر فعلی :
+                <strong>{{$value->filename}}</strong>
+            </p>
 
-        <span class="selectedFiles">تصویر فعلی</span>
-        <div>
-            <img src="{{$value->thumb}}" width="150" alt="">
+            <img class="mt-2" src="{{$value->thumb}}" width="150" alt="">
         </div>
 
 

@@ -9,6 +9,8 @@ Route::group([
 
     $router->get('courses/{course}/lessons/create', 'LessonController@create')->name('lessons.create');
     $router->post('courses/{course}/lessons', 'LessonController@store')->name('lessons.store');
+    $router->get('courses/{course}/lessons/{lesson}/edit', 'LessonController@edit')->name('lessons.edit');
+    $router->patch('courses/{course}/lessons/{lesson}/update', 'LessonController@update')->name('lessons.update');
     $router->delete('courses/{course}/lessons/{lesson}', 'LessonController@destroy')->name('lessons.destroy');
     $router->delete('courses/{course}/lessons/', 'LessonController@destroyMultiple')->name('lessons.destroyMultiple');
     $router->patch('lessons/{lesson}/accept', 'LessonController@accept')->name('lessons.accept');

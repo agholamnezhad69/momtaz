@@ -34,11 +34,11 @@ class MediaFileService
 
         $extension = self::normalizeExtension();
 
-        foreach (config('mediaFile.mediaTypeServices') as $key => $service) {
+        foreach (config('mediaFile.mediaTypeServices') as $type => $service) {
 
             if (in_array($extension, $service['extensions'])) {
 
-                return self::uploadByHandler(new $service['handler'], $key);
+                return self::uploadByHandler(new $service['handler'], $type);
 
             }
         }
@@ -59,15 +59,15 @@ class MediaFileService
     }
 
 
-    private static function uploadByHandler(FileServiceContract $handler, $key): Media
+    private static function uploadByHandler(FileServiceContract $handler, $type): Media
     {
         $fileName = self::fileNameGenerator();
 
         $media = new Media();
         $media->files = $handler::upload(self::$file, $fileName, self::$dir);
-        $media->type = $key;
+        $media->type = $type;
         $media->user_id = auth()->id();
-        $media->filename = self::$file->getClientOriginalExtension();
+        $media->filename = self::$file->getClientOriginalName();
         $media->is_private = self::$is_private;
         $media->save();
         return $media;
@@ -76,11 +76,23 @@ class MediaFileService
 
     public static function delete(Media $media)
     {
-        foreach (config('mediaFile.mediaTypeServices') as $key => $service) {
-            if ($media->type == $key) {
+        foreach (config('mediaFile.mediaTypeServices') as $type => $service) {
+            if ($media->type == $type) {
                 $service['handler']::delete($media);
             }
         }
 
+    }
+
+
+    public static function thumb(Media $media)
+    {
+
+
+        foreach (config('mediaFile.mediaTypeServices') as $type => $service) {
+            if ($media->type == $type) {
+                return $service["handler"]::thumb($media);
+            }
+        }
     }
 }

@@ -30,7 +30,7 @@ class LessonRepo
                 "media_id" => $request->media_id,
                 "time" => $request->time,
                 "number" => $number,
-                "free" => $request->free,
+                "is_free" => $request->is_free,
                 "body" => $request->body,
             ]);
 
@@ -70,6 +70,7 @@ class LessonRepo
 
 
     }
+
     public function updateStatus($id, string $status)
     {
         return Lesson::query()

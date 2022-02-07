@@ -26,8 +26,8 @@ class LessonRequest extends FormRequest
             "number" => "nullable|numeric",
             "time" => "required|numeric|min:0|max:255",
             "season_id" => [new ValidSeason()],
-            "free" => "required|boolean",
-            "lesson_file" => "required|file|mimes:avi,mkv,mp4,zip,rar",
+            "is_free" => "required|boolean",
+            "lesson_file" => "required|file|mimes:avi,mkv,mp4,zip,rar,jpg,png",
         ];
 
 
@@ -41,7 +41,7 @@ class LessonRequest extends FormRequest
             "number" => 'شماره درس',
             "time" => 'مدت زمان درس',
             "season_id" => "سرفصل",
-            "free" => "رایگان",
+            "is_free" => "رایگان",
             "lesson_file" => "فایل درس",
             "body" => "توضیحات درس"
         ];

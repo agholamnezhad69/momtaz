@@ -3,6 +3,7 @@
 namespace ali\Media\Services;
 
 use ali\Media\Contracts\FileServiceContract;
+use ali\Media\Models\Media;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -42,4 +43,8 @@ class ImageFileService extends DefaultFileService implements FileServiceContract
     }
 
 
+    public static function thumb(Media $media)
+    {
+        return "/storage/" . $media->files['300'];
+    }
 }

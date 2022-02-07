@@ -45,6 +45,17 @@ class LessonController extends Controller
 
     }
 
+    public function edit($courseId, $lessonId, SeasonRepo $seasonRepo, CourseRepo $courseRepo)
+    {
+        $course = $courseRepo->findById($courseId);
+        $seasons = $seasonRepo->getCourseSeasons($courseId);
+        $lesson = $this->lessonRepo->findById($lessonId);
+
+
+        return view("Courses::lesson.edit", compact('course', 'seasons', 'lesson'));
+    }
+
+
     public function destroy($courseId, $lessonId)
     {
         $lesson = $this->lessonRepo->findById($lessonId);
@@ -94,6 +105,7 @@ class LessonController extends Controller
 
 
     }
+
     public function lock($lessonId)
     {
 

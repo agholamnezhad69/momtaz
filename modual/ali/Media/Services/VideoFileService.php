@@ -24,4 +24,8 @@ class VideoFileService extends DefaultFileService implements FileServiceContract
     }
 
 
+    public static function thumb(Media $media)
+    {
+        return url('/img/vide-thumb.png');
+    }
 }

@@ -69,7 +69,7 @@
                                <span class="{{$lesson->getStatusCssClass()}}">
 
                                 @if($lesson->status == \ali\Course\Models\Lesson::STATUS_OPENED)
-                                       {{$lesson->free ? 'همه':'شرکت کنندگان'}}
+                                       {{$lesson->is_free ? 'همه':'شرکت کنندگان'}}
                                    @else
                                        قفل شده
                                    @endif
@@ -120,7 +120,7 @@
                                     </a>
                                 @endif
 
-                                <a href="" class="item-edit " title="ویرایش"></a>
+                                <a href="{{route('lessons.edit',[$course->id,$lesson->id])}}" class="item-edit " title="ویرایش"></a>
                             </td>
                         </tr>
                     @endforeach
