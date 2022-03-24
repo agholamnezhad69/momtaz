@@ -12,15 +12,6 @@ class CoursePolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
 
     public function manage(User $user)
     {
@@ -91,6 +82,17 @@ class CoursePolicy
             && $course->teacher_id == $user->id) {
             return true;
         }
+    }
+
+    public function creatLesson($user, $course)
+    {
+        if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_COURSES) ||
+            (($user->hasPermissionTo(Permission::PERMISSION_MANAGE_OWN_COURSES)) && ($course->teacher_id == $user->id))) {
+
+            return true;
+
+        }
+
     }
 
 

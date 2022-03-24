@@ -3,8 +3,10 @@
 namespace ali\Course\Providers;
 
 use ali\Course\Models\Course;
+use ali\Course\Models\Lesson;
 use ali\Course\Models\Season;
 use ali\Course\policies\CoursePolicy;
+use ali\Course\policies\LessonPolicy;
 use ali\Course\policies\SeasonPolicy;
 use ali\RolePermissions\Models\Permission;
 use Illuminate\Support\Facades\Gate;
@@ -23,6 +25,7 @@ class CourseServiceProviders extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__ . "/../Resources/Lang/", "Courses");
         Gate::policy(Course::class, CoursePolicy::class);
         Gate::policy(Season::class, SeasonPolicy::class);
+        Gate::policy(Lesson::class, LessonPolicy::class);
 
 
     }
