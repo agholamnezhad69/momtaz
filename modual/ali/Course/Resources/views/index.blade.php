@@ -40,7 +40,7 @@
                             <td><a href="">{{$row->title}}</a></td>
                             <td><a href="">{{$row->teacher->name}}</a></td>
                             <td><a href="">{{$row->price}}</a></td>
-                            <td><a href="{{route('courses.details',$row->id)}}">مشاهده</a></td>
+                            <td><a class="text-error bold-900" href="{{route('courses.details',$row->id)}}">مشاهده</a></td>
                             <td>@lang($row->type)</td>
                             <td>@lang($row->percent)</td>
                             <td class="status">@lang($row->statues)</td>

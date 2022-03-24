@@ -140,11 +140,16 @@ $('.checkedAll').on('click', function (e) {
     }
 });
 
-function deleteMultiple(route) {
+function getSelectedItems() {
     var allVals = [];
     $(".sub-checkbox:checked").each(function () {
         allVals.push($(this).attr('data-id'));
     });
+    return allVals;
+}
+
+function deleteMultiple(route) {
+    var allVals = getSelectedItems();
     if (allVals.length <= 0) {
         alert("یک سطر انتخاب کنید");
     } else {
@@ -152,28 +157,28 @@ function deleteMultiple(route) {
         var check = confirm(WRN_PROFILE_DELETE);
         if (check == true) {
 
-     /*       var join_selected_values = allVals.join(",");
-            //for server side
-            var join_selected_values = allVals.join(",");
+            /*       var join_selected_values = allVals.join(",");
+                   //for server side
+                   var join_selected_values = allVals.join(",");
 
-            $.ajax({
+                   $.ajax({
 
-                type: "POST",
-                url: "delete.php",
-                cache:false,
-                data: 'ids='+join_selected_values,
-                success: function(response)
-                {
-                    $("#loading").hide();
-                    $("#msgdiv").html(response);
-                    //referesh table
-                }
-            });
-            //for client side
-            $.each(allVals, function (index, value) {
-                $('table tr').filter("[data-row-id='" + value + "']").remove();
-            });
-   */
+                       type: "POST",
+                       url: "delete.php",
+                       cache:false,
+                       data: 'ids='+join_selected_values,
+                       success: function(response)
+                       {
+                           $("#loading").hide();
+                           $("#msgdiv").html(response);
+                           //referesh table
+                       }
+                   });
+                   //for client side
+                   $.each(allVals, function (index, value) {
+                       $('table tr').filter("[data-row-id='" + value + "']").remove();
+                   });
+          */
 
             $("<form action='" + route + "' method='post'>" +
                 "<input type='hidden' name='_token' value='" + $('meta[name="_token"]').attr('content') + "' /> " +
@@ -294,6 +299,55 @@ function updateConfirmationStatus(event, route, message, status, field = "confir
             });
 
     }
+}
+
+function acceptAllLessons(route) {
+    if (confirm("آیا از تایید همه جلسات اطمینان دارید؟")) {
+        $("<form action='" + route + "' method='post'>" +
+            "<input type='hidden' name='_token' value='" + $('meta[name="_token"]').attr('content') + "' /> " +
+            "<input type='hidden' name='_method' value='patch'> " +
+            "</form>").appendTo('body').submit();
+    }
+}
+
+function acceptMultiple(route) {
+    var message = "آیا مطمئن هستید که می خواهید این سطرها را تایید کنید؟";
+    var method = "patch";
+    doMultipleAction(route, message, method)
+}
+
+function rejectMultiple(route) {
+    var message = "آیا مطمئن هستید که می خواهید این سطرها را رد کنید؟";
+    var method = "patch";
+    doMultipleAction(route, message, method)
+}
+
+function deleteMultiple(route) {
+    var message = "آیا مطمئن هستید که می خواهید این سطر را حذف کنید؟";
+    var method = "delete";
+    doMultipleAction(route, message, method)
+}
+
+function doMultipleAction(route, message, method) {
+
+    var allVals = getSelectedItems();
+    if (allVals.length <= 0) {
+        alert("یک سطر انتخاب کنید");
+    } else {
+        WRN_PROFILE_DELETE = message;
+        var check = confirm(WRN_PROFILE_DELETE);
+        if (check == true) {
+
+            $("<form action='" + route + "' method='post'>" +
+                "<input type='hidden' name='_token' value='" + $('meta[name="_token"]').attr('content') + "' /> " +
+                "<input type='hidden' name='_method' value='" + method + "'> " +
+                "<input type='hidden' name='ids' value='" + allVals + "'>" +
+                "</form>").appendTo('body').submit();
+
+
+        }
+    }
+
 }
 
 

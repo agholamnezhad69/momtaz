@@ -26,8 +26,8 @@ class LessonRepo
                 "slug" => $request->slug ? Str::slug($request->slug) : Str::slug($request->title),
                 "course_id" => $courseId,
                 "season_id" => $request->season_id,
-                "user_id" => auth()->user()->id,
                 "media_id" => $request->media_id,
+                'user_id' => auth()->user()->id,
                 "time" => $request->time,
                 "number" => $number,
                 "is_free" => $request->is_free,
@@ -61,14 +61,16 @@ class LessonRepo
 
     }
 
-    public function updateConfirmationStatus($id, string $status)
+    public function updateConfirmationStatus($lessonId, string $status)
     {
-
+        if (is_array($lessonId)) {
+            return Lesson::query()->wherein('id', $lessonId)->update([
+                'confirmation_status' => $status
+            ]);
+        }
         return Lesson::query()
-            ->where('id', $id)
+            ->where('id', $lessonId)
             ->update(["confirmation_status" => $status]);
-
-
     }
 
     public function updateStatus($id, string $status)
@@ -77,6 +79,33 @@ class LessonRepo
             ->where('id', $id)
             ->update(["status" => $status]);
 
+    }
+
+    public function update($lessonId, $courseId, $request)
+    {
+
+        $number = $this->generateNumber($request->number, $courseId);
+
+        Lesson::where('id', $lessonId)->update([
+            "title" => $request->title,
+            "slug" => $request->slug ? Str::slug($request->slug) : Str::slug($request->title),
+            "course_id" => $courseId,
+            "season_id" => $request->season_id,
+            "media_id" => $request->media_id,
+            "time" => $request->time,
+            "number" => $number,
+            "is_free" => $request->is_free,
+            "body" => $request->body,
+        ]);
+
+    }
+
+    public function acceptAll($courseId)
+    {
+
+        Lesson::query()->where('course_id', $courseId)->update([
+            'confirmation_status' => Lesson::CONFIRMATION_STATUS_ACCEPTED
+        ]);
     }
 
 

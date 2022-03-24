@@ -55,6 +55,25 @@ class LessonController extends Controller
         return view("Courses::lesson.edit", compact('course', 'seasons', 'lesson'));
     }
 
+    public function update($courseId, $lessonId, LessonRequest $request)
+    {
+
+        $lesson = $this->lessonRepo->findById($lessonId);
+        if ($request->hasFile('lesson_file')) {
+
+            $request->request->add(['media_id' => MediaFileService::privateUpload($request->file('lesson_file'))->id]);
+            if ($lesson->media) {
+
+                $lesson->media->delete();
+            }
+        } else {
+            $request->request->add(['media_id' => $lesson->media_id]);
+        }
+        $this->lessonRepo->update($lessonId, $courseId, $request);
+
+        newFeedbacks();
+        return redirect(route('courses.details', $courseId));
+    }
 
     public function destroy($courseId, $lessonId)
     {
@@ -93,6 +112,36 @@ class LessonController extends Controller
 
         $this->lessonRepo->updateConfirmationStatus($lessonId, Lesson::CONFIRMATION_STATUS_ACCEPTED);
         AjaxResponses::successResponse();
+
+
+    }
+
+    public function acceptAll($courseId)
+    {
+        $this->lessonRepo->acceptAll($courseId);
+        newFeedbacks();
+        return back();
+
+
+    }
+
+    public function acceptMultiple($courseId, Request $request)
+    {
+
+        $lessonIds = explode(',',$request->ids);
+        $this->lessonRepo->updateConfirmationStatus($lessonIds,Lesson::CONFIRMATION_STATUS_ACCEPTED);
+        newFeedbacks();
+        return back();
+
+
+    }
+    public function rejectMultiple($courseId, Request $request)
+    {
+
+        $lessonIds = explode(',',$request->ids);
+        $this->lessonRepo->updateConfirmationStatus($lessonIds,Lesson::CONFIRMATION_STATUS_REJECTED);
+        newFeedbacks();
+        return back();
 
 
     }

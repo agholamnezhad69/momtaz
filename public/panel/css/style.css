@@ -1954,8 +1954,10 @@ span.tagRemove:hover {
 }
 
 
-
 .deletable-item-list:hover .item-delete {
     display: inline-block;
+}
+.bold-900{
+    font-weight: 900;
 }
 

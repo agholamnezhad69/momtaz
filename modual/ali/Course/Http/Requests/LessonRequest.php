@@ -5,6 +5,7 @@ namespace ali\Course\Http\Requests;
 use ali\Course\Models\Course;
 use ali\Course\Rules\ValidSeason;
 use ali\Course\Rules\ValidTeacher;
+use ali\Media\Services\MediaFileService;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -20,7 +21,7 @@ class LessonRequest extends FormRequest
     public function rules()
     {
 
-        return [
+        $rules = [
             "title" => "required|min:3|max:190",
             "slug" => "nullable|min:0|max:190",
             "number" => "nullable|numeric",
@@ -30,6 +31,12 @@ class LessonRequest extends FormRequest
             "lesson_file" => "required|file|mimes:avi,mkv,mp4,zip,rar,jpg,png",
         ];
 
+
+        if (request()->method == "PATCH") {
+            $rules['lesson_file'] = "nullable|file|mimes:".MediaFileService::getExtensions();
+        }
+
+        return $rules;
 
     }
 
