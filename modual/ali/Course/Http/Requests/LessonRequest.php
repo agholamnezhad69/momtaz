@@ -28,7 +28,7 @@ class LessonRequest extends FormRequest
             "time" => "required|numeric|min:0|max:255",
             "season_id" => [new ValidSeason()],
             "is_free" => "required|boolean",
-            "lesson_file" => "required|file|mimes:avi,mkv,mp4,zip,rar,jpg,png",
+            "lesson_file" => "required|file|mimes:avi,mkv,mp4,zip,rar",
         ];
 
 
