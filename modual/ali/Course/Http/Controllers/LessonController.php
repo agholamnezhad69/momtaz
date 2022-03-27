@@ -5,6 +5,7 @@ namespace ali\Course\Http\Controllers;
 
 use ali\Common\Responses\AjaxResponses;
 use ali\Course\Http\Requests\LessonRequest;
+use ali\Course\Models\Course;
 use ali\Course\Models\Lesson;
 use ali\Course\Repositories\CourseRepo;
 use ali\Course\Repositories\LessonRepo;
@@ -120,6 +121,7 @@ class LessonController extends Controller
 
     public function accept($lessonId)
     {
+
         $this->authorize("manage", Course::class);
 
         $this->lessonRepo->updateConfirmationStatus($lessonId, Lesson::CONFIRMATION_STATUS_ACCEPTED);

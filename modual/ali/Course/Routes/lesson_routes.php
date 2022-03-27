@@ -16,7 +16,7 @@ Route::group([
     $router->patch('lessons/{lesson}/accept', 'LessonController@accept')->name('lessons.accept');
     $router->patch('courses/{course}/lessons/accept-all', 'LessonController@acceptAll')->name('lessons.acceptAll');
     $router->patch('courses/{course}/lessons/accept-multiple', 'LessonController@acceptMultiple')->name('lessons.acceptMultiple');
-    $router->patch('courses/{course}/lessons/reject-multiple', 'LessonController@rejectMultiple')->name('lessons.rejectMultiple');
+    $router->patch('courses/{course}/lessons/reject-multiple', 'LessonController@rejectMultiple')->name('lessons.rejectMultipled');
     $router->patch('lessons/{lesson}/reject', 'LessonController@reject')->name('lessons.reject');
     $router->patch('lessons/{lesson}/lock', 'LessonController@lock')->name('lessons.lock');
     $router->patch('lessons/{lesson}/unlock', 'LessonController@unlock')->name('lessons.unlock');
