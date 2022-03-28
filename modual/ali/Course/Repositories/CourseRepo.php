@@ -80,7 +80,13 @@ class CourseRepo
 
     }
 
+    public function getCourseByTeacherId()
+    {
 
+        return Course::query()->where('teacher_id', auth()->id())->get();
+
+
+    }
 
 
 }

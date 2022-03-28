@@ -19,8 +19,6 @@ class LessonPolicy
         if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_COURSES) ||
             (($user->hasPermissionTo(Permission::PERMISSION_MANAGE_OWN_COURSES)) && ($lesson->course->teacher_id == $user->id)))
             return true;
-
-
     }
 
     public function delete($user, $lesson)
@@ -30,6 +28,8 @@ class LessonPolicy
             (($user->hasPermissionTo(Permission::PERMISSION_MANAGE_OWN_COURSES))
                 && ($lesson->course->teacher_id == $user->id)))
             return true;
+
+
 
 
     }

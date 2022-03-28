@@ -53,6 +53,7 @@
                             class="item-delete mlg-15"
                             title="حذف">
                         </a>
+
                         @can(\ali\RolePermissions\Models\Permission::PERMISSION_MANAGE_COURSES)
                             <a href=""
                                onclick="updateConfirmationStatus(event,'{{route('seasons.accept',$season->id)}}',

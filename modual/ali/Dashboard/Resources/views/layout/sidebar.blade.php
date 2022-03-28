@@ -9,7 +9,7 @@
         @foreach(config('sidebar.items') as $item)
 
             @if(! array_key_exists('permission',$item) ||
-                  auth()->user()->hasPermissionTo($item['permission'])||
+                  auth()->user()->hasAnyPermission($item['permission'])||
                   auth()->user()->hasPermissionTo(\ali\RolePermissions\Models\Permission::PERMISSION_SUPER_ADMIN)
                    )
 

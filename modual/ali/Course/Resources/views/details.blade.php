@@ -13,19 +13,21 @@
                 <a class="color-2b4a83" href="{{route('lessons.create',$course->id)}}">آپلود جلسه جدید</a>
             </div>
             <div class="d-flex item-center flex-wrap margin-bottom-15 operations__btns">
-                <button class="btn all-confirm-btn"
-                        onclick="acceptAllLessons('{{route('lessons.acceptAll',$course->id)}}')">تایید همه جلسات
-                </button>
-                <button class="btn confirm-btn"
-                        onclick="acceptMultiple('{{route('lessons.acceptMultiple',$course->id)}}')">تایید جلسات
-                </button>
-                <button class="btn reject-btn"
-                        onclick="rejectMultiple('{{route('lessons.rejectMultiple',$course->id)}}')">رد جلسات
-                </button>
-                <button onclick="deleteMultiple('{{route('lessons.destroyMultiple',$course->id)}}')"
-                        class="btn delete-btn">حذف
-                    جلسات
-                </button>
+                @can(\ali\RolePermissions\Models\Permission::PERMISSION_MANAGE_COURSES)
+                    <button class="btn all-confirm-btn"
+                            onclick="acceptAllLessons('{{route('lessons.acceptAll',$course->id)}}')">تایید همه جلسات
+                    </button>
+                    <button class="btn confirm-btn"
+                            onclick="acceptMultiple('{{route('lessons.acceptMultiple',$course->id)}}')">تایید جلسات
+                    </button>
+                    <button class="btn reject-btn"
+                            onclick="rejectMultiple('{{route('lessons.rejectMultiple',$course->id)}}')">رد جلسات
+                    </button>
+                    <button onclick="deleteMultiple('{{route('lessons.destroyMultiple',$course->id)}}')"
+                            class="btn delete-btn">حذف
+                        جلسات
+                    </button>
+                @endcan
 
             </div>
             <div class="table__box">
@@ -84,50 +86,56 @@
 
                             </td>
                             <td>
+
                                 <a href=""
                                    onclick="deleteItem(event,'{{route('lessons.destroy',[$course->id,$lesson->id])}}')"
                                    class="item-delete mlg-15"
                                    data-id="1"
                                    title="حذف">
                                 </a>
-
-                                <a href=""
-                                   onclick="updateConfirmationStatus(event,'{{route('lessons.accept',$lesson->id)}}',
-                                       'آیا از تایید این مورد اطمینان دارید؟',
-                                       '@lang(\ali\Course\Models\Lesson::CONFIRMATION_STATUS_ACCEPTED)')"
-                                   class="item-confirm mlg-15" title="تایید">
-
-                                </a>
-                                <a href=""
-                                   onclick="updateConfirmationStatus(event,'{{route('lessons.reject',$lesson->id)}}',
-                                       'آیا از رد شدن این مورد اطمینان دارید؟',
-                                       '@lang(\ali\Course\Models\Lesson::CONFIRMATION_STATUS_REJECTED)')"
-                                   class="item-reject mlg-15" title="رد">
-
-                                </a>
-                                @if($lesson->status==\ali\Course\Models\Lesson::STATUS_OPENED)
-                                    <a href=""
-                                       onclick="updateConfirmationStatus(event,'{{route('lessons.lock',$lesson->id)}}',
-                                           'آیا از @lang(\ali\Course\Models\Lesson::STATUS_OPENED) این مورد اطمینان دارید؟',
-                                           '@lang(\ali\Course\Models\Lesson::STATUS_LOCKED)',
-                                           'status'
-                                           )"
-                                       class="item-lock text-error mlg-15" title="قفل کردن">
-                                    </a>
-                                @else
-                                    <a href=""
-                                       onclick="updateConfirmationStatus(event,'{{route('lessons.unlock',$lesson->id)}}',
-                                           'آیا از @lang(\ali\Course\Models\Lesson::STATUS_LOCKED) این مورد اطمینان دارید؟',
-                                           '@lang(\ali\Course\Models\Lesson::STATUS_OPENED)',
-                                           'status'
-                                           )"
-                                       class="item-lock text-success mlg-15" title="باز کردن">
-
-                                    </a>
-                                @endif
-
                                 <a href="{{route('lessons.edit',[$course->id,$lesson->id])}}" class="item-edit "
                                    title="ویرایش"></a>
+
+                                @can(\ali\RolePermissions\Models\Permission::PERMISSION_MANAGE_COURSES)
+
+                                    <a href=""
+                                       onclick="updateConfirmationStatus(event,'{{route('lessons.accept',$lesson->id)}}',
+                                           'آیا از تایید این مورد اطمینان دارید؟',
+                                           '@lang(\ali\Course\Models\Lesson::CONFIRMATION_STATUS_ACCEPTED)')"
+                                       class="item-confirm mlg-15" title="تایید">
+
+                                    </a>
+                                    <a href=""
+                                       onclick="updateConfirmationStatus(event,'{{route('lessons.reject',$lesson->id)}}',
+                                           'آیا از رد شدن این مورد اطمینان دارید؟',
+                                           '@lang(\ali\Course\Models\Lesson::CONFIRMATION_STATUS_REJECTED)')"
+                                       class="item-reject mlg-15" title="رد">
+
+                                    </a>
+                                    @if($lesson->status==\ali\Course\Models\Lesson::STATUS_OPENED)
+                                        <a href=""
+                                           onclick="updateConfirmationStatus(event,'{{route('lessons.lock',$lesson->id)}}',
+                                               'آیا از @lang(\ali\Course\Models\Lesson::STATUS_OPENED) این مورد اطمینان دارید؟',
+                                               '@lang(\ali\Course\Models\Lesson::STATUS_LOCKED)',
+                                               'status'
+                                               )"
+                                           class="item-lock text-error mlg-15" title="قفل کردن">
+                                        </a>
+                                    @else
+                                        <a href=""
+                                           onclick="updateConfirmationStatus(event,'{{route('lessons.unlock',$lesson->id)}}',
+                                               'آیا از @lang(\ali\Course\Models\Lesson::STATUS_LOCKED) این مورد اطمینان دارید؟',
+                                               '@lang(\ali\Course\Models\Lesson::STATUS_OPENED)',
+                                               'status'
+                                               )"
+                                           class="item-lock text-success mlg-15" title="باز کردن">
+
+                                        </a>
+                                    @endif
+
+                                @endcan
+
+
                             </td>
                         </tr>
                     @endforeach

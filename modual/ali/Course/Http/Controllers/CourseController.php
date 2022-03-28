@@ -10,6 +10,7 @@ use ali\Course\Repositories\CourseRepo;
 
 use ali\Course\Repositories\LessonRepo;
 use ali\Media\Services\MediaFileService;
+use ali\RolePermissions\Models\Permission;
 use ali\User\Http\Requests\UpdateUserRequest;
 use ali\User\Repositories\UserRepo;
 use App\Http\Controllers\Controller;
@@ -21,8 +22,15 @@ class CourseController extends Controller
 
     public function index(CourseRepo $courseRepo)
     {
-        $this->authorize('manage', Course::class);
-        $courses = $courseRepo->paginate();
+        $this->authorize('index', Course::class);
+
+        if (auth()->user()->hasPermissionTo(Permission::PERMISSION_MANAGE_COURSES)) {
+            $courses = $courseRepo->paginate();
+
+        } else {
+
+            $courses = $courseRepo->getCourseByTeacherId();
+        }
         return view("Courses::index", compact("courses"));
     }
 

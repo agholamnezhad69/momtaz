@@ -2,6 +2,7 @@
 
 @section('breadcrumb')
     <li><a href="{{route('courses.index')}}" title="دوره">دوره</a></li>
+
 @endsection
 
 
@@ -9,7 +10,15 @@
 @section('content')
     <div class="row no-gutters  ">
         <div class="col-12 margin-left-10 margin-bottom-15 border-radius-3">
-            <p class="box__title">دوره ها</p>
+            <div class="tab__box">
+                <div class="tab__items">
+                    <a class="tab__item is-active" href="courses.html">لیست دوره ها</a>
+                    <a class="tab__item" href="approved.html">دوره های تایید شده</a>
+                    <a class="tab__item" href="new-course.html">دوره های تایید نشده</a>
+                    <a class="tab__item" href="{{route('courses.create')}}">ایجاد دوره جدید</a>
+                </div>
+            </div>
+
             <div class="table__box">
                 <table class="table">
                     <thead role="rowgroup">
@@ -40,44 +49,52 @@
                             <td><a href="">{{$row->title}}</a></td>
                             <td><a href="">{{$row->teacher->name}}</a></td>
                             <td><a href="">{{$row->price}}</a></td>
-                            <td><a class="text-error bold-900" href="{{route('courses.details',$row->id)}}">مشاهده</a></td>
+                            <td><a class="text-error bold-900" href="{{route('courses.details',$row->id)}}">مشاهده</a>
+                            </td>
                             <td>@lang($row->type)</td>
                             <td>@lang($row->percent)</td>
                             <td class="status">@lang($row->statues)</td>
                             <td class="confirmation_status">@lang($row->confirmation_status)</td>
                             <td>
-                                <a
-                                    href=""
-                                    onclick="deleteItem(event,'{{route('courses.destroy',$row->id)}}')"
-                                    class="item-delete mlg-15"
-                                    title="حذف">
-                                </a>
+
                                 <a href="" target="_blank" class="item-eye mlg-15" title="مشاهده"></a>
                                 <a href="{{route('courses.edit',$row->id)}}" class="item-edit mlg-15"
                                    title="ویرایش"></a>
-                                <a href=""
-                                   onclick="updateConfirmationStatus(event,'{{route('courses.accept',$row->id)}}',
-                                       'آیا از تایید این مورد اطمینان دارید؟',
-                                       '@lang(\ali\Course\Models\Course::CONFIRMATION_STATUS_ACCEPTED)')"
-                                   class="item-confirm mlg-15" title="تایید">
 
-                                </a>
-                                <a href=""
-                                   onclick="updateConfirmationStatus(event,'{{route('courses.reject',$row->id)}}',
-                                       'آیا از رد شدن این مورد اطمینان دارید؟',
-                                       '@lang(\ali\Course\Models\Course::CONFIRMATION_STATUS_REJECTED)')"
-                                   class="item-reject mlg-15" title="رد">
+                                @can(\ali\RolePermissions\Models\Permission::PERMISSION_MANAGE_COURSES)
 
-                                </a>
 
-                                <a href=""
-                                   onclick="updateConfirmationStatus(event,'{{route('courses.lock',$row->id)}}',
-                                       'آیا از قفل شدن این مورد اطمینان دارید؟',
-                                       '@lang(\ali\Course\Models\Course::STATUS_LOCKED)',
-                                       'status')"
-                                   class="item-lock mlg-15" title="رد">
+                                    <a
+                                        href=""
+                                        onclick="deleteItem(event,'{{route('courses.destroy',$row->id)}}')"
+                                        class="item-delete mlg-15"
+                                        title="حذف">
+                                    </a>
+                                    <a href=""
+                                       onclick="updateConfirmationStatus(event,'{{route('courses.accept',$row->id)}}',
+                                           'آیا از تایید این مورد اطمینان دارید؟',
+                                           '@lang(\ali\Course\Models\Course::CONFIRMATION_STATUS_ACCEPTED)')"
+                                       class="item-confirm mlg-15" title="تایید">
 
-                                </a>
+                                    </a>
+                                    <a href=""
+                                       onclick="updateConfirmationStatus(event,'{{route('courses.reject',$row->id)}}',
+                                           'آیا از رد شدن این مورد اطمینان دارید؟',
+                                           '@lang(\ali\Course\Models\Course::CONFIRMATION_STATUS_REJECTED)')"
+                                       class="item-reject mlg-15" title="رد">
+
+                                    </a>
+
+                                    <a href=""
+                                       onclick="updateConfirmationStatus(event,'{{route('courses.lock',$row->id)}}',
+                                           'آیا از قفل شدن این مورد اطمینان دارید؟',
+                                           '@lang(\ali\Course\Models\Course::STATUS_LOCKED)',
+                                           'status')"
+                                       class="item-lock mlg-15" title="رد">
+
+                                    </a>
+
+                                @endif
 
 
                             </td>
