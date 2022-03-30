@@ -19,7 +19,7 @@ class CourseTest extends TestCase
     use RefreshDatabase;
     private function createUser()
     {
-        $this->actingAs(factory(User::class)->create());
+        $this->actingAs(User::factory()->create());
         $this->seed(RolePermissionTableSeeder::class);
     }
 

@@ -11,6 +11,7 @@ use ali\User\Policies\UserPolicy;
 use ali\User\Http\Middleware\StoreUserIp;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserServiceProvider extends ServiceProvider
 {
@@ -18,11 +19,18 @@ class UserServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__ . '/../Routes/user_routes.php');
         $this->loadMigrationsFrom(__DIR__ . '/../Database/migration');
-        $this->loadFactoriesFrom(__DIR__ . '/../Database/factories');
+        /*$this->loadFactoriesFrom(__DIR__ . '/../Database/factories');*/
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'User');
         $this->loadJsonTranslationsFrom(__DIR__ . "/../Resources/Lang/");
         \DatabaseSeeder::$seeders[] = UserTableSeeder::class;
         $this->app['router']->pushMiddlewareToGroup('web', StoreUserIp::class);
+
+        Factory::guessFactoryNamesUsing(function (string $modelName) {
+
+            return 'ali\User\Database\factories\\' . class_basename($modelName) . 'Factory';
+        });
+
+
         Gate::policy(User::class, UserPolicy::class);
     }
 
