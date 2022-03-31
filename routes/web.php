@@ -5,9 +5,7 @@ use Illuminate\Support\Facades\URL;
 use ali\RolePermissions\Models\Permission;
 
 
-Route::get('/', function () {
-    return view('index');
-});
+
 
 Route::get('/test', function () {
 

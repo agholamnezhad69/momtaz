@@ -1,0 +1,16 @@
+{
+    "name": "ali/front",
+    "autoload": {
+        "psr-4": {
+            "ali\\Front\\" : "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "\\ali\\Front\\Providers\\FrontServiceProviders"
+            ]
+        }
+    }
+}
+

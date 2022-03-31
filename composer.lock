@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa474574b21abeeed4f8522fb1886541",
+    "content-hash": "4d9abf33095bd104fd40dc083581fba6",
     "packages": [
         {
             "name": "ali/common",
@@ -29,6 +29,31 @@
                 "files": [
                     "src/helpers.php"
                 ]
+            },
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "ali/front",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "modual/ali/Front",
+                "reference": "22879e36e1f11e698721449aa9d2c7a363359bde"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "\\ali\\Front\\Providers\\FrontServiceProviders"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ali\\Front\\": "src"
+                }
             },
             "transport-options": {
                 "relative": true
@@ -8691,7 +8716,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "ali/common": 20
+        "ali/common": 20,
+        "ali/front": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
