@@ -4,8 +4,8 @@ Route::group([
     'middleware' => ['web', 'auth']
 ], function () {
 
-    Route::get('users/profile', 'UserController@profile')->name('users.profile');
-    Route::post('users/profile', 'UserController@updateProfile')->name('users.profile');
+    Route::get('edit-profile', 'UserController@profile')->name('users.profile');
+    Route::post('edit-profile', 'UserController@updateProfile')->name('users.profile');
 
 });
 
@@ -37,7 +37,7 @@ Route::group([
     Route::post('/login', 'Auth\LoginController@login')->name('login');
 
     // logout
-    Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+    Route::any('/logout', 'Auth\LoginController@logout')->name('logout');
 
     // reset password
 

@@ -18,19 +18,25 @@ class Category extends Model
 
     public function parentCategory()
     {
-        return  $this->belongsTo(Category::class, 'parent_id');
+        return $this->belongsTo(Category::class, 'parent_id');
     }
 
     public function subCategory()
     {
-        $this->hasMany(Category::class, 'parent_id');
+        return $this->hasMany(Category::class, 'parent_id');
 
     }
 
     public function course()
     {
-        $this->hasMany(Course::class, 'id');
+        return $this->hasMany(Course::class, 'id');
 
+    }
+
+    public function path()
+    {
+
+        return route('categories.show', $this->id);
     }
 
 

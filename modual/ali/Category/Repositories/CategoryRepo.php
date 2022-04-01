@@ -50,5 +50,11 @@ class CategoryRepo
         Category::query()->where('id', $catId)->delete();
     }
 
+    public function tree()
+    {
+        return Category::query()->where('parent_id', null)->with('subCategory')->get();
+
+    }
+
 
 }
