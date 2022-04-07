@@ -4,6 +4,7 @@ namespace ali\Front\Providers;
 
 
 use ali\Category\Repositories\CategoryRepo;
+use ali\Course\Repositories\CourseRepo;
 use Carbon\Laravel\ServiceProvider;
 
 class FrontServiceProviders extends ServiceProvider
@@ -19,6 +20,13 @@ class FrontServiceProviders extends ServiceProvider
         view()->composer('Front::layout.header', function ($view) {
             $cats = (new CategoryRepo())->tree();
             $view->with(compact('cats'));
+        });
+
+
+        view()->composer('Front::layout.latestCourses', function ($view) {
+
+            $latestCourses = (new CourseRepo())->latestCourses();
+            $view->with(compact('latestCourses'));
         });
 
 

@@ -3,6 +3,7 @@
 namespace ali\Course\Models;
 
 use ali\Category\Models\Category;
+use ali\Course\Repositories\CourseRepo;
 use ali\Media\Models\Media;
 use ali\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
@@ -58,13 +59,43 @@ class Course extends Model
         return $this->hasMany(Season::class);
 
     }
+
     public function lessons()
     {
         return $this->hasMany(Lesson::class);
 
     }
 
+    public function getConfirmationStatusCssClass()
+    {
+        if ($this->confirmation_status == self:: CONFIRMATION_STATUS_ACCEPTED) return "text-success";
+        elseif ($this->confirmation_status == self::CONFIRMATION_STATUS_REJECTED) return "text-error";
 
+    }
+
+    public function getDuration()
+    {
+        return (new CourseRepo())->getDuration($this->id);
+    }
+
+    public function formattedDuration()
+    {
+
+        $duration = $this->getDuration();
+
+        $h = round($duration / 60) < 10 ? "0" . round($duration / 60) : round($duration / 60);
+        $m = round($duration % 60) < 10 ? "0" . ($duration % 60) : ($duration % 60);
+
+        return $h . ':' . $m . ':00';
+
+    }
+
+    public function getFormattedPrice()
+    {
+
+        return number_format($this->price);
+
+    }
 
 
 }

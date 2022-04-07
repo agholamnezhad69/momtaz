@@ -181,12 +181,12 @@
                         </div>
                     </div>
                     <div class="triangle"></div>
-                </li>
+                </li>-->
                 <li class="main-menu"><a href="#">کسب و کار</a></li>
                 <li class="main-menu d-none"><a href="#">درباره ما</a></li>
                 <li class="main-menu"><a href="contact-us.html">تماس ما</a></li>
                 <li class="main-menu join-teachers-li"><a href="become-a-teacher.html">تدریس در وب آموز</a></li>
-                <li class="main-menu"><a href="https://www.webamooz.net/blog">مقالات</a></li>-->
+                <li class="main-menu"><a href="https://www.webamooz.net/blog">مقالات</a></li>
             </ul>
 
             <div class="dark-light">

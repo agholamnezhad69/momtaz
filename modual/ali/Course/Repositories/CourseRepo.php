@@ -3,6 +3,7 @@
 namespace ali\Course\Repositories;
 
 use ali\Course\Models\Course;
+use ali\Course\Models\Lesson;
 use ali\Course\Models\Season;
 use Illuminate\Support\Str;
 
@@ -86,6 +87,26 @@ class CourseRepo
         return Course::query()->where('teacher_id', auth()->id())->get();
 
 
+    }
+
+    public function getDuration($CourseId)
+    {
+        return Lesson::query()
+            ->where('course_id', $CourseId)
+            ->where('confirmation_status', Course::CONFIRMATION_STATUS_ACCEPTED)
+            ->sum('time');
+
+
+    }
+
+    public function latestCourses()
+    {
+
+        return Course::query()
+            ->where('confirmation_status', Course::CONFIRMATION_STATUS_ACCEPTED)
+            ->latest()
+            ->take(8)
+            ->get();
     }
 
 

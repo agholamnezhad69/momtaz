@@ -52,7 +52,7 @@ class CategoryRepo
 
     public function tree()
     {
-        return Category::query()->where('parent_id', null)->with('subCategory')->get();
+        return Category::query()->where('parent_id', null)->with('subCategory') ->get();
 
     }
 

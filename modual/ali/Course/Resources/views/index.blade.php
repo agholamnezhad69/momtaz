@@ -54,7 +54,7 @@
                             <td>@lang($row->type)</td>
                             <td>@lang($row->percent)</td>
                             <td class="status">@lang($row->statues)</td>
-                            <td class="confirmation_status">@lang($row->confirmation_status)</td>
+                            <td class="confirmation_status {{$row->getConfirmationStatusCssClass()}} ">@lang($row->confirmation_status)</td>
                             <td>
 
                                 <a href="" target="_blank" class="item-eye mlg-15" title="مشاهده"></a>
