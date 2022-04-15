@@ -7,5 +7,6 @@ Route::group([
 ], function ($router) {
 
     $router->get('/', 'FrontController@index');
+    $router->get('/c-{slug}', 'FrontController@singleCourse')->name('singleCourse');
 
 });

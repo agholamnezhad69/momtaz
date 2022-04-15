@@ -97,5 +97,12 @@ class Course extends Model
 
     }
 
+    public function path()
+    {
+
+        return route('singleCourse', $this->id . '-' . $this->slug);
+
+    }
+
 
 }
