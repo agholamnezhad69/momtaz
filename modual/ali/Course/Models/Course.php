@@ -4,6 +4,7 @@ namespace ali\Course\Models;
 
 use ali\Category\Models\Category;
 use ali\Course\Repositories\CourseRepo;
+use ali\Course\Repositories\LessonRepo;
 use ali\Media\Models\Media;
 use ali\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
@@ -81,12 +82,14 @@ class Course extends Model
     public function formattedDuration()
     {
 
+
         $duration = $this->getDuration();
 
-        $h = round($duration / 60) < 10 ? "0" . round($duration / 60) : round($duration / 60);
+        $h = round($duration / 60) < 10 ? "0" . floor($duration / 60) : floor($duration / 60);
         $m = round($duration % 60) < 10 ? "0" . ($duration % 60) : ($duration % 60);
 
         return $h . ':' . $m . ':00';
+
 
     }
 
@@ -101,6 +104,20 @@ class Course extends Model
     {
 
         return route('singleCourse', $this->id . '-' . $this->slug);
+
+    }
+
+    public function lessonsCount()
+    {
+
+        return (new CourseRepo())->getLessonsCount($this->id);
+
+    }
+
+    public function shortUrl()
+    {
+
+        return route('singleCourse', $this->id);
 
     }
 

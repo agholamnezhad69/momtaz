@@ -24,8 +24,6 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasFactory;
 
 
-
-
     const STATUS_ACTIVE = "active";
     const STATUS_INACTIVE = "inactive";
     const STATUS_BAN = "ban";
@@ -129,6 +127,12 @@ class User extends Authenticatable implements MustVerifyEmail
             return "/storage/" . $this->image->files[300];
         return "/panel/img/profile.jpg/";
 
+
+    }
+
+    public function hasAccessToCourse($courseId)
+    {
+        return false;
 
     }
 

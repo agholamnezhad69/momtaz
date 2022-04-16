@@ -108,6 +108,13 @@ class CourseRepo
             ->take(8)
             ->get();
     }
+    public function getLessonsCount($courseId)
+    {
+        return Lesson::query()
+            ->where('course_id', $courseId)
+            ->where('confirmation_status', Lesson::CONFIRMATION_STATUS_ACCEPTED)
+            ->count();
+    }
 
 
 }
