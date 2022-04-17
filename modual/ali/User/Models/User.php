@@ -130,9 +130,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
-    public function hasAccessToCourse($courseId)
+    public function hasAccessToCourse()
     {
-        return false;
+       return true;
 
     }
 

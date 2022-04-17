@@ -42,6 +42,8 @@
                             </div>
                             <p class="alert-error"></p>
 
+
+
                             @if(auth()->id() == $course->teacher_id)
                                 <p class="mycourse ">شما مدرس این دوره هستید</p>
                             @elseif(auth()->user()->hasAccessToCourse($course->id))
@@ -134,7 +136,7 @@
                             <div class="">
                                 <span>لینک کوتاه</span>
                                 <input class="short--link"
-                                value="{{$course->shortUrl()}}">
+                                       value="{{$course->shortUrl()}}">
                                 <a href="{{$course->shortUrl()}}"
                                    class="short-link-a"
                                    data-link="{{$course->shortUrl()}}">
@@ -152,10 +154,10 @@
                             <source src="intro.mp4" type="video/mp4">
                         </video>
                     </div>
-                    <a href="#" class="episode-download">دانلود این قسمت (قسمت 1)</a>
+                    <a href="#" class="episode-download">دانلود این قسمت (قسمت {{$lesson->id}})</a>
                     <div class="course-description">
                         <div class="course-description-title">توضیحات دوره</div>
-                          {!!$course->body!!}
+                        {!!$course->body!!}
                         <div class="tags">
                             <ul>
                                 <li><a href="">ری اکت</a></li>
@@ -166,91 +168,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="episodes-list">
-                        <div class="episodes-list--title">
-                            فهرست جلسات
-                            <span>دریافت همه لینک های دانلود</span>
-
-                        </div>
-                        <div class="episodes-list-section">
-                            <div class="episodes-list-item ">
-                                <div class="section-right">
-                                    <span class="episodes-list-number">۱</span>
-                                    <div class="episodes-list-title">
-                                        <a href="php-ep-1.html">php چیست</a>
-                                    </div>
-                                </div>
-                                <div class="section-left">
-                                    <div class="episodes-list-details">
-                                        <div class="episodes-list-details">
-                                            <span class="detail-type">رایگان</span>
-                                            <span class="detail-time">44:44</span>
-                                            <a class="detail-download">
-                                                <i class="icon-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="episodes-list-item">
-                                <div class="section-right">
-                                    <span class="episodes-list-number">2</span>
-                                    <div class="episodes-list-title">
-                                        <a href="php-ep-2.html">نصب و راه اندازی</a>
-                                    </div>
-                                </div>
-                                <div class="section-left">
-                                    <div class="episodes-list-details">
-                                        <div class="episodes-list-details">
-                                            <span class="detail-type">رایگان</span>
-                                            <span class="detail-time">44:44</span>
-                                            <a class="detail-download">
-                                                <i class="icon-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="episodes-list-item lock">
-                                <div class="section-right">
-                                    <span class="episodes-list-number">3</span>
-                                    <div class="episodes-list-title">
-                                        <a href="#">اضافه کردن متد های جدید به router - از فصل اول بخش اخر</a>
-                                    </div>
-                                </div>
-                                <div class="section-left">
-                                    <div class="episodes-list-details">
-                                        <div class="episodes-list-details">
-                                            <!--                                            <span class="detail-type">نقدی</span>-->
-                                            <span class="detail-time">44:44</span>
-                                            <a class="detail-download">
-                                                <i class="icon-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="episodes-list-item lock">
-                                <div class="section-right">
-                                    <span class="episodes-list-number">-</span>
-                                    <div class="episodes-list-title">
-                                        <a href="#">دانلود فایل</a>
-                                    </div>
-                                </div>
-                                <div class="section-left">
-                                    <div class="episodes-list-details">
-                                        <div class="episodes-list-details">
-                                            <!--                                            <span class="detail-type">نقدی</span>-->
-                                            <span class="detail-time"></span>
-                                            <a class="detail-download">
-                                                <i class="icon-download"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @include('Front::layout.episodes-list')
                 </div>
             </div>
         </div>

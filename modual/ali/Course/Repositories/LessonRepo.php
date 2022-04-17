@@ -108,7 +108,34 @@ class LessonRepo
         ]);
     }
 
+    public function getAcceptedLessons(int $course_id)
+    {
 
+        return Lesson::query()
+            ->where('course_id', $course_id)
+            ->where('confirmation_status', Lesson::CONFIRMATION_STATUS_ACCEPTED)
+            ->get();
+
+    }
+
+    public function getFirstLesson(int $course_id)
+    {
+        return Lesson::query()
+            ->where('confirmation_status', Lesson::CONFIRMATION_STATUS_ACCEPTED)
+            ->where('course_id', $course_id)
+            ->orderBy('number', 'asc')
+            ->first();
+
+    }
+
+    public function getLesson(int $lessonId, int $courseId)
+    {
+        return Lesson::query()
+            ->where('id', $lessonId)
+            ->where('course_id', $courseId)
+            ->first();
+
+    }
 
 
 }

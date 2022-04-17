@@ -61,5 +61,18 @@ class Lesson extends Model
 
     }
 
+    public function is_free()
+    {
+
+        return $this->is_free ? 'رایگان' : 'نقدی';
+
+    }
+
+    public function path()
+    {
+        return $this->course->path() . '?lesson=l-' . $this->id . '-' . $this->slug;
+
+    }
+
 
 }
