@@ -108,4 +108,14 @@ class MediaFileService
 
         return implode(',', $extensions);
     }
+
+    public static function stream(Media $media)
+    {
+        foreach (config('mediaFile.mediaTypeServices') as $type => $service) {
+            if ($media->type == $type) {
+                return $service["handler"]::stream($media);
+            }
+        }
+
+    }
 }

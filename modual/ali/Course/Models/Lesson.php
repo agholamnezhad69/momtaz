@@ -5,6 +5,7 @@ namespace ali\Course\Models;
 use ali\Media\Models\Media;
 use ali\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\URL;
 
 class Lesson extends Model
 {
@@ -27,6 +28,15 @@ class Lesson extends Model
     public function season()
     {
         return $this->belongsTo(Season::class, 'season_id');
+    }
+
+    public function downloadLink()
+    {
+        return URL::temporarySignedRoute('media.download',
+            now()->addDay(),
+            ['media' => $this->media_id]
+        );
+
     }
 
     public function course()

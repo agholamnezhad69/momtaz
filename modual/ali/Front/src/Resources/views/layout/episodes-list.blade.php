@@ -8,7 +8,7 @@
 
         @foreach($lessons as $lesson)
             {{-- <div class="episodes-list-item lock"> --}}
-            <div class="episodes-list-item ">
+            <div class="episodes-list-item">
                 <div class="section-right">
                     <span class="episodes-list-number">{{$lesson->number}}</span>
                     <div class="episodes-list-title">

@@ -132,7 +132,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function hasAccessToCourse()
     {
-       return true;
+       return false;
 
     }
 

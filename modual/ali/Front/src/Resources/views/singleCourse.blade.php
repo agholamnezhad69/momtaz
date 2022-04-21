@@ -31,26 +31,38 @@
                                 <p>45%</p>
                                 تخفیف
                             </div>
-                            <div class="sell_course">
-                                <strong>قیمت :</strong>
-                                <del class="discount-Price">900,000</del>
-                                <p class="price">
-                        <span class="woocommerce-Price-amount amount">495,000
-                            <span class="woocommerce-Price-currencySymbol">تومان</span>
-                        </span>
-                                </p>
-                            </div>
+
                             <p class="alert-error"></p>
 
-
-
-                            @if(auth()->id() == $course->teacher_id)
-                                <p class="mycourse ">شما مدرس این دوره هستید</p>
-                            @elseif(auth()->user()->hasAccessToCourse($course->id))
-                                <p class="mycourse ">شما این دوره رو خریداری کرده اید</p>
+                            @auth
+                                @if(auth()->id() == $course->teacher_id)
+                                    <p class="mycourse ">شما مدرس این دوره هستید</p>
+                                @elseif(auth()->user()->hasAccessToCourse($course->id))
+                                    <p class="mycourse ">شما این دوره رو خریداری کرده اید</p>
+                                @else
+                                    <button class="btn buy btn-buy">خرید دوره</button>
+                                    <div class="sell_course">
+                                        <strong>قیمت :</strong>
+                                        <del class="discount-Price">{{$course->getFormattedPrice()}}</del>
+                                        <p class="price">
+                             <span class="woocommerce-Price-amount amount">{{$course->getFormattedPrice()}}
+                            <span class="woocommerce-Price-currencySymbol">تومان</span>
+                            </span>
+                                        </p>
+                                    </div>
+                                @endif
                             @else
+                                <div class="sell_course">
+                                    <strong>قیمت :</strong>
+                                    <del class="discount-Price">{{$course->getFormattedPrice()}}</del>
+                                    <p class="price">
+                             <span class="woocommerce-Price-amount amount">{{$course->getFormattedPrice()}}
+                            <span class="woocommerce-Price-currencySymbol">تومان</span>
+                            </span>
+                                    </p>
+                                </div>
                                 <button class="btn buy btn-buy">خرید دوره</button>
-                            @endif
+                            @endauth
 
 
                             <div class="rating-star">
@@ -151,7 +163,7 @@
                 <div class="content-left">
                     <div class="preview">
                         <video width="100%" controls>
-                            <source src="intro.mp4" type="video/mp4">
+                            <source src="{{$lesson->downloadLink()}}" type="video/mp4">
                         </video>
                     </div>
                     <a href="#" class="episode-download">دانلود این قسمت (قسمت {{$lesson->id}})</a>
