@@ -5,7 +5,7 @@ namespace ali\Media\Services;
 use ali\Media\Models\Media;
 use Illuminate\Support\Facades\Storage;
 
-class DefaultFileService
+abstract class DefaultFileService
 {
     public static $media;
 
@@ -22,23 +22,26 @@ class DefaultFileService
         }
     }
 
-    public function getFileName()
-    {
-        return (self::$media->is_private ? 'private/' : 'public/') . self::$media->files['zip'];
-    }
+     abstract public static function getFileName();
+
 
     public static function stream(Media $media)
     {
 
-        self::$media = $media;
+        static::$media = $media;
 
-        $stream = Storage::readStream(self::getFileName());
+        $stream = Storage::readStream(static::getFileName());
 
         return response()->stream(function () use ($stream) {
 
             fpassthru($stream);
-
-        });
+        },
+        200,
+            [
+                'Content-Type'=> Storage::mimeType(static::getFileName()),
+                'Content-Disposition' => "attachment; filename='" . static::$media->filename."'",
+            ]
+        );
 
     }
 

@@ -161,12 +161,15 @@
                     </div>
                 </div>
                 <div class="content-left">
-                    <div class="preview">
-                        <video width="100%" controls>
-                            <source src="{{$lesson->downloadLink()}}" type="video/mp4">
-                        </video>
-                    </div>
-                    <a href="#" class="episode-download">دانلود این قسمت (قسمت {{$lesson->id}})</a>
+                    @if($lesson->media->type=='video')
+                        <div class="preview">
+                            <video width="100%" controls>
+                                <source src="{{$lesson->downloadLink()}}" type="video/mp4">
+                            </video>
+                        </div>
+                    @endif
+                    <a href="{{$lesson->downloadLink()}}" class="episode-download">دانلود این قسمت
+                        (قسمت {{$lesson->id}})</a>
                     <div class="course-description">
                         <div class="course-description-title">توضیحات دوره</div>
                         {!!$course->body!!}
