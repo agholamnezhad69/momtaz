@@ -33,7 +33,7 @@ abstract class DefaultFileService
         $stream = Storage::readStream(static::getFileName());
 
         return response()->stream(function () use ($stream) {
-
+            while (ob_get_level() > 0) ob_get_flush();
             fpassthru($stream);
         },
         200,
