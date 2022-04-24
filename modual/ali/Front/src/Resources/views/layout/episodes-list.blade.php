@@ -8,7 +8,8 @@
 
         @foreach($lessons as $lesson)
             {{-- <div class="episodes-list-item lock"> --}}
-            <div class="episodes-list-item">
+            <div
+                class="episodes-list-item {{ auth()->check() && auth()->user()->hasAccessToCourse($course) ? '' :'lock'}}">
                 <div class="section-right">
                     <span class="episodes-list-number">{{$lesson->number}}</span>
                     <div class="episodes-list-title">

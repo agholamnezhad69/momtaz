@@ -23,6 +23,8 @@ class CourseServiceProviders extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/../Database/migrations');
         $this->loadJsonTranslationsFrom(__DIR__ . "/../Resources/Lang/");
         $this->loadTranslationsFrom(__DIR__ . "/../Resources/Lang/", "Courses");
+
+
         Gate::policy(Course::class, CoursePolicy::class);
         Gate::policy(Season::class, SeasonPolicy::class);
         Gate::policy(Lesson::class, LessonPolicy::class);

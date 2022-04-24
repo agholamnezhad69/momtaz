@@ -28,13 +28,13 @@ class User extends Authenticatable implements MustVerifyEmail
     const STATUS_INACTIVE = "inactive";
     const STATUS_BAN = "ban";
 
-    public static $statuses =
-        [
-            self::STATUS_ACTIVE,
-            self::STATUS_INACTIVE,
-            self::STATUS_BAN,
+    public static $statuses = [
+        self::STATUS_ACTIVE,
+        self::STATUS_INACTIVE,
+        self::STATUS_BAN,
 
-        ];
+    ];
+
 
     public static $defaultUser = [
         [
@@ -130,9 +130,20 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
-    public function hasAccessToCourse()
+    public function hasAccessToCourse(Course $course)
     {
-       return false;
+
+        if ($this->can('manage', Course::class) ||
+            $this->id == $course->teacher_id ||
+            $course->students->contains($this->id)
+        ) return true;
+        return false;
+
+    }
+
+    public function purchases()
+    {
+        return $this->belongsToMany(Course::class, 'course_user', 'user_id', 'course_id');
 
     }
 
