@@ -22,7 +22,7 @@ abstract class DefaultFileService
         }
     }
 
-     abstract public static function getFileName();
+    abstract public static function getFileName();
 
 
     public static function stream(Media $media)
@@ -36,13 +36,15 @@ abstract class DefaultFileService
             while (ob_get_level() > 0) ob_get_flush();
             fpassthru($stream);
         },
-        200,
+            200,
             [
-                'Content-Type'=> Storage::mimeType(static::getFileName()),
-                'Content-Disposition' => "attachment; filename='" . static::$media->filename."'",
+                'Content-Type' => Storage::mimeType(static::getFileName()),
+                'Content-Disposition' => "attachment; filename='" . static::$media->filename . "'",
             ]
         );
 
     }
+
+
 
 }

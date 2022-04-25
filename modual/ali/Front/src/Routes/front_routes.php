@@ -8,5 +8,6 @@ Route::group([
 
     $router->get('/', 'FrontController@index');
     $router->get('/c-{slug}', 'FrontController@singleCourse')->name('singleCourse');
+    $router->get('/tutors/{username}', 'FrontController@singleTutor')->name('singleTutor');
 
 });

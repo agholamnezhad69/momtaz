@@ -4,6 +4,8 @@ namespace ali\Front\Http\Controllers;
 
 use ali\Course\Repositories\CourseRepo;
 use ali\Course\Repositories\LessonRepo;
+use ali\RolePermissions\Models\Permission;
+use ali\User\Models\User;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 
@@ -40,6 +42,15 @@ class FrontController extends Controller
     public function extractId($slug, $key)
     {
         return Str::before(Str::after($slug, $key . '-'), '-');
+    }
+
+    public function singleTutor($username)
+    {
+
+
+        $teacher = User::permission(Permission::PERMISSION_TEACH)->where('username', $username)->first();
+
+        return view("Front::tutor", compact('teacher'));
     }
 
 }

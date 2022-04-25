@@ -123,7 +123,7 @@
                         </div>
                         <div class="course-teacher-details">
                             <div class="top-part">
-                                <a href="https://webamooz.net/tutor/mohammadnikoo/">
+                                <a href="{{route('singleTutor',$course->teacher->username)}}">
                                     <img alt="{{$course->teacher->name}}"
                                          class="img-fluid lazyloaded"
                                          src="{{$course->teacher->Thumb}}"
@@ -133,7 +133,9 @@
                                              alt="{{$course->teacher->name}}"></noscript>
                                 </a>
                                 <div class="name">
-                                    <a href="https://webamooz.net/tutor/mohammadnikoo/" class="btn-link">
+                                    <a href="{{route('singleTutor',$course->teacher->username)}}"
+                                       class="btn-link"
+                                    >
                                         <h6>{{$course->teacher->name}} </h6>
 
                                     </a>
