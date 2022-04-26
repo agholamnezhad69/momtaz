@@ -24,13 +24,13 @@ class CourseController extends Controller
     {
         $this->authorize('index', Course::class);
 
-        if (auth()->user()->hasAnyPermission([Permission::PERMISSION_MANAGE_COURSES,Permission::PERMISSION_SUPER_ADMIN])) {
-        $courses = $courseRepo->paginate();
+        if (auth()->user()->hasAnyPermission([Permission::PERMISSION_MANAGE_COURSES, Permission::PERMISSION_SUPER_ADMIN])) {
+            $courses = $courseRepo->paginate();
 
-    } else {
+        } else {
 
-        $courses = $courseRepo->getCourseByTeacherId();
-    }
+            $courses = $courseRepo->getCourseByTeacherId();
+        }
         return view("Courses::index", compact("courses"));
     }
 
@@ -158,5 +158,11 @@ class CourseController extends Controller
         return view("Courses::details", compact('course', 'lessons'));
 
     }
+
+    public function buy($courseId)
+    {
+        dd($courseId);
+    }
+
 
 }

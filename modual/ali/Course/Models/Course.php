@@ -100,6 +100,34 @@ class Course extends Model
 
     }
 
+    public function getDiscountPercent()
+    {
+        //ToDo
+        return 0;
+
+    }
+
+    public function getDiscountAmount()
+    {
+        //ToDo
+        return 0;
+
+    }
+
+    public function getFinalPrice()
+    {
+
+        return $this->price - $this->getDiscountAmount();
+
+    }
+
+    public function getFormattedFinalPrice()
+    {
+
+        return number_format($this->getFinalPrice());
+
+    }
+
     public function path()
     {
 
@@ -124,7 +152,7 @@ class Course extends Model
     public function students()
     {
 
-     return $this->belongsToMany(User::class, 'course_user', 'course_id', 'user_id');
+        return $this->belongsToMany(User::class, 'course_user', 'course_id', 'user_id');
 
     }
 

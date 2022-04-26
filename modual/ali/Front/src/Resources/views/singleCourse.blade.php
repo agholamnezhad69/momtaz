@@ -40,17 +40,19 @@
                                 @elseif(auth()->user()->hasAccessToCourse($course))
                                     <p class="mycourse ">شما این دوره رو خریداری کرده اید</p>
                                 @else
-                                    <button class="btn buy btn-buy">خرید دوره</button>
+
                                     <div class="sell_course">
                                         <strong>قیمت :</strong>
                                         <del class="discount-Price">{{$course->getFormattedPrice()}}</del>
                                         <p class="price">
-                             <span class="woocommerce-Price-amount amount">{{$course->getFormattedPrice()}}
+                             <span class="woocommerce-Price-amount amount">{{$course->getFormattedFinalPrice()}}
                             <span class="woocommerce-Price-currencySymbol">تومان</span>
                             </span>
                                         </p>
                                     </div>
+                                    <button class="btn buy btn-buy ">خرید دوره</button>
                                 @endif
+
                             @else
                                 <div class="sell_course">
                                     <strong>قیمت :</strong>
@@ -61,7 +63,8 @@
                             </span>
                                     </p>
                                 </div>
-                                <button class="btn buy btn-buy">خرید دوره</button>
+                                <p>برای خرید دوره ابتدا باید وارد حساب کاربری شوید</p>
+                                <a href="{{route('login')}}" class=" btn width-100 text-white">ورود به سایت</a>
                             @endauth
 
 
@@ -188,6 +191,54 @@
                     @include('Front::layout.episodes-list')
                 </div>
             </div>
+
+
+        </div>
+        <div id="Modal-buy" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p>کد تخفیف را وارد کنید</p>
+                    <div class="close">&times;</div>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{{route('courses.buy',$course->id)}}">
+                        @csrf
+                        <div><input type="text" class="txt" placeholder="کد تخفیف را وارد کنید"></div>
+                        <button class="btn i-t ">اعمال</button>
+
+                        <table class="table text-center table-bordered table-striped">
+                            <tbody>
+                            <tr>
+                                <th>قیمت کل دوره</th>
+                                <td> {{$course->getFormattedPrice()}} تومان</td>
+                            </tr>
+                            <tr>
+                                <th>درصد تخفیف</th>
+                                <td>{{$course->getDiscountPercent()}}%</td>
+                            </tr>
+                            <tr>
+                                <th> مبلغ تخفیف</th>
+                                <td class="text-red"> {{$course->getDiscountAmount()}} تومان</td>
+                            </tr>
+                            <tr>
+                                <th> قابل پرداخت</th>
+                                <td class="text-blue"> {{$course->getFormattedFinalPrice()}} تومان</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button type="submit" class="btn btn i-t ">پرداخت آنلاین</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </main>
+
+@endsection
+
+@section('css')
+    <link rel="stylesheet" href="/css/modal.css">
+@endsection
+
+@section('js')
+    <script src="/js/modal.js"></script>
 @endsection
