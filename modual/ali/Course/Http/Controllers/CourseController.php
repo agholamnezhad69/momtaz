@@ -159,9 +159,54 @@ class CourseController extends Controller
 
     }
 
-    public function buy($courseId)
+    public function buy($courseId, CourseRepo $courseRepo)
     {
-        dd($courseId);
+        
+         $course = $courseRepo->findById($courseId);
+
+        if (!$this->courseCanBePurchased($course)) {
+            return back();
+        }
+
+        if (!$this->authUserCanPurchaseCourse($course)) {
+
+            return back();
+
+        }
+
+    }
+
+    public function courseCanBePurchased($course)
+    {
+        if ($course->type == Course::TYPE_FREE) {
+            newFeedbacks('عملیات ناموفق', 'این دوره رایگان هست و قابلی خریداری نیست', 'error');
+            return false;
+        }
+
+        if ($course->statues == Course::STATUS_LOCKED) {
+            newFeedbacks('عملیات ناموفق', 'این دوره قفل هست و فعلا قابل خریداری نیست', 'error');
+            return false;
+        }
+
+        if ($course->confirmation_status != Course::CONFIRMATION_STATUS_ACCEPTED) {
+            newFeedbacks('عملیات ناموفق', 'این دوره هنوز تایید نشده هست', 'error');
+            return false;
+        }
+
+    }
+
+    public function authUserCanPurchaseCourse($course)
+    {
+
+        if (auth()->id() == $course->teacher_id) {
+            newFeedbacks('عملیات ناموفق', 'شما مدرس این دوره هستید', 'error');
+            return false;
+        }
+
+        if (auth()->user()->hasAccessToCourse($course)) {
+            newFeedbacks('عملیات ناموفق', 'شما به دوره دسترسی دارید', 'error');
+            return false;
+        }
     }
 
 
