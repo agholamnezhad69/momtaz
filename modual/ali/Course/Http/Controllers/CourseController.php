@@ -10,6 +10,8 @@ use ali\Course\Repositories\CourseRepo;
 
 use ali\Course\Repositories\LessonRepo;
 use ali\Media\Services\MediaFileService;
+use ali\Payment\Repositories\PaymentRepo;
+use ali\Payment\Services\PaymentService;
 use ali\RolePermissions\Models\Permission;
 use ali\User\Http\Requests\UpdateUserRequest;
 use ali\User\Repositories\UserRepo;
@@ -161,8 +163,8 @@ class CourseController extends Controller
 
     public function buy($courseId, CourseRepo $courseRepo)
     {
-        
-         $course = $courseRepo->findById($courseId);
+
+        $course = $courseRepo->findById($courseId);
 
         if (!$this->courseCanBePurchased($course)) {
             return back();
@@ -173,6 +175,12 @@ class CourseController extends Controller
             return back();
 
         }
+        $amount = 0;
+
+        $payment = PaymentService::generate($amount, $course, auth()->user());
+
+        return $payment;
+
 
     }
 

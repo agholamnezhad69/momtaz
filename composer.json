@@ -11,6 +11,7 @@
         "php": "^7.4.25",
         "ali/common": "dev-main",
         "ali/front": "dev-main",
+        "ali/payment": "dev-main",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -36,6 +37,10 @@
         {
             "type": "path",
             "url": "modual/ali/Front"
+        },
+        {
+            "type": "path",
+            "url": "modual/ali/Payment"
         }
     ],
     "config": {

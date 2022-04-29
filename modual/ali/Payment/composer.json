@@ -1,0 +1,16 @@
+{
+    "name": "ali/payment",
+    "autoload": {
+        "psr-4": {
+            "ali\\Payment\\" : "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "\\ali\\Payment\\Providers\\PaymentServiceProvider"
+            ]
+        }
+    }
+}
+

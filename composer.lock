@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4d9abf33095bd104fd40dc083581fba6",
+    "content-hash": "091a9d6dd47f7dafef35a374d184b0d3",
     "packages": [
         {
             "name": "ali/common",
@@ -53,6 +53,31 @@
             "autoload": {
                 "psr-4": {
                     "ali\\Front\\": "src"
+                }
+            },
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "ali/payment",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "modual/ali/Payment",
+                "reference": "09b6efbfcf918168ae1b8ae90bfcb780f06d1865"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "\\ali\\Payment\\Providers\\PaymentServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ali\\Payment\\": "src"
                 }
             },
             "transport-options": {
@@ -8717,7 +8742,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "ali/common": 20,
-        "ali/front": 20
+        "ali/front": 20,
+        "ali/payment": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
