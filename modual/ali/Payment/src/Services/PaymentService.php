@@ -10,6 +10,8 @@ class PaymentService
     public static function generate($amount, $paymentable, User $buyer)
     {
         if ($amount <= 0 || is_null($paymentable->id) || is_null($buyer->id)) return false;
+
+
         $gateway = "";
         $invoice_id = "";
 
