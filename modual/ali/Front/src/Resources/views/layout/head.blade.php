@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="/css/style.css?v={{uniqid()}}">
     <link rel="stylesheet" href="/css/font/font.css">
     <link rel="stylesheet" href="/css/responsive.css" media="(max-width:991px)">
+    <link rel="stylesheet" href="/css/jquery.toast.min.css">
     <link rel="stylesheet" href="/css/custom.css?v={{uniqid()}}" >
     @yield('css')
 </head>

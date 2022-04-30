@@ -10,6 +10,7 @@ use ali\Course\Repositories\CourseRepo;
 
 use ali\Course\Repositories\LessonRepo;
 use ali\Media\Services\MediaFileService;
+use ali\Payment\Gateways\Gateway;
 use ali\Payment\Repositories\PaymentRepo;
 use ali\Payment\Services\PaymentService;
 use ali\RolePermissions\Models\Permission;
@@ -179,6 +180,12 @@ class CourseController extends Controller
         $amount = $course->getFinalPrice();
 
         $payment = PaymentService::generate($amount, $course, auth()->user());
+
+
+        /*resolve(Gateway::class)->redirect($payment->invoice_id);*/
+
+        resolve(Gateway::class)->redirect();
+
 
 
     }
