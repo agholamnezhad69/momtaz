@@ -5,6 +5,7 @@ namespace ali\Payment\Gateways\Zarinpal;
 
 use ali\Payment\Contracts\GatewayContract;
 use ali\Payment\Models\Payment;
+use Illuminate\Http\Request;
 
 class ZarinpalAdaptor implements GatewayContract
 {
@@ -18,7 +19,7 @@ class ZarinpalAdaptor implements GatewayContract
         $MerchantID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
         $Email = "";
         $Mobile = "";
-        $CallbackURL = "http://momtaz.me/test-verify";
+        $CallbackURL = route("payments.callback");
         $SandBox = true;
 
 
@@ -39,7 +40,23 @@ class ZarinpalAdaptor implements GatewayContract
 
     public function verify(Payment $payment)
     {
-        // TODO: Implement verify() method.
+        $MerchantID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+        $Amount = $payment->amount;
+        $SandBox = true;
+
+        $this->client = new Zarinpal();
+
+        $result = $this->client->verify($MerchantID, $Amount, $SandBox);
+
+        if (isset($result["Status"]) && $result["Status"] == 100)
+        {
+            return $result["RefID"];
+        } else {
+            return [
+                "status" => $result["Status"],
+                "message" => $result["Message"]
+            ];
+        }
     }
 
     public function getName()
@@ -50,5 +67,10 @@ class ZarinpalAdaptor implements GatewayContract
     public function redirect()
     {
         $this->client->redirect($this->url);
+    }
+
+    public function getInvoiceIdFromRequest(Request $request)
+    {
+        return $request->Authority;
     }
 }
