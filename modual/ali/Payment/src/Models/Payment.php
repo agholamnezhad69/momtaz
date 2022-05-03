@@ -22,4 +22,12 @@ class Payment extends Model
         ];
 
 
+    public function paymentable()
+    {
+
+        return $this->morphTo();
+
+    }
+
+
 }

@@ -6,6 +6,7 @@ use ali\Category\Models\Category;
 use ali\Course\Repositories\CourseRepo;
 use ali\Course\Repositories\LessonRepo;
 use ali\Media\Models\Media;
+use ali\Payment\Models\Payment;
 use ali\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -65,6 +66,11 @@ class Course extends Model
     {
         return $this->hasMany(Lesson::class);
 
+    }
+
+    public function payments()
+    {
+        return $this->morphToMany(Payment::class, 'paymentable');
     }
 
     public function getConfirmationStatusCssClass()
@@ -155,9 +161,6 @@ class Course extends Model
         return $this->belongsToMany(User::class, 'course_user', 'course_id', 'user_id');
 
     }
-
-
-
 
 
 }

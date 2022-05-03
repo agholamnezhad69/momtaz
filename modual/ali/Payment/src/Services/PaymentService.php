@@ -21,7 +21,7 @@ class PaymentService
 
 
         if (is_array($invoice_id)) {
-            dd($invoice_id);
+            return redirect('/');
         }
 
         if (!is_null($paymentable->percent)) {
