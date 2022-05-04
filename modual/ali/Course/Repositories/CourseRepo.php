@@ -108,12 +108,28 @@ class CourseRepo
             ->take(8)
             ->get();
     }
+
     public function getLessonsCount($courseId)
     {
         return Lesson::query()
             ->where('course_id', $courseId)
             ->where('confirmation_status', Lesson::CONFIRMATION_STATUS_ACCEPTED)
             ->count();
+    }
+
+    public function addStudentToCourse(Course $course, $studentId)
+    {
+
+        if (!$this->getCourseStudentById($course, $studentId)) {
+            $course->students()->attach($studentId);
+        }
+
+
+    }
+
+    public function getCourseStudentById(Course $course, $studentId)
+    {
+        return $course->students()->where("id", $studentId)->first();
     }
 
 

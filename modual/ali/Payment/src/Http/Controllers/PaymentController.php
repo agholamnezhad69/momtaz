@@ -3,9 +3,11 @@
 
 namespace ali\Payment\Http\Controllers;
 
+use ali\Payment\Events\PaymentWasSuccessfull;
 use ali\Payment\Gateways\Gateway;
 use ali\Payment\Models\Payment;
 use ali\Payment\Repositories\PaymentRepo;
+
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -41,6 +43,8 @@ class PaymentController extends Controller
 
 
         } else {
+
+            event(new PaymentWasSuccessfull($payment));
 
             newFeedbacks("عملیات موفق", 'پرداخت با موفقیت انجام شد', "success");
 
