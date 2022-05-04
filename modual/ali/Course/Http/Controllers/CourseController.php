@@ -179,13 +179,18 @@ class CourseController extends Controller
 
         $amount = $course->getFinalPrice();
 
+        if ($amount <= 0) {
+            $courseRepo->addStudentToCourse($course, auth()->id());
+            newFeedbacks("عملیات موفق آمیز ", "شما با موفقیت در دوره ثبت نام کردید", 'success');
+            return redirect($course->path());
+        }
+
         $payment = PaymentService::generate($amount, $course, auth()->user());
 
 
         /*resolve(Gateway::class)->redirect($payment->invoice_id);*/
 
         resolve(Gateway::class)->redirect();
-
 
 
     }

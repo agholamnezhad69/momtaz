@@ -119,12 +119,9 @@ class CourseRepo
 
     public function addStudentToCourse(Course $course, $studentId)
     {
-
         if (!$this->getCourseStudentById($course, $studentId)) {
             $course->students()->attach($studentId);
         }
-
-
     }
 
     public function getCourseStudentById(Course $course, $studentId)
