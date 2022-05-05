@@ -8,6 +8,13 @@ use ali\Payment\Models\Payment;
 class PaymentRepo
 {
 
+
+    public function paginate()
+    {
+        return Payment::query()->latest()->paginate();
+
+    }
+
     public function store($data)
     {
 

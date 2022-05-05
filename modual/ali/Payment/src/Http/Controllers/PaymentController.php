@@ -3,17 +3,30 @@
 
 namespace ali\Payment\Http\Controllers;
 
+
 use ali\Payment\Events\PaymentWasSuccessfull;
 use ali\Payment\Gateways\Gateway;
 use ali\Payment\Models\Payment;
 use ali\Payment\Repositories\PaymentRepo;
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 
 
 class PaymentController extends Controller
 {
+
+    public function index(PaymentRepo $paymentRepo)
+    {
+
+        $this->authorize('manage', Payment::class);
+
+        $payments = $paymentRepo->paginate();
+
+        return view("Payment::index", compact('payments'));
+
+
+    }
 
     public function callback(Request $request)
     {

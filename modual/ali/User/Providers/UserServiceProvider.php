@@ -47,14 +47,15 @@ class UserServiceProvider extends ServiceProvider
             'permission' => Permission::PERMISSION_MANAGE_USERS
         ]);
 
-        $this->app->booted(function () {
+
+
             config()->set('sidebar.items.usersInformation', [
                 "icon" => "i-user__inforamtion",
                 "title" => "اطلاعات کاربری",
                 "url" => route("users.profile")
 
             ]);
-        });
+
 
 
     }

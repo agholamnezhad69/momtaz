@@ -6,6 +6,7 @@
     <ul>
 
 
+
         @foreach(config('sidebar.items') as $item)
 
             @if(! array_key_exists('permission',$item) ||
