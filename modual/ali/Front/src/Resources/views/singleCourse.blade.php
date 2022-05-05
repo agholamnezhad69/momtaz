@@ -37,7 +37,7 @@
                             @auth
                                 @if(auth()->id() == $course->teacher_id)
                                     <p class="mycourse ">شما مدرس این دوره هستید</p>
-                                @elseif(auth()->user()->hasAccessToCourse($course))
+                                @elseif(auth()->user()->can("download",$course))
                                     <p class="mycourse ">شما این دوره رو خریداری کرده اید</p>
                                 @else
 
@@ -166,15 +166,18 @@
                     </div>
                 </div>
                 <div class="content-left">
-                    @if($lesson->media->type=='video')
-                        <div class="preview">
-                            <video width="100%" controls>
-                                <source src="{{$lesson->downloadLink()}}" type="video/mp4">
-                            </video>
-                        </div>
-                    @endif
-                    <a href="{{$lesson->downloadLink()}}" class="episode-download">دانلود این قسمت
-                        (قسمت {{$lesson->id}})</a>
+
+                        @if($lesson->media && $lesson->media->type=='video')
+                            <div class="preview">
+                                <video width="100%" controls>
+                                    <source src="{{$lesson->downloadLink()}}" type="video/mp4">
+                                </video>
+                            </div>
+                        @endif
+                        <a href="{{$lesson->downloadLink()}}" class="episode-download">دانلود این قسمت
+                            (قسمت {{$lesson->id}})</a>
+
+
                     <div class="course-description">
                         <div class="course-description-title">توضیحات دوره</div>
                         {!!$course->body!!}

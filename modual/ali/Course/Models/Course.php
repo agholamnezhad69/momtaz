@@ -162,5 +162,24 @@ class Course extends Model
 
     }
 
+    public function hasStudent($student_id)
+    {
+        return resolve(CourseRepo::class)->haseStudent($this, $student_id);
+    }
+
+    public function downloadLinks(): array
+    {
+
+        $links = [];
+        foreach (resolve(CourseRepo::class)->getCourseLessons($this->id) as $lesson) {
+
+            $links[] = $lesson->downloadLink();
+        }
+
+        return $links;
+
+
+    }
+
 
 }

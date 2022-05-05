@@ -13,6 +13,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Traits\HasRoles;
 
 
@@ -130,16 +131,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
-    public function hasAccessToCourse(Course $course)
-    {
-
-        if ($this->can('manage', Course::class) ||
-            $this->id == $course->teacher_id ||
-            $course->students->contains($this->id)
-        ) return true;
-        return false;
-
-    }
 
     public function purchases()
     {
@@ -150,7 +141,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function studentCount()
     {
 
-        return 0;
+
+        return DB::table('courses')
+            ->where('teacher_id', $this->id)
+            ->join('course_user', 'courses.id', '=', 'course_user.course_id')
+            ->count();
 
     }
 

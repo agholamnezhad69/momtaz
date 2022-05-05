@@ -32,11 +32,12 @@ class Lesson extends Model
 
     public function downloadLink()
     {
-        return URL::temporarySignedRoute('media.download',
-            now()->addDay(),
-            ['media' => $this->media_id]
-        );
-
+        if ($this->media_id) {
+            return URL::temporarySignedRoute('media.download',
+                now()->addDay(),
+                ['media' => $this->media_id]
+            );
+        }
     }
 
     public function course()

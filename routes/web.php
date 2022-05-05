@@ -4,6 +4,7 @@ use ali\Payment\Events\PaymentWasSuccessfull;
 use ali\Payment\Gateways\Gateway;
 use ali\Payment\Models\Payment;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use ali\RolePermissions\Models\Permission;
@@ -12,13 +13,19 @@ use ali\RolePermissions\Models\Permission;
 Route::get('/test', function () {
 
 
+   /* dd(
+        DB::table('courses')
+            ->where('teacher_id', 2)
+            ->join('course_user', 'courses.id', '=', 'course_user.course_id')
+            ->count()
+    );*/
 
 
-    event(new PaymentWasSuccessfull(new Payment()));
+    /* event(new PaymentWasSuccessfull(new Payment()));*/
 
 
- /*   $payment = new Payment();*/
-   /* $gateway = resolve(Gateway::class);*/
+    /*   $payment = new Payment();*/
+    /* $gateway = resolve(Gateway::class);*/
 
     /*$gateway->request($payment);*/
 

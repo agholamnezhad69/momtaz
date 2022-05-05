@@ -2,6 +2,7 @@
 
 namespace ali\Course\policies;
 
+use ali\Course\Repositories\CourseRepo;
 use ali\RolePermissions\Models\Permission;
 use ali\User\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -100,6 +101,18 @@ class CoursePolicy
             return true;
 
         }
+
+    }
+
+    public function download($user, $course)
+    {
+
+        if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_COURSES) ||
+            $user->id == $course->teacher_id ||
+            $course->hasStudent($user->id)
+
+        ) return true;
+        return false;
 
     }
 

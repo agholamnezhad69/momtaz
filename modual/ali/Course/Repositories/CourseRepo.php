@@ -89,15 +89,7 @@ class CourseRepo
 
     }
 
-    public function getDuration($CourseId)
-    {
-        return Lesson::query()
-            ->where('course_id', $CourseId)
-            ->where('confirmation_status', Course::CONFIRMATION_STATUS_ACCEPTED)
-            ->sum('time');
 
-
-    }
 
     public function latestCourses()
     {
@@ -109,12 +101,31 @@ class CourseRepo
             ->get();
     }
 
+    public function getDuration($CourseId)
+    {
+        return $this->getLessonQuery($CourseId)
+            ->sum('time');
+
+
+    }
+
     public function getLessonsCount($courseId)
     {
-        return Lesson::query()
-            ->where('course_id', $courseId)
-            ->where('confirmation_status', Lesson::CONFIRMATION_STATUS_ACCEPTED)
+        return $this->getLessonQuery($courseId)
             ->count();
+    }
+
+    public function getCourseLessons($courseId)
+    {
+        return $this->getLessonQuery($courseId)
+            ->get();
+
+    }
+    private function getLessonQuery($CourseId): \Illuminate\Database\Eloquent\Builder
+    {
+        return Lesson::query()
+            ->where('course_id', $CourseId)
+            ->where('confirmation_status', Lesson::CONFIRMATION_STATUS_ACCEPTED);
     }
 
     public function addStudentToCourse(Course $course, $studentId)
@@ -128,6 +139,14 @@ class CourseRepo
     {
         return $course->students()->where("id", $studentId)->first();
     }
+
+    public function haseStudent(Course $course, $user_id)
+    {
+        return $course->students->contains($user_id);
+    }
+
+
+
 
 
 }
