@@ -218,10 +218,7 @@ class CourseController extends Controller
             newFeedbacks('عملیات ناموفق', 'شما مدرس این دوره هستید', 'error');
             return false;
         }
-        /*   if (auth()->user()->hasAccessToCourse($course)) {
-               newFeedbacks('عملیات ناموفق', 'شما به دوره دسترسی دارید', 'error');
-               return false;
-           } */
+
         if (auth()->user()->can('download', $course)) {
             newFeedbacks('عملیات ناموفق', 'شما به دوره دسترسی دارید', 'error');
             return false;

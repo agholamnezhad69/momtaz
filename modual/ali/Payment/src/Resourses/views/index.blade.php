@@ -11,19 +11,19 @@
         <div class="row no-gutters  margin-bottom-10">
             <div class="col-3 padding-20 border-radius-3 bg-white margin-left-10 margin-bottom-10">
                 <p>کل فروش ۳۰ روز گذشته سایت </p>
-                <p>2,500,000 تومان</p>
+                <p>{{number_format($last30DayTotals)}} تومان </p>
             </div>
             <div class="col-3 padding-20 border-radius-3 bg-white margin-left-10 margin-bottom-10">
                 <p>درامد خالص ۳۰ روز گذشته سایت</p>
-                <p>2,500,000 تومان</p>
+                <p>{{number_format($last30DayBenefit)}} تومان </p>
             </div>
             <div class="col-3 padding-20 border-radius-3 bg-white margin-left-10 margin-bottom-10">
                 <p>کل فروش سایت</p>
-                <p>2,500,000 تومان</p>
+                <p>{{number_format($totalSell)}} تومان </p>
             </div>
             <div class="col-3 padding-20 border-radius-3 bg-white margin-bottom-10">
                 <p> کل درآمد خالص سایت</p>
-                <p>2,500,000 تومان</p>
+                <p>{{number_format($totalBenefit)}} تومان </p>
             </div>
         </div>
         <div class="row no-gutters border-radius-3 font-size-13">

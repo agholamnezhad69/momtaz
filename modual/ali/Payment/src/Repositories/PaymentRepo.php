@@ -49,5 +49,39 @@ class PaymentRepo
 
     }
 
+    public function getLastNDaysTotal($days = null)
+    {
+        return $this->getLastNDaysSuccessPayment($days)
+            ->sum("amount");
+
+    }
+
+    public function getLastNDaysSiteBenefit($days = null)
+    {
+        return $this->getLastNDaysSuccessPayment($days)
+            ->sum("site_share");
+
+    }
+
+    public function getLastNDaysSuccessPayment($days = null)
+    {
+        return $this->getLastNDaysPayment(Payment::STATUS_SUCCESS, $days);
+    }
+
+
+    public function getLastNDaysPayment($status, $days = null)
+    {
+
+
+        $query = Payment::query();
+        if (!is_null($days)) $query = $query->where('created_at', '>=', now()->addDay($days));
+
+
+            return $query->where("status", $status)
+                ->latest();
+
+        }
+
+
 
 }
