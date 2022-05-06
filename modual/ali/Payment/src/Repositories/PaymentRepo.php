@@ -63,6 +63,13 @@ class PaymentRepo
 
     }
 
+    public function getLastNDaysSellerBenefit($days = null)
+    {
+        return $this->getLastNDaysSuccessPayment($days)
+            ->sum("seller_share");
+
+    }
+
     public function getLastNDaysSuccessPayment($days = null)
     {
         return $this->getLastNDaysPayment(Payment::STATUS_SUCCESS, $days);
@@ -77,10 +84,54 @@ class PaymentRepo
         if (!is_null($days)) $query = $query->where('created_at', '>=', now()->addDay($days));
 
 
-            return $query->where("status", $status)
-                ->latest();
+        return $query->where("status", $status)
+            ->latest();
 
-        }
+    }
+
+    public function getDaySiteShareTotal($day)
+    {
+        return $this->getDaySuccessPayments($day)->sum("site_share");
+
+    }
+
+    public function getDaySellerShareTotal($day)
+    {
+        return $this->getDaySuccessPayments($day)->sum("seller_share");
+
+    }
+
+    public function getDayFailPaymentsTotal($day)
+    {
+        return $this->getDayFailPayments($day)->sum("amount");
+    }
+
+    public function getDaySuccessPaymentsTotal($day)
+    {
+        return $this->getDaySuccessPayments($day)->sum("amount");
+    }
+
+    public function getDaySuccessPayments($day)
+    {
+        return $this->getDayPayments($day, Payment::STATUS_SUCCESS);
+
+    }
+
+    public function getDayFailPayments($day)
+    {
+        return $this->getDayPayments($day, Payment::STATUS_FAIL);
+
+    }
+
+    public function getDayPayments($day, $status)
+    {
+        return Payment::query()
+            ->whereDate('created_at', $day)
+            ->where("status", $status)
+            ->latest();
+
+    }
+
 
 
 

@@ -9,6 +9,7 @@ use ali\Payment\Gateways\Gateway;
 use ali\Payment\Models\Payment;
 use ali\Payment\Repositories\PaymentRepo;
 
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -23,16 +24,21 @@ class PaymentController extends Controller
 
         $payments = $paymentRepo->paginate();
         $last30DayTotals = $paymentRepo->getLastNDaysTotal(-30);
-        $last30DayBenefit = $paymentRepo->getLastNDaysSiteBenefit(-30);
+        $last30DayBenefitSiteShare = $paymentRepo->getLastNDaysSiteBenefit(-30);
+        $last30DayBenefitSellerShare = $paymentRepo->getLastNDaysSellerBenefit(-30);
         $totalSell = $paymentRepo->getLastNDaysTotal();
         $totalBenefit = $paymentRepo->getLastNDaysSiteBenefit();
+        $last30Days = CarbonPeriod::create(now()->addDay(-30), now());
 
         return view("Payment::index",
             compact('payments',
                 'last30DayTotals',
-                'last30DayBenefit',
+                'last30DayBenefitSiteShare',
+                'last30DayBenefitSellerShare',
                 'totalSell',
-                'totalBenefit'
+                'totalBenefit',
+                'last30Days',
+                'paymentRepo'
             ));
 
 
