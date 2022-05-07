@@ -19,7 +19,6 @@ class PaymentController extends Controller
 {
 
 
-
     public function index(PaymentRepo $paymentRepo, Request $request)
     {
 
@@ -105,6 +104,18 @@ class PaymentController extends Controller
         }
 
         return redirect()->to($payment->paymentable->path());
+
+
+    }
+
+
+    public function purchases()
+    {
+
+
+        $purchases = auth()->user()->payments()->with('paymentable')->paginate();
+
+        return view("Payment::purchases", compact("purchases"));
 
 
     }

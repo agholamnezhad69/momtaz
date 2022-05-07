@@ -10,4 +10,10 @@ Route::group([], function ($route) {
         ]
     );
 
+    $route->get('purchases', [
+            "uses" => "PaymentController@purchases",
+            "as" => "purchases.index"
+        ]
+    );
+
 });

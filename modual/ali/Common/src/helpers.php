@@ -31,3 +31,12 @@ function getDateFromCarbonToJalali($date, $format = "Y-m-d")
 
 }
 
+function createJalaliFromCarbon(Carbon $carbon)
+{
+
+
+    return Jalalian::fromCarbon($carbon);
+
+
+}
+

@@ -46,7 +46,15 @@ class PaymentServiceProvider extends ServiceProvider
             "icon" => "i-transactions",
             "title" => "تراکنش ها",
             "url" => route("payments.index"),
-            'permission' => [Permission::PERMISSION_MANAGE_PAYMENTS]]);
+            'permission' => [Permission::PERMISSION_MANAGE_PAYMENTS]
+        ]);
+
+
+        config()->set('sidebar.items.my-purchases', [
+            "icon" => "i-my__purchases",
+            "title" => "خرید های من",
+            "url" => route("purchases.index"),
+        ]);
 
 
     }

@@ -6,6 +6,7 @@ use ali\Course\Models\Course;
 use ali\Course\Models\Lesson;
 use ali\Course\Models\Season;
 use ali\Media\Models\Media;
+use ali\Payment\Models\Payment;
 use ali\RolePermissions\Models\Role;
 use ali\User\Notifications\ResetPasswordRequestNotification;
 use ali\User\Notifications\verifyEmailNotification;
@@ -107,6 +108,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
+    public function payments()
+    {
+        return $this->hasMany(Payment::class, 'buyer_id');
+
+    }
 
 
     public function profilePath()
