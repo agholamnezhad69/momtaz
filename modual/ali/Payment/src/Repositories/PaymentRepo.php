@@ -3,6 +3,9 @@
 namespace ali\Payment\Repositories;
 
 use ali\Payment\Models\Payment;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 
 
 class PaymentRepo
@@ -132,7 +135,28 @@ class PaymentRepo
 
     }
 
+    public function getDailySummery(Collection $dates)
+    {
 
+
+        $last30Days = Payment::query()
+            ->where("created_at", ">=", $dates->keys()->first())
+            ->groupBy("date")
+            ->orderBy('date')
+            ->get(
+                [
+                    DB::raw('DATE(created_at) as date'),
+                    DB::raw('SUM(amount) as totalAmount'),
+                    DB::raw('SUM(seller_share) as totalSellerShare'),
+                    DB::raw('SUM(site_share) as totalSiteShare'),
+
+                ]
+            );
+
+
+        return ($last30Days);
+
+    }
 
 
 }

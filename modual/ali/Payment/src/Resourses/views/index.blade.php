@@ -5,7 +5,6 @@
 @endsection
 
 
-
 @section('content')
     <div class="main-content font-size-13">
         <div class="row no-gutters  margin-bottom-10">
@@ -132,11 +131,17 @@
                     direction: 'rtl',
                 },
                 formatter: function () {
-                    return (this.x ? "تاریخ: " +  this.x + "<br>" : "")  + "مبلغ: " + this.y
+                    return (this.x ? "تاریخ: " + this.x + "<br>" : "") + "مبلغ: " + this.y
                 }
             },
             xAxis: {
-                categories: [@foreach($last30Days as $day)'{{$day->format("Y-m-d")}}', @endforeach]
+
+                categories: [
+                    @foreach($dates as $date=>$value)
+
+                        '  {{$date}} ',
+
+                    @endforeach]
             },
             yAxis: {
                 title: {
@@ -165,8 +170,15 @@
                 type: 'column',
                 name: 'تراکنش موفق',
                 data: [
-                    @foreach($last30Days as $day)
-                        {{$paymentRepo->getDaySuccessPaymentsTotal($day)}},
+                    @foreach($dates as $date=>$value)
+
+                        @if( $day=$summery->where('date',$date)->first())
+
+                        {{$day->totalAmount}},
+                    @else
+                        0,
+                    @endif
+
                     @endforeach
                 ]
             }
@@ -175,44 +187,69 @@
                     type: 'column',
                     name: 'درصد سایت',
                     data: [
-                        @foreach($last30Days as $day)
-                            {{$paymentRepo->getDaySiteShareTotal($day)}},
-                        @endforeach]
+                        @foreach($dates as $date=>$value)
+
+                            @if( $day=$summery->where('date',$date)->first())
+
+                            {{$day->totalSiteShare}},
+                        @else
+                            0,
+                        @endif
+
+                        @endforeach
+
+                    ]
                 }
                 ,
-                {
-                    type: 'column',
-                    name: 'درصد مدرس',
-                    data: [
-                        @foreach($last30Days as $day)
-                            {{$paymentRepo->getDaySellerShareTotal($day)}},
-                        @endforeach]
-                }
-                , {
-                    type: 'spline',
-                    name: 'فروش',
-                    data: [
-                        @foreach($last30Days as $day)
-                            {{$paymentRepo->getDaySuccessPaymentsTotal($day)}},
-                        @endforeach
-                    ],
-                    marker: {
-                        lineWidth: 2,
-                        lineColor: Highcharts.getOptions().colors[3],
-                        fillColor: 'white'
+                    {
+                        type: 'column',
+                        name: 'درصد مدرس',
+                        data: [
+                            @foreach($dates as $date=>$value)
+
+                                @if( $day=$summery->where('date',$date)->first())
+
+                                {{$day->totalSellerShare}},
+                            @else
+                                0,
+                            @endif
+
+                            @endforeach
+                        ]
                     }
-                }, {
+                    , {
+                        type: 'spline',
+                        name: 'فروش',
+                        data: [
+                            @foreach($dates as $date=>$value)
+
+                                @if( $day=$summery->where('date',$date)->first())
+
+                                {{$day->totalAmount}},
+                            @else
+                                0,
+                            @endif
+
+                            @endforeach
+                        ],
+                        marker: {
+                            lineWidth: 2,
+                            lineColor: Highcharts.getOptions().colors[3],
+                            fillColor: 'white'
+                        }
+                    },
+                {
                     type: 'pie',
                     name: 'Total consumption',
                     data: [{
-                        name: 'درصد سایت',
-                        y: {{$last30DayBenefitSiteShare}},
-                        color: Highcharts.getOptions().colors[0] // Jane's color
-                    }, {
-                        name: 'درصد مدرس',
-                        y: {{$last30DayBenefitSellerShare}},
-                        color: Highcharts.getOptions().colors[1] // John's color
-                    }],
+                            name: 'درصد سایت',
+                            y: {{$last30DayBenefitSiteShare}},
+                            color: Highcharts.getOptions().colors[0] // Jane's color
+                        }, {
+                            name: 'درصد مدرس',
+                            y: {{$last30DayBenefitSellerShare}},
+                            color: Highcharts.getOptions().colors[1] // John's color
+                        }],
                     center: [100, 80],
                     size: 100,
                     showInLegend: false,

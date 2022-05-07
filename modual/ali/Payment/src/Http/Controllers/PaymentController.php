@@ -28,7 +28,18 @@ class PaymentController extends Controller
         $last30DayBenefitSellerShare = $paymentRepo->getLastNDaysSellerBenefit(-30);
         $totalSell = $paymentRepo->getLastNDaysTotal();
         $totalBenefit = $paymentRepo->getLastNDaysSiteBenefit();
-        $last30Days = CarbonPeriod::create(now()->addDay(-30), now());
+
+        $dates = collect();
+
+        foreach (range(-30, 0) as $i) {
+
+            $d = now()->addDay($i)->format("Y-m-d");
+            $dates->put($d, 0);
+        }
+
+        $summery = $paymentRepo->getDailySummery($dates);
+
+
 
         return view("Payment::index",
             compact('payments',
@@ -37,8 +48,8 @@ class PaymentController extends Controller
                 'last30DayBenefitSellerShare',
                 'totalSell',
                 'totalBenefit',
-                'last30Days',
-                'paymentRepo'
+                'dates',
+                'summery'
             ));
 
 

@@ -5,15 +5,30 @@ use ali\Payment\Gateways\Gateway;
 use ali\Payment\Models\Payment;
 
 
+use ali\User\Models\User;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use ali\RolePermissions\Models\Permission;
-
+use Illuminate\Support\Facades\DB;
 
 Route::get('/test', function () {
+
+
+
+
+
+    /* $collection = collect([1, 2, 3, 4, 5]);
+
+
+     dd($collection->contains(function ($key, $value) {
+         return $value <= 6;
+     }));*/
+
+    /*dd(range(1, 10));*/
 
 
     /*dd(CarbonPeriod::create(now()->addDay(-30), now()));*/
