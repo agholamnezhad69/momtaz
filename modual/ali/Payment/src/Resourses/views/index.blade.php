@@ -36,15 +36,20 @@
         <div class="d-flex flex-space-between item-center flex-wrap padding-30 border-radius-3 bg-white">
             <p class="margin-bottom-15">همه تراکنش ها</p>
             <div class="t-header-search">
-                <form action="" >
+                <form action="">
                     <div class="t-header-searchbox font-size-13">
                         <div type="text" class="text search-input__box ">جستجوی دوره</div>
                         <div class="t-header-search-content ">
-                            <input type="text" class="text" name="email" value="{{request("email")}}" placeholder="ایمیل">
-                            <input type="text" class="text" name="amount" value="{{request("amount")}}" placeholder="مبلغ به تومان">
-                            <input type="text" class="text" name="invoice_id" value="{{request("invoice_id")}}" placeholder="شماره">
-                            <input type="text" class="text" name="start_date" value="{{request("start_date")}}" placeholder="از تاریخ : 1399/10/11">
-                            <input type="text" class="text margin-bottom-20" name="end_date" value="{{request("end_date")}}"
+                            <input type="text" class="text" name="email" value="{{request("email")}}"
+                                   placeholder="ایمیل">
+                            <input type="text" class="text" name="amount" value="{{request("amount")}}"
+                                   placeholder="مبلغ به تومان">
+                            <input type="text" class="text" name="invoice_id" value="{{request("invoice_id")}}"
+                                   placeholder="شماره">
+                            <input type="text" class="text" name="start_date" value="{{request("start_date")}}"
+                                   placeholder="از تاریخ : 1399/10/11">
+                            <input type="text" class="text margin-bottom-20" name="end_date"
+                                   value="{{request("end_date")}}"
                                    placeholder="تا تاریخ : 1399/10/12">
                             <button class="btn btn-brand">جستجو</button>
                         </div>
@@ -142,7 +147,7 @@
                 categories: [
                     @foreach($dates as $date=>$value)
 
-                        '  {{$date}} ',
+                        '  {{getDateFromCarbonToJalali($date)}} ',
 
                     @endforeach]
             },
@@ -169,26 +174,12 @@
                     }
                 }]
             },
-            series: [{
-                type: 'column',
-                name: 'تراکنش موفق',
-                data: [
-                    @foreach($dates as $date=>$value)
+            series: [
 
-                        @if( $day=$summery->where('date',$date)->first())
-
-                        {{$day->totalAmount}},
-                    @else
-                        0,
-                    @endif
-
-                    @endforeach
-                ]
-            }
-                ,
                 {
                     type: 'column',
                     name: 'درصد سایت',
+                    color: "red",
                     data: [
                         @foreach($dates as $date=>$value)
 
@@ -206,7 +197,24 @@
                 ,
                 {
                     type: 'column',
+                    name: 'تراکنش موفق',
+                    data: [
+                        @foreach($dates as $date=>$value)
+
+                            @if( $day=$summery->where('date',$date)->first())
+
+                            {{$day->totalAmount}},
+                        @else
+                            0,
+                        @endif
+
+                        @endforeach
+                    ]
+                },
+                {
+                    type: 'column',
                     name: 'درصد مدرس',
+                    color: "yellow",
                     data: [
                         @foreach($dates as $date=>$value)
 
@@ -237,9 +245,10 @@
                     ],
                     marker: {
                         lineWidth: 2,
-                        lineColor: Highcharts.getOptions().colors[3],
+                        lineColor: "green",
                         fillColor: 'white'
-                    }
+                    },
+                    color: "green"
                 },
                 {
                     type: 'pie',
@@ -247,11 +256,11 @@
                     data: [{
                         name: 'درصد سایت',
                         y: {{$last30DayBenefitSiteShare}},
-                        color: Highcharts.getOptions().colors[0] // Jane's color
+                        color: "red", // Jane's color
                     }, {
                         name: 'درصد مدرس',
                         y: {{$last30DayBenefitSellerShare}},
-                        color: Highcharts.getOptions().colors[1] // John's color
+                        color: "yellow", // Jane's color
                     }],
                     center: [100, 80],
                     size: 100,

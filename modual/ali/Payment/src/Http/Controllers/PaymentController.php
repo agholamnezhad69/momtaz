@@ -31,8 +31,8 @@ class PaymentController extends Controller
             ->searchEmail($request->email)
             ->searchAmount($request->amount)
             ->searchInvoiceId($request->invoice_id)
-            ->searchAfterDate(dateFromJalali($request->start_date))
-            ->searchBeforDate(dateFromJalali($request->end_date))
+            ->searchAfterDate(getDateFromJalaliToCarbon($request->start_date))
+            ->searchBeforDate(getDateFromJalaliToCarbon($request->end_date))
             ->paginate();
 
 
