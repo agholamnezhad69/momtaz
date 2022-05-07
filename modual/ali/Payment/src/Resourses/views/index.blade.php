@@ -86,7 +86,8 @@
                         <td><a href="">{{number_format($payment->site_share)}}</a></td>
 
                         <td><a href="">{{$payment->paymentable->title}}</a></td>
-                        <td><a href=""> {{$payment->created_at}}</a></td>
+
+                        <td><a href=""> {{\Morilog\Jalali\Jalalian::fromCarbon($payment->created_at)}}</a></td>
                         <td>
                             <a href=""
                                class="

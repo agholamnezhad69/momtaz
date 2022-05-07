@@ -12,10 +12,13 @@ use ali\Payment\Repositories\PaymentRepo;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Morilog\Jalali\Jalalian;
 
 
 class PaymentController extends Controller
 {
+
+
 
     public function index(PaymentRepo $paymentRepo, Request $request)
     {
@@ -28,6 +31,8 @@ class PaymentController extends Controller
             ->searchEmail($request->email)
             ->searchAmount($request->amount)
             ->searchInvoiceId($request->invoice_id)
+            ->searchAfterDate(dateFromJalali($request->start_date))
+            ->searchBeforDate(dateFromJalali($request->end_date))
             ->paginate();
 
 

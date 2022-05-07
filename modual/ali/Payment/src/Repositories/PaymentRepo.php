@@ -52,11 +52,36 @@ class PaymentRepo
         return $this;
 
     }
+
     public function searchInvoiceId($invoice_id)
     {
         if (!is_null($invoice_id)) {
 
-            $this->query->where('invoice_id', "like","%".$invoice_id."%");
+            $this->query->whereDate('invoice_id', "like", "%" . $invoice_id . "%");
+
+        }
+
+        return $this;
+
+    }
+
+    public function searchAfterDate($date)
+    {
+        if (!is_null($date)) {
+
+            $this->query->whereDate('created_at', ">=", $date);
+
+        }
+
+        return $this;
+
+    }
+
+    public function searchBeforDate($date)
+    {
+        if (!is_null($date)) {
+
+            $this->query->whereDate('created_at', "<=", $date);
 
         }
 
