@@ -17,12 +17,20 @@ use App\Http\Controllers\Controller;
 class PaymentController extends Controller
 {
 
-    public function index(PaymentRepo $paymentRepo)
+    public function index(PaymentRepo $paymentRepo, Request $request)
     {
+
 
         $this->authorize('manage', Payment::class);
 
-        $payments = $paymentRepo->paginate();
+
+        $payments = $paymentRepo
+            ->searchEmail($request->email)
+            ->searchAmount($request->amount)
+            ->searchInvoiceId($request->invoice_id)
+            ->paginate();
+
+
         $last30DayTotals = $paymentRepo->getLastNDaysTotal(-30);
         $last30DayBenefitSiteShare = $paymentRepo->getLastNDaysSiteBenefit(-30);
         $last30DayBenefitSellerShare = $paymentRepo->getLastNDaysSellerBenefit(-30);
@@ -38,7 +46,6 @@ class PaymentController extends Controller
         }
 
         $summery = $paymentRepo->getDailySummery($dates);
-
 
 
         return view("Payment::index",

@@ -5,3 +5,11 @@
 .modal {
     padding-top: 100px !important;
 }
+
+.t-header-searchbox:after {
+    top: 72%;
+}
+.t-header-searchbox.open:after {
+
+    top: 54%;
+}

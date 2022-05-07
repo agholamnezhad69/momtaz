@@ -107,6 +107,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
+
+
     public function profilePath()
     {
 

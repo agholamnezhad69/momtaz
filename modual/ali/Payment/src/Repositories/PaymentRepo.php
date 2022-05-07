@@ -10,11 +10,57 @@ use Illuminate\Support\Collection;
 
 class PaymentRepo
 {
+    private $query;
 
+    public function __construct()
+    {
+        $this->query = Payment::query();
+    }
 
     public function paginate()
     {
-        return Payment::query()->latest()->paginate();
+        return $this->query->latest()->paginate();
+
+    }
+
+    public function searchEmail($email)
+    {
+
+
+        if (!is_null($email)) {
+
+            $this->query
+                ->join("users", "payments.buyer_id", 'users.id')
+                ->select("payments.*", "users.email")
+                ->where("email", "like", "%" . $email . "%");
+        }
+
+
+        return $this;
+
+
+    }
+
+    public function searchAmount($amount)
+    {
+        if (!is_null($amount)) {
+
+            $this->query->where('amount', $amount);
+
+        }
+
+        return $this;
+
+    }
+    public function searchInvoiceId($invoice_id)
+    {
+        if (!is_null($invoice_id)) {
+
+            $this->query->where('invoice_id', "like","%".$invoice_id."%");
+
+        }
+
+        return $this;
 
     }
 
