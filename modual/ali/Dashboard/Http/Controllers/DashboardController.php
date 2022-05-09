@@ -10,23 +10,39 @@ class DashboardController extends Controller
 {
     public function home(PaymentRepo $paymentRepo)
     {
-        $totalSales = $paymentRepo->getUserTotalSuccessAmount(auth()->id());
-        $totalBenefit = $paymentRepo->getUserTotalBenefit(auth()->id());
-        $totalSiteShare = $paymentRepo->getUserTotalSiteShare(auth()->id());
 
+
+        $payments = $paymentRepo->paymentsBySellerId(auth()->id());
+        $totalSell = $paymentRepo->getUserTotalSuccessAmount(auth()->id());
+        $last30DayBenefitSellerShare = $paymentRepo->getUserTotalBenefit(auth()->id());
+        $last30DayBenefitSiteShare = $paymentRepo->getUserTotalSiteShare(auth()->id());
         $todaySuccessPaymentsTotal = $paymentRepo->getUserTotalSellByDay(auth()->id(), now());
         $todaySuccessPaymentsCount = $paymentRepo->getUserSellCountByDay(auth()->id(), now());
 
         $last30DaysBenefit = $paymentRepo->getUserTotalBenefitByPeriod(auth()->id(), now(), -30);
 
-        return view("Dashboard::index", compact(
-            "totalSales",
-            "totalBenefit",
-            "totalSiteShare",
-            "todaySuccessPaymentsTotal",
-            "todaySuccessPaymentsCount",
-            "last30DaysBenefit",
-        ));
+        $dates = collect();
+
+        foreach (range(-30, 0) as $i) {
+
+            $d = now()->addDay($i)->format("Y-m-d");
+            $dates->put($d, 0);
+        }
+        $summery = $paymentRepo->getDailySummery($dates, auth()->id());
+
+        return view("Dashboard::index",
+            compact(
+                "payments",
+                "todaySuccessPaymentsTotal",
+                "todaySuccessPaymentsCount",
+                'last30DaysBenefit',
+                'last30DayBenefitSiteShare',
+                'last30DayBenefitSellerShare',
+                'totalSell',
+                'dates',
+                'summery'
+
+            ));
 
     }
 }

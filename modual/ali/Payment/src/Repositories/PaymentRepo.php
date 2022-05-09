@@ -206,26 +206,29 @@ class PaymentRepo
 
     }
 
-    public function getDailySummery(Collection $dates)
+    public function getDailySummery(Collection $dates, $seller_id = null)
     {
 
 
-        $last30Days = Payment::query()
+        $query = Payment::query()
             ->where("created_at", ">=", $dates->keys()->first())
             ->groupBy("date")
-            ->orderBy('date')
-            ->get(
-                [
-                    DB::raw('DATE(created_at) as date'),
-                    DB::raw('SUM(amount) as totalAmount'),
-                    DB::raw('SUM(seller_share) as totalSellerShare'),
-                    DB::raw('SUM(site_share) as totalSiteShare'),
+            ->orderBy('date');
 
-                ]
-            );
+        if (!is_null($seller_id))
+            $query->where('seller_id', $seller_id);
 
 
-        return ($last30Days);
+        return $query->get(
+            [
+                DB::raw('DATE(created_at) as date'),
+                DB::raw('SUM(amount) as totalAmount'),
+                DB::raw('SUM(seller_share) as totalSellerShare'),
+                DB::raw('SUM(site_share) as totalSiteShare'),
+
+            ]
+        );
+
 
     }
 
@@ -263,13 +266,13 @@ class PaymentRepo
 
     public function getUserTotalBenefit($user_id)
     {
-        return $this->getUserSuccessPayments($user_id)->sum("site_share");
+        return $this->getUserSuccessPayments($user_id)->sum("seller_share");
 
     }
 
     public function getUserTotalSiteShare($user_id)
     {
-        return $this->getUserSuccessPayments($user_id)->sum("seller_share");
+        return $this->getUserSuccessPayments($user_id)->sum("site_share");
 
     }
 
@@ -285,8 +288,6 @@ class PaymentRepo
     }
 
 
-
-
     public function dayTotalAmount($user_id, $date)
     {
 
@@ -294,6 +295,14 @@ class PaymentRepo
             ->where('seller_id', $user_id)
             ->whereDate('created_at', $date)
             ->sum("seller_share");
+
+    }
+
+    public function paymentsBySellerId($seller_id)
+    {
+        return Payment::query()
+            ->where('seller_id', $seller_id)
+            ->paginate();
 
     }
 
