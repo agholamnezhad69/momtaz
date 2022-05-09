@@ -3,7 +3,6 @@
 namespace ali\Payment\Repositories;
 
 use ali\Payment\Models\Payment;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 
@@ -199,6 +198,7 @@ class PaymentRepo
 
     public function getDayPayments($day, $status)
     {
+
         return Payment::query()
             ->whereDate('created_at', $day)
             ->where("status", $status)
@@ -226,6 +226,74 @@ class PaymentRepo
 
 
         return ($last30Days);
+
+    }
+
+    public function getUserSuccessPayments($user_id)
+    {
+
+        return Payment::query()
+            ->where('seller_id', $user_id)
+            ->where('status', Payment::STATUS_SUCCESS);
+    }
+
+
+    public function getUserTotalSuccessAmount($user_id)
+    {
+        return $this->getUserSuccessPayments($user_id)->sum("amount");
+    }
+
+    public function getUserTotalSellByDay($userId, $day)
+    {
+
+        return $this->getUserSuccessPayments($userId)
+            ->whereDate("created_at", $day)
+            ->sum("seller_share");
+
+
+    }
+
+    public function getUserSellCountByDay($user_id, $day)
+    {
+
+        return $this->getUserSuccessPayments($user_id)
+            ->whereDate("created_at", $day)
+            ->count("seller_share");
+    }
+
+    public function getUserTotalBenefit($user_id)
+    {
+        return $this->getUserSuccessPayments($user_id)->sum("site_share");
+
+    }
+
+    public function getUserTotalSiteShare($user_id)
+    {
+        return $this->getUserSuccessPayments($user_id)->sum("seller_share");
+
+    }
+
+    public function getUserTotalBenefitByPeriod($user_id, $start_date, $end_date)
+    {
+        return Payment::query()
+            ->where("seller_id", $user_id)
+            ->where('status', Payment::STATUS_SUCCESS)
+            ->whereDate("created_at", "<=", $start_date)
+            ->whereDate("created_at", ">=", $end_date)
+            ->sum("seller_share");
+
+    }
+
+
+
+
+    public function dayTotalAmount($user_id, $date)
+    {
+
+        return Payment::query()
+            ->where('seller_id', $user_id)
+            ->whereDate('created_at', $date)
+            ->sum("seller_share");
 
     }
 
