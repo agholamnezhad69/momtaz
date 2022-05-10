@@ -185,10 +185,8 @@ class CourseController extends Controller
             return redirect($course->path());
         }
 
-        $payment = PaymentService::generate($amount, $course, auth()->user());
+        $payment = PaymentService::generate($amount, $course, auth()->user(), $course->teacher_id);
 
-
-        /*resolve(Gateway::class)->redirect($payment->invoice_id);*/
 
         resolve(Gateway::class)->redirect();
 

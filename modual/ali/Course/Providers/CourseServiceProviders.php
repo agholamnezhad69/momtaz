@@ -8,6 +8,7 @@ use ali\Course\Models\Season;
 use ali\Course\policies\CoursePolicy;
 use ali\Course\policies\LessonPolicy;
 use ali\Course\policies\SeasonPolicy;
+
 use ali\RolePermissions\Models\Permission;
 use Illuminate\Support\Facades\Gate;
 use  Illuminate\Support\ServiceProvider;
@@ -16,6 +17,7 @@ class CourseServiceProviders extends ServiceProvider
 {
     public function register()
     {
+        $this->app->register(EventServiceProvider::class);
         $this->loadRoutesFrom(__DIR__ . "/../Routes/courses_routes.php");
         $this->loadRoutesFrom(__DIR__ . "/../Routes/season_routes.php");
         $this->loadRoutesFrom(__DIR__ . "/../Routes/lesson_routes.php");

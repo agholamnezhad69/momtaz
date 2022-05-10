@@ -1,11 +1,10 @@
 <?php
 
-namespace ali\Payment\Providers;
+namespace ali\Course\Providers;
 
 use ali\Course\Listeners\RegisterUserInCourse;
 use ali\Payment\Events\PaymentWasSuccessfull;
 
-use ali\Payment\Listeners\AddSellersShareToHisAccount;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -15,7 +14,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
 
         PaymentWasSuccessfull::class => [
-            AddSellersShareToHisAccount::class,
+            RegisterUserInCourse::class,
         ],
     ];
 
