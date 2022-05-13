@@ -7,6 +7,7 @@ use ali\Course\Models\Lesson;
 use ali\Course\Models\Season;
 use ali\Media\Models\Media;
 use ali\Payment\Models\Payment;
+use ali\Payment\Models\Settlement;
 use ali\RolePermissions\Models\Role;
 use ali\User\Notifications\ResetPasswordRequestNotification;
 use ali\User\Notifications\verifyEmailNotification;
@@ -114,6 +115,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
+    public function settlements()
+    {
+
+        return $this->hasMany(Settlement::class, 'user_id');
+
+    }
+
 
     public function profilePath()
     {
@@ -156,6 +164,7 @@ class User extends Authenticatable implements MustVerifyEmail
             ->count();
 
     }
+
 
 
 }

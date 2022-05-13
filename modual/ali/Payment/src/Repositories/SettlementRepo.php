@@ -30,9 +30,25 @@ class SettlementRepo
             ]);
     }
 
+    public function findById($settlement_id)
+    {
+        return $this->query->findOrFail($settlement_id);
+
+
+    }
+
     public function paginate()
     {
         return $this->query->latest()->paginate();
+    }
+
+    public function update($data)
+    {
+        $this->query->update([
+            "user_id"=>auth()->id(),
+            "from"
+        ]);
+
     }
 
 

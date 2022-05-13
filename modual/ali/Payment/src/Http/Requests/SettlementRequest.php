@@ -2,6 +2,7 @@
 
 namespace ali\Payment\Http\Requests;
 
+use ali\Payment\Models\Settlement;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SettlementRequest extends FormRequest
@@ -15,6 +16,21 @@ class SettlementRequest extends FormRequest
 
     public function rules()
     {
+
+        if (request()->getMethod() == "PATCH") {
+
+            return [
+
+                "from.name" => "required_if:status," . Settlement::STATUS_SETTLED,
+                "from.cart" => "required_if:status," . Settlement::STATUS_SETTLED,
+                "to.name" => "required_if:status," . Settlement::STATUS_SETTLED,
+                "to.cart" => "required_if:status," . Settlement::STATUS_SETTLED,
+                'amount' => 'nullable|numeric',
+
+            ];
+
+        }
+
         return [
             'name' => 'required',
             'cart' => 'required|numeric',

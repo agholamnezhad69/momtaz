@@ -7,7 +7,7 @@ Route::group(["middleware" => "auth"], function ($router) {
             "uses" => "SettlementController@index"
         ]);
 
-      $router->post("settlements",
+    $router->post("settlements",
         [
             "as" => "settlements.store",
             "uses" => "SettlementController@store"
@@ -17,6 +17,19 @@ Route::group(["middleware" => "auth"], function ($router) {
         [
             "as" => "settlements.create",
             "uses" => "SettlementController@create"
+        ]);
+
+    $router->get("settlements/{settlement}/edit",
+        [
+            "as" => "settlements.edit",
+            "uses" => "SettlementController@edit"
+        ]);
+
+
+    $router->patch("settlements/{settlement}",
+        [
+            "as" => "settlements.update",
+            "uses" => "SettlementController@update"
         ]);
 
 

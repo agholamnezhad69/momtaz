@@ -8,6 +8,7 @@ use ali\Payment\Http\Requests\SettlementRequest;
 use ali\Payment\Models\Settlement;
 use ali\Payment\Repositories\SettlementRepo;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 
 class SettlementController extends Controller
@@ -38,6 +39,23 @@ class SettlementController extends Controller
         );
         newFeedbacks();
         return redirect(route('settlements.index'));
+
+
+    }
+
+    public function edit($settlement_id, SettlementRepo $settlementRepo)
+    {
+        $settlement = $settlementRepo->findById($settlement_id);
+
+        return view("Payment::settlements.edit", compact('settlement'));
+
+    }
+
+    public function update($settlement_id, SettlementRequest $settlementRequest)
+    {
+
+
+            dd("AAAAAAAAAAAAAA");
 
 
     }
