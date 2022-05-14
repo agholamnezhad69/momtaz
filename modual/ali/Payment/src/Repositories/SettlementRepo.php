@@ -13,20 +13,21 @@ class SettlementRepo
 
     public function __construct()
     {
+
         $this->query = Settlement::query();
     }
 
-    public function store($data)
+    public function store($request)
     {
 
         return Settlement::query()
             ->create([
                 "user_id" => auth()->id(),
                 "to" => [
-                    "cart" => $data["cart"],
-                    "name" => $data["name"],
+                    "cart" => $request["cart"],
+                    "name" => $request["name"],
                 ],
-                "amount" => $data["amount"],
+                "amount" => $request["amount"],
             ]);
     }
 
@@ -42,12 +43,22 @@ class SettlementRepo
         return $this->query->latest()->paginate();
     }
 
-    public function update($data)
+    public function update($settlement_id, $request)
     {
-        $this->query->update([
-            "user_id"=>auth()->id(),
-            "from"
-        ]);
+
+        return $this->query->where('id', $settlement_id)->update([
+
+                "from" => [
+                    "name" => $request["from"]['name'],
+                    "cart" => $request["from"]['cart'],
+                ],
+                "to" => [
+                    "name" => $request["to"]["name"],
+                    "cart" => $request["to"]["cart"],
+                ],
+                "status" => $request["status"]
+            ]
+        );
 
     }
 
