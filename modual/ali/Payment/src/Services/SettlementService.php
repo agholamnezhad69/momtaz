@@ -33,7 +33,7 @@ class SettlementService
             in_array($data['status'], [Settlement::STATUS_CANCELED, Settlement::STATUS_REJECTED])) {
 
 
-            $settlement->user->balance += $data["amount"];
+            $settlement->user->balance +=$settlement->amount;
             $settlement->user->save();
 
         }
@@ -43,7 +43,13 @@ class SettlementService
         ) {
 
 
-            $settlement->user->balance -= $data["amount"];
+            if ($settlement->user->balance < $settlement->amount) {
+                newFeedback("ناموفق", "موجودی حساب کاربر کافی نمیباشد!", 'error');
+                return;
+            }
+
+
+            $settlement->user->balance -= $settlement->amount;
             $settlement->user->save();
 
         }

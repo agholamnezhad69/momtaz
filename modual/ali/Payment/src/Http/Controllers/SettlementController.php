@@ -32,7 +32,7 @@ class SettlementController extends Controller
     public function store(SettlementRequest $settlementRequest)
     {
 
-        SettlementService::store($settlementRequest);
+        SettlementService::store($settlementRequest->all());
         return redirect(route('settlements.index'));
 
     }
