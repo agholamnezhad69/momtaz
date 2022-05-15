@@ -70,7 +70,14 @@ class Course extends Model
 
     public function payments()
     {
-        return $this->morphToMany(Payment::class, 'paymentable');
+        return $this->morphMany(Payment::class, 'paymentable');
+    }
+
+    public function payment()
+    {
+
+        return $this->payments()->first();
+
     }
 
     public function getConfirmationStatusCssClass()

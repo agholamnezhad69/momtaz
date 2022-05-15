@@ -141,5 +141,13 @@ class UserController extends Controller
         return abort(404);
     }
 
+    public function info($user_id)
+    {
+
+        $user = $this->userRepo->finById($user_id);
+        return view("User::admin.info", compact('user'));
+
+    }
+
 
 }

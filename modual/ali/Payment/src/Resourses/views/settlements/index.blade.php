@@ -44,6 +44,7 @@
                 <thead role="rowgroup">
                 <tr role="row" class="title-row">
                     <th>شناسه تسویه</th>
+                    <th>کاربر</th>
                     <th>مبدا</th>
                     <th>مقصد</th>
                     <th>شماره کارت مقصد</th>
@@ -59,6 +60,7 @@
                 @foreach($settlements as $settlement)
                     <tr role="row">
                         <td><a href="">{{$settlement->transaction_id ?? '-'}}</a></td>
+                        <td><a href="{{route("users.info",$settlement->user->id)}}">{{$settlement->user->name}}</a></td>
                         <td><a href="">{{$settlement->from ?$settlement->from['name'] :'-'}}</a></td>
                         <td><a href="">{{$settlement->to ?$settlement->to['name'] :'-'}}</a></td>
                         <td><a href="">{{$settlement->to ?$settlement->to['cart'] :'-'}}</a></td>
