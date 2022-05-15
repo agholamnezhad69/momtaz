@@ -7,6 +7,7 @@ use ali\Payment\Http\Requests\SettlementRequest;
 
 use ali\Payment\Models\Settlement;
 use ali\Payment\Repositories\SettlementRepo;
+use ali\Payment\Services\SettlementService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -28,16 +29,11 @@ class SettlementController extends Controller
         return view("Payment::settlements.create");
     }
 
-    public function store(SettlementRequest $request, SettlementRepo $settlementRepo)
+    public function store(SettlementRequest $settlementRequest)
     {
 
-        $settlementRepo->store($request->all());
-
-        auth()->user()->balance -= $request->amount;
-        auth()->user()->save();
-        newFeedbacks();
+        SettlementService::store($settlementRequest);
         return redirect(route('settlements.index'));
-
 
     }
 
@@ -50,13 +46,10 @@ class SettlementController extends Controller
 
     }
 
-    public function update($settlement_id, SettlementRequest $settlementRequest, SettlementRepo $settlementRepo)
+    public function update($settlement_id, SettlementRequest $settlementRequest)
     {
 
-
-        $settlementRepo->update($settlement_id, $settlementRequest->all());
-
-        newFeedbacks();
+        SettlementService::update($settlement_id, $settlementRequest->all());
         return redirect(route("settlements.index"));
 
 

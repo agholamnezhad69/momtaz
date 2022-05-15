@@ -43,8 +43,10 @@ class SettlementRepo
         return $this->query->latest()->paginate();
     }
 
-    public function update($settlement_id, $request)
+    public function update(int $settlement_id, array $request)
     {
+
+
 
         return $this->query->where('id', $settlement_id)->update([
 

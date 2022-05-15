@@ -36,12 +36,12 @@
                      value="{{$settlement->to['cart']}}"
                      name="to[cart]"
                      placeholder="شماره کارت گیرنده"/>
-            <x-input type="text" name="amount" value="{{auth()->user()->balance}}" placeholder="مبلغ به تومان"/>
+            <x-input type="text" name="amount" value="{{$settlement->amount}}" placeholder="مبلغ به تومان"/>
             <x-select name="status">
                 @foreach(\ali\Payment\Models\Settlement::$statues as $status)
                     <option value="{{$status}}"
-                            @if($status==$settlement->statues ) selected @endif >
-                        @lang($status)
+                            @if($status==$settlement->status ) selected @endif >
+                            @lang($status)
                     </option>
                 @endforeach
             </x-select>
