@@ -11,7 +11,6 @@
 @section('content')
 
 
-
     <div class="main-content">
         <form action="{{route('settlements.update',$settlement->id)}}"
               class="padding-30 bg-white font-size-14"

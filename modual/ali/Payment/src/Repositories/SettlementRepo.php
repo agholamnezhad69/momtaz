@@ -47,7 +47,6 @@ class SettlementRepo
     {
 
 
-
         return $this->query->where('id', $settlement_id)->update([
 
                 "from" => [
@@ -61,6 +60,28 @@ class SettlementRepo
                 "status" => $request["status"]
             ]
         );
+
+    }
+
+
+    public function getLatestPendingSettlement($user_id)
+    {
+
+        return Settlement::query()
+            ->where('user_id', $user_id)
+            ->where('status', Settlement::STATUS_PENDING)
+            ->latest()
+            ->first();
+
+    }
+
+    public function getLatestSettlement($user_id)
+    {
+
+        return Settlement::query()
+            ->where('user_id', $user_id)
+            ->latest()
+            ->first();
 
     }
 
