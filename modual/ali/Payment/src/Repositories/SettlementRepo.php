@@ -85,5 +85,14 @@ class SettlementRepo
 
     }
 
+    public function paginateUserSettlements($userId)
+    {
+        return Settlement::query()
+            ->where('user_id', $userId)
+            ->latest()
+            ->paginate();
+
+    }
+
 
 }

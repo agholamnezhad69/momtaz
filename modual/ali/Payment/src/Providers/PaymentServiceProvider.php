@@ -5,7 +5,9 @@ namespace ali\Payment\Providers;
 use ali\Payment\Gateways\Gateway;
 use ali\Payment\Gateways\Zarinpal\ZarinpalAdaptor;
 use ali\Payment\Models\Payment;
+use ali\Payment\Models\Settlement;
 use ali\Payment\policies\PaymentPolicy;
+use ali\Payment\policies\SettlementPolicy;
 use ali\RolePermissions\Models\Permission;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +34,7 @@ class PaymentServiceProvider extends ServiceProvider
         $this->loadJsonTranslationsFrom(__DIR__ . '/../Resourses/Lang/');
 
         Gate::policy(Payment::class, PaymentPolicy::class);
+        Gate::policy(Settlement::class, SettlementPolicy::class);
 
 
     }
@@ -64,14 +67,19 @@ class PaymentServiceProvider extends ServiceProvider
             "icon" => "i-checkout__request",
             "title" => "درخواست تسویه حساب",
             "url" => route("settlements.create"),
-            'permission' => [Permission::PERMISSION_TEACH]
+            'permission' => [
+                Permission::PERMISSION_TEACH
+            ]
         ]);
 
         config()->set('sidebar.items.settlements', [
             "icon" => "i-checkouts",
             "title" => "تسویه حساب ها",
             "url" => route("settlements.index"),
-            'permission' => [Permission::PERMISSION_TEACH]
+            'permission' => [
+                Permission::PERMISSION_MANAGE_SETTLEMENT,
+                Permission::PERMISSION_TEACH
+            ]
 
         ]);
 

@@ -35,19 +35,19 @@
                      value="{{$settlement->to['cart']}}"
                      name="to[cart]"
                      placeholder="شماره کارت گیرنده"/>
-            <x-input type="text" name="amount" value="{{$settlement->amount}}" placeholder="مبلغ به تومان"/>
+            <x-input readonly type="text" name="amount" value="{{$settlement->amount}}" placeholder="مبلغ به تومان"/>
             <x-select name="status">
                 @foreach(\ali\Payment\Models\Settlement::$statues as $status)
                     <option value="{{$status}}"
                             @if($status==$settlement->status ) selected @endif >
-                            @lang($status)
+                        @lang($status)
                     </option>
                 @endforeach
             </x-select>
 
             <div class="row no-gutters border-2 margin-bottom-15 text-center ">
-                <div class="w-50 padding-20 w-50">موجودی قابل برداشت :‌</div>
-                <div class="bg-fafafa padding-20 w-50">{{$settlement->user->balance}}</div>
+                <div class="w-50 padding-20 w-50">باقی مانده حساب:‌</div>
+                <div class="bg-fafafa padding-20 w-50">{{number_format($settlement->user->balance)}}</div>
             </div>
 
             <button class="btn btn-brand">برروزرسانی</button>

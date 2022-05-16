@@ -52,7 +52,9 @@
                     <th>تاریخ واریز شده</th>
                     <th>مبلغ (تومان )</th>
                     <th>وضعیت</th>
-                    <th>عملیات</th>
+                    @can(\ali\RolePermissions\Models\Permission::PERMISSION_MANAGE_SETTLEMENT)
+                        <th>عملیات</th>
+                    @endcan
                 </tr>
                 </thead>
                 <tbody>
@@ -68,14 +70,14 @@
                         <td><a href="">{{$settlement->settled_at ? $settlement->settled_at :'-'}}</a></td>
                         <td><a href="">{{$settlement->amount}}</a></td>
                         <td><a href="" class="{{$settlement->getStatusCssClass()}}">@lang($settlement->status)</a></td>
-                        <td>
-                            <a href="" class="item-delete mlg-15" title="حذف"></a>
-                            <a href="show-comment.html" class="item-reject mlg-15" title="رد"></a>
-                            <a href="show-comment.html" class="item-confirm mlg-15" title="تایید"></a>
-                            <a href="{{route("settlements.edit",$settlement->id)}}"
-                               class="item-edit"
-                               title="ویرایش"></a>
-                        </td>
+
+                        @can(\ali\RolePermissions\Models\Permission::PERMISSION_MANAGE_SETTLEMENT)
+                            <td>
+                                <a href="{{route("settlements.edit",$settlement->id)}}"
+                                   class="item-edit"
+                                   title="ویرایش"></a>
+                            </td>
+                        @endcan
                     </tr>
 
                 @endforeach
