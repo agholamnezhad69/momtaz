@@ -62,7 +62,8 @@
             "ali\\Category\\": "modual/ali/Category",
             "ali\\RolePermissions\\": "modual/ali/RolePermissions",
             "ali\\Course\\": "modual/ali/Course",
-            "ali\\Media\\": "modual/ali/Media"
+            "ali\\Media\\": "modual/ali/Media",
+            "ali\\Discount\\": "modual/ali/Discount/src"
         },
         "classmap": [
             "database/seeds",

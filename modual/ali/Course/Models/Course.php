@@ -5,6 +5,7 @@ namespace ali\Course\Models;
 use ali\Category\Models\Category;
 use ali\Course\Repositories\CourseRepo;
 use ali\Course\Repositories\LessonRepo;
+use ali\Discount\Models\Discount;
 use ali\Media\Models\Media;
 use ali\Payment\Models\Payment;
 use ali\User\Models\User;
@@ -185,6 +186,14 @@ class Course extends Model
 
         return $links;
 
+
+    }
+
+
+    public function discounts()
+    {
+
+        return $this->morphToMany(Discount::class, 'discountable');
 
     }
 
