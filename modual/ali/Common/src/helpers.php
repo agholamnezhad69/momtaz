@@ -40,3 +40,13 @@ function createJalaliFromCarbon(Carbon $carbon)
 
 }
 
+
+function convertPersianNumberToEnglish($persianDate)
+{
+    $englishNumber = range(0, 9);
+    $persianNumber = array('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹');
+    return str_replace($persianNumber, $englishNumber, $persianDate);
+
+
+}
+

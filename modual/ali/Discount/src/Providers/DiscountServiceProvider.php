@@ -15,6 +15,9 @@ class DiscountServiceProvider extends ServiceProvider
 
     public function register()
     {
+
+
+
         Route::middleware('web')
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../Routes/discount_routes.php');

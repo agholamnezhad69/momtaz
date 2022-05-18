@@ -46,12 +46,13 @@
                                    placeholder="مبلغ به تومان">
                             <input type="text" class="text" name="invoice_id" value="{{request("invoice_id")}}"
                                    placeholder="شماره">
-                            <input type="text" class="text" name="start_date" value="{{request("start_date")}}"
+                            <input type="text" class="text" name="start_date" id="start_date"
+                                   value="{{request("start_date")}}"
                                    placeholder="از تاریخ : 1399/10/11">
-                            <input type="text" class="text margin-bottom-20" name="end_date"
+                            <input type="text" class="text margin-bottom-20" name="end_date" id="end_date"
                                    value="{{request("end_date")}}"
                                    placeholder="تا تاریخ : 1399/10/12">
-                            <button class="btn btn-brand">جستجو</button>
+                            <button class="btn btn-success">جستجو</button>
                         </div>
                     </div>
                 </form>
@@ -118,12 +119,30 @@
     </div>
 @endsection
 
-
+@section('bootstrap_css')
+    <link rel="stylesheet" href="/assets/persianDataPicker/css/bootstrap.min.css">
+@endsection
+@section('css')
+    <link rel="stylesheet" href="/assets/persianDataPicker/css/jquery.md.bootstrap.datetimepicker.style.css"/>
+@endsection
 @section('js')
-
     @include("Payment::chart");
+    <script src="/assets/persianDataPicker/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/persianDataPicker/js/jquery.md.bootstrap.datetimepicker.js"></script>
+    <script type="text/javascript">
+        $('#start_date').MdPersianDateTimePicker({
+            targetTextSelector: '#start_date',
+
+        });
+        $('#end_date').MdPersianDateTimePicker({
+            targetTextSelector: '#end_date',
+        });
+    </script>
 
 @endsection
+
+
+
 
 
 

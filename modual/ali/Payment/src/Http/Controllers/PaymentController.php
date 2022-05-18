@@ -23,6 +23,8 @@ class PaymentController extends Controller
     {
 
 
+
+
         $this->authorize('manage', Payment::class);
 
 
@@ -30,8 +32,8 @@ class PaymentController extends Controller
             ->searchEmail($request->email)
             ->searchAmount($request->amount)
             ->searchInvoiceId($request->invoice_id)
-            ->searchAfterDate(getDateFromJalaliToCarbon($request->start_date))
-            ->searchBeforDate(getDateFromJalaliToCarbon($request->end_date))
+            ->searchAfterDate(getDateFromJalaliToCarbon(convertPersianNumberToEnglish($request->start_date)))
+            ->searchBeforDate(getDateFromJalaliToCarbon(convertPersianNumberToEnglish($request->end_date)))
             ->paginate();
 
 

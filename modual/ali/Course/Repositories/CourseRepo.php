@@ -90,7 +90,6 @@ class CourseRepo
     }
 
 
-
     public function latestCourses()
     {
 
@@ -121,6 +120,7 @@ class CourseRepo
             ->get();
 
     }
+
     private function getLessonQuery($CourseId): \Illuminate\Database\Eloquent\Builder
     {
         return Lesson::query()
@@ -145,8 +145,15 @@ class CourseRepo
         return $course->students->contains($user_id);
     }
 
+    public function getAll($confirmation_status = null)
+    {
+        $query = Course::query();
 
+        if ($confirmation_status) $query->where('confirmation_status', $confirmation_status);
 
+        return $query->latest()->get();
+
+    }
 
 
 }

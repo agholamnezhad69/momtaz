@@ -9,7 +9,75 @@
 .t-header-searchbox:after {
     top: 72%;
 }
+
 .t-header-searchbox.open:after {
 
     top: 54%;
 }
+
+.t-header-search-content {
+    top: 60px;
+}
+
+
+/************************************* start bootstrap change style */
+
+html {
+    font-family: unset;
+    line-height: unset;
+}
+
+.breadcrumb {
+    display: unset;
+    -ms-flex-wrap: unset;
+    flex-wrap: unset;
+    padding: unset;
+    margin-bottom: unset;
+    list-style: unset;
+    background-color: unset;
+    border-radius: unset;
+
+}
+
+.no-gutters > .col, .no-gutters > [class*=col-] {
+    padding: 20px;
+}
+
+.t-header-search .btn-success {
+    margin-top: 10px;
+}
+
+p {
+    margin-top: unset;
+    margin-bottom: unset;
+}
+
+.table td, .table th {
+    color: #636e72;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.table thead th {
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.table td, .table th {
+
+    border-top: unset;
+}
+
+dl, ol, ul {
+    margin-top: unset;
+    margin-bottom: unset;
+}
+
+a, a:active, a:focus, a:visited {
+    text-decoration: unset !important;
+    color: #444;
+}
+
+.dropdown-select .dd-searchbox {
+    padding: unset;
+}
+
+/************************************* end bootstrap change style */

@@ -181,7 +181,8 @@ return [
         \ali\Dashboard\Providers\DashboardServiceProvider::class,
         \ali\Category\Providers\CategoryServiceProviders::class,
         \ali\Course\Providers\CourseServiceProviders::class,
-        \ali\Media\Providers\MediaServiceProviders::class
+        \ali\Media\Providers\MediaServiceProviders::class,
+        \ali\Discount\Providers\DiscountServiceProvider::class,
 
 
     ],

@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,7 @@ class CreateDiscountsTable extends Migration
     {
         Schema::create('discounts', function (Blueprint $table) {
             $table->id();
-            $table->foreign("user_id");
+            $table->foreignId("user_id");
             $table->tinyInteger("percent")->unsigned();
             $table->bigInteger("usage_limitation")->nullable()->unsigned();
             $table->timestamp("expire_time")->nullable();
