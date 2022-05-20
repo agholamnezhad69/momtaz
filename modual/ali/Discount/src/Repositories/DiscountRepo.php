@@ -16,19 +16,25 @@ class DiscountRepo
     {
 
 
-        return Discount::query()
+        $discount = Discount::query()
             ->create([
                 "user_id" => auth()->id(),
                 "code" => $data["code"],
                 "percent" => $data["percent"],
                 "usage_limitation" => $data["usage_limitation"],
-                "expire_at" => Jalalian::fromFormat("Y/m/d H:i:s",
-                    str_replace("  ", "",
-                        convertPersianNumberToEnglish($data["expire_at"]
-                        )))->toCarbon(),
+                "expire_at" => $data["code"] ?
+                    Jalalian::fromFormat("Y/m/d H:i:s",
+                        str_replace("  ", "",
+                            convertPersianNumberToEnglish($data["expire_at"])))->toCarbon() : null,
                 "link" => $data["link"],
+                "type" => $data["type"],
                 "description" => $data["description"]
             ]);
+
+        if ($discount->type == Discount::TYPE_SPECIAL) {
+
+            $discount->courses()->sync($data['courses']);
+        }
 
     }
 

@@ -24,6 +24,7 @@ class DiscountServiceProvider extends ServiceProvider
 
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', "Discount");
+        $this->loadJsonTranslationsFrom(__DIR__ . "/../Resources/Lang/");
 
 
     }

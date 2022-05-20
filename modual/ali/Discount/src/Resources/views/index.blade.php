@@ -25,9 +25,16 @@
                             <tbody>
                             @foreach($discounts as $discount)
                                 <tr role="row" class="">
-                                    <td><a href="">{{$discount->code}}</a></td>
-                                    <td><a href="">{{$discount->percent}}</a></td>
-                                    <td>{{createJalaliFromCarbon($discount->expire_at)}}</td>
+                                    <td><a href="">{{$discount->code ?? "-"}}</a></td>
+                                    <td><a href="">{{$discount->percent}}
+                                            % برای
+                                            <sapn
+                                                class="{{$discount->type == \ali\Discount\Models\Discount::TYPE_ALL ? 'text-success' :'text-error'}}">
+                                                @lang($discount->type)
+                                            </sapn>
+                                        </a>
+                                    </td>
+                                    <td>{{ $discount->expire_at ?createJalaliFromCarbon($discount->expire_at) :"بدون تاریخ انقضا"}}</td>
                                     <td>{{$discount->description}}</td>
                                     <td>{{$discount->uses}} نفر</td>
                                     <td>
@@ -57,11 +64,13 @@
 
                     <p class="box__title">این تخفیف برای</p>
                     <div class="notificationGroup">
-                        <input id="discounts-field-1" class="discounts-field-pn" name="type" value="all" type="radio"/>
+                        <input id="discounts-field-1" class="discounts-field-pn" name="type"
+                               value="{{\ali\Discount\Models\Discount::TYPE_ALL}}" type="radio"/>
                         <label for="discounts-field-1">همه دوره ها</label>
                     </div>
                     <div class="notificationGroup">
-                        <input id="discounts-field-2" class="discounts-field-pn" name="type" value="special"
+                        <input id="discounts-field-2" class="discounts-field-pn" name="type"
+                               value="{{\ali\Discount\Models\Discount::TYPE_SPECIAL}}"
                                type="radio"/>
                         <label for="discounts-field-2">دوره خاص</label>
                     </div>

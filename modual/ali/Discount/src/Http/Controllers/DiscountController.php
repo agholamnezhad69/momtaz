@@ -23,6 +23,7 @@ class DiscountController extends Controller
     public function store(DiscountRequest $discountRequest, DiscountRepo $discountRepo)
     {
 
+
         $discountRepo->Store($discountRequest->all());
 
         newFeedbacks();
