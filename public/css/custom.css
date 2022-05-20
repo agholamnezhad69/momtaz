@@ -1,3 +1,21 @@
+
+.d-none {
+    display: none;
+}
+
+.padding-10 {
+    padding: 10px;
+}
+
+#discount-form p.box__title {
+
+    margin-top: 15px;
+}
+#discount-form .btn-success {
+
+    margin-top: 15px;
+}
+
 .text-white {
     color: #fff;
 }
@@ -17,6 +35,62 @@
 
 .t-header-search-content {
     top: 60px;
+}
+
+#selectCourseContainer {
+    height: auto;
+    margin-top: 16px;
+    margin-bottom: -10px;
+
+
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+
+    border: solid 2px #e2e2e2 !important;
+
+}
+
+#selectCourseContainer .select2 {
+    width: 100% !important;
+
+}
+
+#selectCourseContainer .selection {
+    display: block;
+    width: 100%;
+}
+
+#selectCourseContainer .selection textarea {
+    margin: 8px 0 7px 0;
+    font-family: irs;
+    font-size: 14px;
+}
+
+#selectCourseContainer .select2-container {
+    height: 100%;
+    direction: rtl;
+
+}
+
+#selectCourseContainer .select2-search__field {
+
+    height: 18px !important;
+
+}
+
+.select2-results ul li {
+    text-align: right;
+}
+
+#selectCourseContainer .select2-selection__choice .select2-selection__choice__display {
+    font-size: 12px;
+}
+
+#selectCourseContainer ul#select2-courses-xx-container {
+    text-align: right;
+    direction: ltr;
+    display: list-item;
 }
 
 
@@ -40,7 +114,7 @@ html {
 }
 
 .no-gutters > .col, .no-gutters > [class*=col-] {
-    padding: 20px;
+    /*padding: 20px;*/
 }
 
 .t-header-search .btn-success {
@@ -78,6 +152,10 @@ a, a:active, a:focus, a:visited {
 
 .dropdown-select .dd-searchbox {
     padding: unset;
+}
+
+.invalid-feedback {
+    display: block;
 }
 
 /************************************* end bootstrap change style */

@@ -8,4 +8,12 @@ Route::group(['middleware' => 'auth'], function ($route) {
         ]
     );
 
+    $route->post('/discounts', [
+            'as' => 'discounts.store',
+            'uses' => 'DiscountController@store'
+        ]
+    );
+
+
+
 });

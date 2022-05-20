@@ -3,6 +3,7 @@
 use Illuminate\Support\Carbon;
 use Morilog\Jalali\Jalalian;
 
+
 function newFeedbacks($title = "عملیات موفق آمیز ", $body = "عملیات با موفقیت آمیز انجام شد", $type = "success")
 {
     $session = session()->get('feedbacks') ? session()->get('feedbacks') : [];
@@ -31,8 +32,9 @@ function getDateFromCarbonToJalali($date, $format = "Y-m-d")
 
 }
 
-function createJalaliFromCarbon(Carbon $carbon)
+function createJalaliFromCarbon(\Carbon\Carbon $carbon)
 {
+
 
 
     return Jalalian::fromCarbon($carbon);

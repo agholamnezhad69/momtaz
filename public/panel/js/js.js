@@ -351,3 +351,16 @@ function doMultipleAction(route, message, method) {
 }
 
 
+$("#discounts-field-1").on("click", function (e) {
+
+    $("#selectCourseContainer").addClass('d-none');
+
+})
+
+$("#discounts-field-2").on("click", function (e) {
+
+    $("#selectCourseContainer").removeClass('d-none');
+
+})
+
+
