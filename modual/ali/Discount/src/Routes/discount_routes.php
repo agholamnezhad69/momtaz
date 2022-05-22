@@ -14,6 +14,23 @@ Route::group(['middleware' => 'auth'], function ($route) {
         ]
     );
 
+    $route->delete('/discounts/{discount}', [
+            'as' => 'discounts.destroy',
+            'uses' => 'DiscountController@destroy'
+        ]
+    );
+
+    $route->get('/discounts/{discount}/edit', [
+            'as' => 'discounts.edit',
+            'uses' => 'DiscountController@edit'
+        ]
+    );
+
+    $route->patch('/discounts/{discount}', [
+            'as' => 'discounts.update',
+            'uses' => 'DiscountController@update'
+        ]
+    );
 
 
 });

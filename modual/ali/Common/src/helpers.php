@@ -36,7 +36,6 @@ function createJalaliFromCarbon(\Carbon\Carbon $carbon)
 {
 
 
-
     return Jalalian::fromCarbon($carbon);
 
 

@@ -26,7 +26,8 @@
                             @foreach($discounts as $discount)
                                 <tr role="row" class="">
                                     <td><a href="">{{$discount->code ?? "-"}}</a></td>
-                                    <td><a href="">{{$discount->percent}}
+                                    <td>
+                                        <a href="">{{$discount->percent}}
                                             % برای
                                             <sapn
                                                 class="{{$discount->type == \ali\Discount\Models\Discount::TYPE_ALL ? 'text-success' :'text-error'}}">
@@ -38,8 +39,14 @@
                                     <td>{{$discount->description}}</td>
                                     <td>{{$discount->uses}} نفر</td>
                                     <td>
-                                        <a href="" class="item-delete mlg-15"></a>
-                                        <a href="edit-discount.html" class="item-edit " title="ویرایش"></a>
+                                        <a
+                                            href=""
+                                            onclick="deleteItem(event,'{{route('discounts.destroy',$discount->id)}}')"
+                                            class="item-delete mlg-15"
+                                            title="حذف">
+                                        </a>
+                                        <a href="{{route('discounts.edit',$discount->id)}}" class="item-edit mlg-15"
+                                           title="ویرایش"></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -84,6 +91,11 @@
                         </select>
                     </div>
 
+                    @error('courses')
+                    <span class="invalid-feedback" role="alert">
+                         <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
 
                     <x-input type="text" name="link" placeholder="لینک اطلاعات بیشتر"/>
 
