@@ -3,8 +3,11 @@
 namespace ali\Discount\Providers;
 
 
+use ali\Discount\Models\Discount;
+use ali\Discount\Policies\DiscountPolicy;
 use ali\RolePermissions\Models\Permission;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -17,7 +20,6 @@ class DiscountServiceProvider extends ServiceProvider
     {
 
 
-
         Route::middleware('web')
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../Routes/discount_routes.php');
@@ -25,6 +27,7 @@ class DiscountServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', "Discount");
         $this->loadJsonTranslationsFrom(__DIR__ . "/../Resources/Lang/");
+        Gate::policy(Discount::class, DiscountPolicy::class);
 
 
     }
