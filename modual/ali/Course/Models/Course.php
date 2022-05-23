@@ -6,6 +6,7 @@ use ali\Category\Models\Category;
 use ali\Course\Repositories\CourseRepo;
 use ali\Course\Repositories\LessonRepo;
 use ali\Discount\Models\Discount;
+use ali\Discount\Repositories\DiscountRepo;
 use ali\Media\Models\Media;
 use ali\Payment\Models\Payment;
 use ali\User\Models\User;
@@ -116,15 +117,31 @@ class Course extends Model
 
     public function getDiscountPercent()
     {
-        //ToDo
-        return 0;
+        $percent = 0;
+        $discountRepo = new DiscountRepo();
+        $specificDiscount = $discountRepo->getCourseBiggerDiscount($this->id);
+
+
+        if ($specificDiscount) $percent = $specificDiscount->percent;
+
+
+        $globalDiscount = $discountRepo->getGlobalBiggerDiscount();
+
+        if ($globalDiscount && $globalDiscount->percent > $percent) $percent = $globalDiscount->percent;
+
+
+        return $percent;
 
     }
 
     public function getDiscountAmount()
     {
-        //ToDo
-        return 0;
+
+        if ($this->getDiscountPercent() < 10) {
+            return $this->price * ((float)('0.0' . $this->getDiscountPercent()));
+        }
+
+        return $this->price * ((float)('0.' . $this->getDiscountPercent()));
 
     }
 

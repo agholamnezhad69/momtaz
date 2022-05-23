@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\DB;
 Route::get('/test', function () {
 
 
-
+//    dd(now());
 
 
     /* $collection = collect([1, 2, 3, 4, 5]);

@@ -82,4 +82,35 @@ class DiscountRepo
         return Discount::query()->find($id);
     }
 
+    public function getValidDiscountQuery($type = Discount::TYPE_ALL, $courseId = null)
+    {
+        $query = Discount::query()
+            ->where("expire_at", ">", now())
+            ->where('type', $type);
+        if ($courseId) {
+            $query->whereHas('courses', function ($query) use ($courseId) {
+                $query->where('id', $courseId);
+            });
+        }
+        $query->where(function ($query) {
+            $query->Where("usage_limitation", ">", 0)
+                ->orWhereNull("usage_limitation");
+        })
+            ->orderBy('percent', 'desc');
+        return $query;
+    }
+
+    public function getGlobalBiggerDiscount()
+    {
+        return $this->getValidDiscountQuery()->first();
+
+    }
+
+
+    public function getCourseBiggerDiscount($courseId)
+    {
+        return $this->getValidDiscountQuery(Discount::TYPE_SPECIAL, $courseId)->first();;
+
+    }
+
 }
