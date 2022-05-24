@@ -42,7 +42,11 @@
                         />
                         <label for="discounts-field-2">دوره خاص</label>
                     </div>
-
+                    @error('type')
+                    <span class="invalid-feedback" role="alert">
+                         <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
 
 
 
@@ -89,10 +93,8 @@
 
     <script src="/assets/persianDataPicker/js/bootstrap.bundle.min.js"></script>
 
-    <script src="/assets/persianDataPicker/js/jquery.md.bootstrap.datetimepicker.js">
+    <script src="/assets/persianDataPicker/js/jquery.md.bootstrap.datetimepicker.js"></script>
 
-
-    </script>
     <script src="/assets/multiSelect/js/select2.min.js"></script>
 
     <script type="text/javascript">

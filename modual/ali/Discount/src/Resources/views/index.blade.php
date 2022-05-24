@@ -81,6 +81,11 @@
                                type="radio"/>
                         <label for="discounts-field-2">دوره خاص</label>
                     </div>
+                    @error('type')
+                    <span class="invalid-feedback" role="alert">
+                         <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
 
 
                     <div id="selectCourseContainer" class="d-none">
@@ -90,6 +95,7 @@
                             @endforeach
                         </select>
                     </div>
+
 
                     @error('courses')
                     <span class="invalid-feedback" role="alert">

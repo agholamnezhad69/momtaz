@@ -7,6 +7,7 @@ use ali\Course\Repositories\CourseRepo;
 use ali\Course\Repositories\LessonRepo;
 use ali\Discount\Models\Discount;
 use ali\Discount\Repositories\DiscountRepo;
+use ali\Discount\Services\DiscountService;
 use ali\Media\Models\Media;
 use ali\Payment\Models\Payment;
 use ali\User\Models\User;
@@ -137,11 +138,12 @@ class Course extends Model
     public function getDiscountAmount()
     {
 
-        if ($this->getDiscountPercent() < 10) {
-            return $this->price * ((float)('0.0' . $this->getDiscountPercent()));
-        }
+        DiscountService::calculateDiscountAmount($this->price, $this->getDiscountPercent());
 
-        return $this->price * ((float)('0.' . $this->getDiscountPercent()));
+//        if ($this->getDiscountPercent() < 10) {
+//            return $this->price * ((float)('0.0' . $this->getDiscountPercent()));
+//        }
+//        return $this->price * ((float)('0.' . $this->getDiscountPercent()));
 
     }
 

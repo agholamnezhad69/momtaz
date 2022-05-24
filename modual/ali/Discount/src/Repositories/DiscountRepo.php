@@ -82,11 +82,12 @@ class DiscountRepo
         return Discount::query()->find($id);
     }
 
-    public function getValidDiscountQuery($type = Discount::TYPE_ALL, $courseId = null)
+    public function getValidDiscountsQuery($type = Discount::TYPE_ALL, $courseId = null)
     {
         $query = Discount::query()
             ->where("expire_at", ">", now())
-            ->where('type', $type);
+            ->where('type', $type)
+            ->whereNull('code');
         if ($courseId) {
             $query->whereHas('courses', function ($query) use ($courseId) {
                 $query->where('id', $courseId);
@@ -102,14 +103,51 @@ class DiscountRepo
 
     public function getGlobalBiggerDiscount()
     {
-        return $this->getValidDiscountQuery()->first();
+        return $this->getValidDiscountsQuery()->first();
 
     }
 
 
     public function getCourseBiggerDiscount($courseId)
     {
-        return $this->getValidDiscountQuery(Discount::TYPE_SPECIAL, $courseId)->first();;
+        return $this->getValidDiscountsQuery(Discount::TYPE_SPECIAL, $courseId)->first();;
+
+    }
+
+    public function getValidDiscountByCode($code, $courseId)
+    {
+
+
+        return Discount::query()
+            ->where('code', $code)
+            ->where(function ($query) use ($courseId) {
+                return $query->whereHas('courses', function ($course) use ($courseId) {
+                    return $course->where('id', $courseId);
+                })->orWhereDoesntHave('courses');
+            })
+            ->first();
+
+//        return Discount::query()
+//            ->where('code', $code)
+//            ->where(function ($query) use ($courseId) {
+//                return $query->whereHas('courses', function ($course) use ($courseId) {
+//                    return $course->where('id', $courseId);
+//                })->orWhereDoesntHave('courses');
+//            })
+//            ->first();
+
+//        return DB::table('discountables')
+//            ->join('discounts', function ($join) use ($code) {
+//                $join->on('discountables.discount_id', '=', 'discounts.id')
+//                    ->where('code', $code);
+//            })
+//            ->join('courses', function ($join) use ($courseId) {
+//                $join->on('discountables.discountable_id', '=', 'courses.id')
+//                    ->where('courses.id', $courseId);
+//
+//            })
+//            ->first();
+
 
     }
 

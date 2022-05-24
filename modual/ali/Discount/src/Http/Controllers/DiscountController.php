@@ -9,7 +9,9 @@ use ali\Course\Repositories\CourseRepo;
 use ali\Discount\Http\Requests\DiscountRequest;
 use ali\Discount\Models\Discount;
 use ali\Discount\Repositories\DiscountRepo;
+use ali\Discount\Services\DiscountService;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
 
 
 class DiscountController extends Controller
@@ -63,6 +65,27 @@ class DiscountController extends Controller
         newFeedbacks();
         return redirect()->route('discounts.index');
 
+
+    }
+
+    public function check($code, Course $course, DiscountRepo $discountRepo)
+    {
+        $discount = $discountRepo->getValidDiscountByCode($code, $course->id);
+        if ($discount) {
+            $discountAmount = DiscountService::calculateDiscountAmount($course->price, $discount->percent);
+            $response = [
+                "status" => "valid",
+                "payableAmount" => $course->price - $discountAmount,
+                "discountAmount" => $discountAmount,
+                "discountPercent" => $discount->percent
+            ];
+
+            return response()->json($response);
+
+        }
+        return response()->json([
+            "status" => "invalid"
+        ], 422);
 
     }
 

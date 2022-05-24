@@ -32,5 +32,11 @@ Route::group(['middleware' => 'auth'], function ($route) {
         ]
     );
 
+    $route->get('/discounts/{code}/{course}/check', [
+            'as' => 'discounts.check',
+            'uses' => 'DiscountController@check'
+        ]
+    );
+
 
 });

@@ -27,10 +27,13 @@
                 <div class="sidebar-right">
                     <div class="sidebar-sticky">
                         <div class="product-info-box">
-                            <div class="discountBadge">
-                                <p>45%</p>
-                                تخفیف
-                            </div>
+
+                            @if($course->getDiscountPercent())
+                                <div class="discountBadge">
+                                    <p>{{$course->getDiscountPercent()}}%</p>
+                                    تخفیف
+                                </div>
+                            @endif
 
                             <p class="alert-error"></p>
 
@@ -209,8 +212,8 @@
                 <div class="modal-body">
                     <form method="post" action="{{route('courses.buy',$course->id)}}">
                         @csrf
-                        <div><input type="text" class="txt" placeholder="کد تخفیف را وارد کنید"></div>
-                        <button class="btn i-t ">اعمال</button>
+                        <div><input id="code" type="text" class="txt" placeholder="کد تخفیف را وارد کنید"></div>
+                        <button type="button" class="btn i-t" onclick="checkDiscountCode()">اعمال</button>
 
                         <table class="table text-center table-bordered table-striped">
                             <tbody>
@@ -220,15 +223,16 @@
                             </tr>
                             <tr>
                                 <th>درصد تخفیف</th>
-                                <td>{{$course->getDiscountPercent()}}%</td>
+                                <td id="discountPercent">{{$course->getDiscountPercent()}}%</td>
                             </tr>
                             <tr>
                                 <th> مبلغ تخفیف</th>
-                                <td class="text-red"> {{$course->getDiscountAmount()}} تومان</td>
+                                <td id="discountAmount" class="text-red"> {{$course->getDiscountAmount()}} تومان</td>
                             </tr>
                             <tr>
                                 <th> قابل پرداخت</th>
-                                <td class="text-blue"> {{$course->getFormattedFinalPrice()}} تومان</td>
+                                <td id="payableAmount" class="text-blue"> {{$course->getFormattedFinalPrice()}}تومان
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -247,4 +251,23 @@
 
 @section('js')
     <script src="/js/modal.js"></script>
+
+    <script>
+        function checkDiscountCode() {
+            const code = $("#code").val();
+            const url = "{{route("discounts.check",["code",$course->id])}}";
+
+
+            $.get(url.replace('code', code))
+                .done(function (data) {
+                    $("#discountPercent").text(data.discountPercent + " %")
+                    $("#discountAmount").text(data.discountAmount + " تومان ")
+                    $("#payableAmount").text(data.payableAmount + " تومان ")
+                })
+                .fail(function (data) {
+
+                });
+
+        }
+    </script>
 @endsection
