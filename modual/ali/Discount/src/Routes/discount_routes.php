@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth'], function ($route) {
             'as' => 'discounts.check',
             'uses' => 'DiscountController@check'
         ]
-    );
+    )->middleware('throttle:6,1');
 
 
 });
