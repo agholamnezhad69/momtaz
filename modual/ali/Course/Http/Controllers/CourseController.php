@@ -165,6 +165,7 @@ class CourseController extends Controller
     public function buy($courseId, CourseRepo $courseRepo)
     {
 
+
         $course = $courseRepo->findById($courseId);
 
         if (!$this->courseCanBePurchased($course)) {
@@ -177,7 +178,7 @@ class CourseController extends Controller
 
         }
 
-        $amount = $course->getFinalPrice();
+        $amount = $course->getFinalPrice(request()->code);
 
         if ($amount <= 0) {
             $courseRepo->addStudentToCourse($course, auth()->id());

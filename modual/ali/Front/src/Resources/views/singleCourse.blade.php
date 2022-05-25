@@ -212,14 +212,12 @@
                 <div class="modal-body">
                     <form method="post" action="{{route('courses.buy',$course->id)}}">
                         @csrf
-                        <div><input id="code" type="text" class="txt" placeholder="کد تخفیف را وارد کنید"></div>
+                        <div><input id="code" name="code" type="text" class="txt" placeholder="کد تخفیف را وارد کنید"></div>
                         <p id="response"></p>
                         <button type="button" class="btn i-t" onclick="checkDiscountCode()">
                             اعمال
                             <img src="/img/loading.gif" id="loading" class="loading d-none">
-
                         </button>
-
                         <table class="table text-center table-bordered table-striped">
                             <tbody>
                             <tr>
