@@ -2,6 +2,7 @@
 
 namespace ali\Payment\Models;
 
+use ali\Discount\Models\Discount;
 use ali\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,6 +39,13 @@ class Payment extends Model
     public function seller()
     {
         return $this->belongsTo(User::class, "seller_id");
+    }
+
+    public function discounts()
+    {
+
+        return $this->belongsToMany(Discount::class,'discount_payment');
+
     }
 
 

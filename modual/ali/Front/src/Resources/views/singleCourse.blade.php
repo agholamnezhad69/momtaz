@@ -46,12 +46,16 @@
 
                                     <div class="sell_course">
                                         <strong>قیمت :</strong>
+                                        @if($course->getDiscountPercent())
                                         <del class="discount-Price">{{$course->getFormattedPrice()}}</del>
-                                        <p class="price">
-                             <span class="woocommerce-Price-amount amount">{{$course->getFormattedFinalPrice()}}
-                            <span class="woocommerce-Price-currencySymbol">تومان</span>
-                            </span>
-                                        </p>
+                                        @endif
+                                            <p class="price">
+                                            <span class="woocommerce-Price-amount amount">
+                                                  {{$course->getFormattedFinalPrice()}}
+                                               <span class="woocommerce-Price-currencySymbol">تومان</span>
+                                             </span>
+                                            </p>
+
                                     </div>
                                     <button class="btn buy btn-buy ">خرید دوره</button>
                                 @endif
@@ -59,12 +63,16 @@
                             @else
                                 <div class="sell_course">
                                     <strong>قیمت :</strong>
-                                    <del class="discount-Price">{{$course->getFormattedPrice()}}</del>
-                                    <p class="price">
-                             <span class="woocommerce-Price-amount amount">{{$course->getFormattedPrice()}}
-                            <span class="woocommerce-Price-currencySymbol">تومان</span>
-                            </span>
-                                    </p>
+                                    @if($course->getDiscountPercent())
+                                        <del class="discount-Price">{{$course->getFormattedPrice()}}</del>
+                                    @endif
+                                        <p class="price">
+                                        <span class="woocommerce-Price-amount amount">
+                                                {{$course->getFormattedFinalPrice()}}
+                                             <span class="woocommerce-Price-currencySymbol">تومان</span>
+                                        </span>
+                                        </p>
+
                                 </div>
                                 <p>برای خرید دوره ابتدا باید وارد حساب کاربری شوید</p>
                                 <a href="{{route('login')}}" class=" btn width-100 text-white">ورود به سایت</a>
@@ -212,7 +220,8 @@
                 <div class="modal-body">
                     <form method="post" action="{{route('courses.buy',$course->id)}}">
                         @csrf
-                        <div><input id="code" name="code" type="text" class="txt" placeholder="کد تخفیف را وارد کنید"></div>
+                        <div><input id="code" name="code" type="text" class="txt" placeholder="کد تخفیف را وارد کنید">
+                        </div>
                         <p id="response"></p>
                         <button type="button" class="btn i-t" onclick="checkDiscountCode()">
                             اعمال

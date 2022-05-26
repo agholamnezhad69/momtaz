@@ -109,12 +109,7 @@ class Course extends Model
 
     }
 
-    public function getFormattedPrice()
-    {
 
-        return number_format($this->price);
-
-    }
 
     public function getDiscountPercent()
     {
@@ -138,7 +133,7 @@ class Course extends Model
     public function getDiscountAmount()
     {
 
-        DiscountService::calculateDiscountAmount($this->price, $this->getDiscountPercent());
+        return DiscountService::calculateDiscountAmount($this->price, $this->getDiscountPercent());
 
 //        if ($this->getDiscountPercent() < 10) {
 //            return $this->price * ((float)('0.0' . $this->getDiscountPercent()));
@@ -170,6 +165,13 @@ class Course extends Model
     {
 
         return number_format($this->getFinalPrice());
+
+    }
+
+    public function getFormattedPrice()
+    {
+
+        return number_format($this->price);
 
     }
 
