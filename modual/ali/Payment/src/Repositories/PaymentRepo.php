@@ -88,10 +88,10 @@ class PaymentRepo
 
     }
 
-    public function store($data)
+    public function store($data, $discounts = [])
     {
 
-        return Payment::create([
+        $payment = Payment::create([
             "buyer_id" => $data["buyer_id"],
             "paymentable_id" => $data["paymentable_id"],
             "paymentable_type" => $data["paymentable_type"],
@@ -104,6 +104,13 @@ class PaymentRepo
             "seller_share" => $data["seller_share"],
             "site_share" => $data["site_share"],
         ]);
+
+        foreach ($discounts as $discount) $discountIds[] = $discount->id;
+
+        if (isset($discountIds))
+            $payment->discounts()->sync($discountIds);
+
+        return $payment;
 
     }
 

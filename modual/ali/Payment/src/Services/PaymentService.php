@@ -9,7 +9,7 @@ use ali\User\Models\User;
 
 class PaymentService
 {
-    public static function generate($amount, $paymentable, User $buyer, $seller_id = null)
+    public static function generate($amount, $paymentable, User $buyer, $seller_id = null, $discouts = [])
     {
         if ($amount <= 0 || is_null($paymentable->id) || is_null($buyer->id)) return false;
 
@@ -46,7 +46,7 @@ class PaymentService
             "seller_percent" => $seller_percent,
             "seller_share" => $seller_share,
             "site_share" => $site_share,
-        ]);
+        ],$discouts);
 
     }
 

@@ -44,7 +44,7 @@ class Payment extends Model
     public function discounts()
     {
 
-        return $this->belongsToMany(Discount::class,'discount_payment');
+        return $this->belongsToMany(Discount::class, 'discount_payment');
 
     }
 

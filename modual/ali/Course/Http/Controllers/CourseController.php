@@ -178,7 +178,7 @@ class CourseController extends Controller
 
         }
 
-        $amount = $course->getFinalPrice(request()->code);
+        [$amount, $discounts] = $course->getFinalPrice(request()->code, true);
 
         if ($amount <= 0) {
             $courseRepo->addStudentToCourse($course, auth()->id());
@@ -186,10 +186,12 @@ class CourseController extends Controller
             return redirect($course->path());
         }
 
-        $payment = PaymentService::generate($amount, $course, auth()->user(), $course->teacher_id);
 
 
-        resolve(Gateway::class)->redirect();
+        $payment = PaymentService::generate($amount, $course, auth()->user(), $course->teacher_id, $discounts);
+
+
+        resolve(Gateway::class)->redirect($payment->invoice_id);
 
 
     }
