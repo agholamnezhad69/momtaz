@@ -47,14 +47,14 @@
                                     <div class="sell_course">
                                         <strong>قیمت :</strong>
                                         @if($course->getDiscountPercent())
-                                        <del class="discount-Price">{{$course->getFormattedPrice()}}</del>
+                                            <del class="discount-Price">{{$course->getFormattedPrice()}}</del>
                                         @endif
-                                            <p class="price">
+                                        <p class="price">
                                             <span class="woocommerce-Price-amount amount">
                                                   {{$course->getFormattedFinalPrice()}}
                                                <span class="woocommerce-Price-currencySymbol">تومان</span>
                                              </span>
-                                            </p>
+                                        </p>
 
                                     </div>
                                     <button class="btn buy btn-buy ">خرید دوره</button>
@@ -66,12 +66,12 @@
                                     @if($course->getDiscountPercent())
                                         <del class="discount-Price">{{$course->getFormattedPrice()}}</del>
                                     @endif
-                                        <p class="price">
+                                    <p class="price">
                                         <span class="woocommerce-Price-amount amount">
                                                 {{$course->getFormattedFinalPrice()}}
                                              <span class="woocommerce-Price-currencySymbol">تومان</span>
                                         </span>
-                                        </p>
+                                    </p>
 
                                 </div>
                                 <p>برای خرید دوره ابتدا باید وارد حساب کاربری شوید</p>
@@ -235,15 +235,23 @@
                             </tr>
                             <tr>
                                 <th>درصد تخفیف</th>
-                                <td id="discountPercent">{{$course->getDiscountPercent()}}%</td>
+                                <td>
+                                    <span data-value="{{$course->getDiscountPercent()}}" id="discountPercent">{{$course->getDiscountPercent()}}</span>
+                                    %
+                                </td>
                             </tr>
                             <tr>
                                 <th> مبلغ تخفیف</th>
-                                <td id="discountAmount" class="text-red"> {{$course->getDiscountAmount()}} تومان</td>
+                                <td  class="text-red">
+                                    <span data-value="{{$course->getDiscountAmount()}}" id="discountAmount">{{$course->getDiscountAmount()}}</span>تومان
+
+                                </td>
                             </tr>
                             <tr>
                                 <th> قابل پرداخت</th>
-                                <td id="payableAmount" class="text-blue"> {{$course->getFormattedFinalPrice()}}تومان
+                                <td  class="text-blue">
+                                    <span data-value="{{$course->getFinalPrice()}}" id="payableAmount">{{$course->getFormattedFinalPrice()}}</span> تومان
+
                                 </td>
                             </tr>
                             </tbody>
@@ -273,9 +281,9 @@
             const url = "{{route("discounts.check",["code",$course->id])}}";
             $.get(url.replace('code', code))
                 .done(function (data) {
-                    $("#discountPercent").text(data.discountPercent + " %")
-                    $("#discountAmount").text(data.discountAmount + " تومان ")
-                    $("#payableAmount").text(data.payableAmount + " تومان ")
+                    $("#discountPercent").text(parseInt($("#discountPercent").attr("data-value")) + data.discountPercent)
+                    $("#discountAmount").text(parseInt($("#discountAmount").attr("data-value")) + data.discountAmount)
+                    $("#payableAmount").text(parseInt($("#payableAmount").attr("data-value")) - data.discountAmount)
                     $("#response").text("کد تخفیف با موفقیت اعمال شد.").removeClass('text-error').addClass('text-success');
                 })
                 .fail(function (data) {
