@@ -9,10 +9,10 @@ use ali\Payment\Gateways\Gateway;
 use ali\Payment\Models\Payment;
 use ali\Payment\Repositories\PaymentRepo;
 
-use Carbon\CarbonPeriod;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Morilog\Jalali\Jalalian;
+
 
 
 class PaymentController extends Controller
@@ -89,11 +89,9 @@ class PaymentController extends Controller
 
         if (is_array($result)) {
 
-
             newFeedbacks('تراکنش ناموفق ', $result['message'], 'error');
 
             $paymentRepo->changeStatus($payment->id, Payment::STATUS_FAIL);
-
 
         } else {
 

@@ -25,6 +25,7 @@ class DiscountServiceProvider extends ServiceProvider
             ->group(__DIR__ . '/../Routes/discount_routes.php');
 
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->app->register(EventServiceProvider::class);
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', "Discount");
         $this->loadJsonTranslationsFrom(__DIR__ . "/../Resources/Lang/");
         Gate::policy(Discount::class, DiscountPolicy::class);
