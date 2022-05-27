@@ -5,7 +5,8 @@ namespace ali\Front\Providers;
 
 use ali\Category\Repositories\CategoryRepo;
 use ali\Course\Repositories\CourseRepo;
-use Carbon\Laravel\ServiceProvider;
+use Illuminate\Support\ServiceProvider;
+
 
 class FrontServiceProviders extends ServiceProvider
 {
