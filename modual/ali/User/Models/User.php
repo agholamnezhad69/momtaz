@@ -9,6 +9,8 @@ use ali\Media\Models\Media;
 use ali\Payment\Models\Payment;
 use ali\Payment\Models\Settlement;
 use ali\RolePermissions\Models\Role;
+use ali\Ticket\Models\Reply;
+use ali\Ticket\Models\Ticket;
 use ali\User\Notifications\ResetPasswordRequestNotification;
 use ali\User\Notifications\verifyEmailNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -122,6 +124,19 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
+    public function tickets()
+    {
+
+        return $this->hasMany(Ticket::class);
+    }
+
+    public function ticketReplies()
+    {
+
+        return $this->hasMany(Reply::class);
+
+    }
+
 
     public function profilePath()
     {
@@ -164,7 +179,6 @@ class User extends Authenticatable implements MustVerifyEmail
             ->count();
 
     }
-
 
 
 }

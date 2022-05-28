@@ -10,6 +10,7 @@ use ali\Discount\Repositories\DiscountRepo;
 use ali\Discount\Services\DiscountService;
 use ali\Media\Models\Media;
 use ali\Payment\Models\Payment;
+use ali\Ticket\Models\Ticket;
 use ali\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -81,6 +82,11 @@ class Course extends Model
 
         return $this->payments()->first();
 
+    }
+
+    public function tickets()
+    {
+        return $this->morphMany(Ticket::class, "ticketable");
     }
 
     public function getConfirmationStatusCssClass()
