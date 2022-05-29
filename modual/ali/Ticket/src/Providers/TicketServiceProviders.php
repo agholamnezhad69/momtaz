@@ -17,13 +17,14 @@ class  TicketServiceProviders extends ServiceProvider
     public function register()
     {
 
+        $this->loadViewsFrom(__DIR__ . '/../Resources/views', "Tickets");
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
         Route::middleware('web')
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../Routes/web.php');
-       Gate::policy(Ticket::class, TicketPolicy::class);
-       Gate::policy(Reply::class, ReplyPolicy::class);
+        Gate::policy(Ticket::class, TicketPolicy::class);
+        Gate::policy(Reply::class, ReplyPolicy::class);
 
     }
 

@@ -11,6 +11,14 @@ class TicketController extends Controller
     {
         dd("index");
     }
+
+    public function create()
+    {
+
+
+        return view("Tickets::create");
+
+    }
 }
 
 
