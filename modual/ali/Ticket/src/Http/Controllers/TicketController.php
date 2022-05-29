@@ -26,6 +26,16 @@ class TicketController extends Controller
 
     }
 
+    public function show($ticketId, TicketRepo $ticketRepo)
+    {
+
+        $ticket = $ticketRepo->findOrFailWithReplies($ticketId);
+
+        return view("Tickets::show", compact('ticket'));
+
+
+    }
+
     public function store(TicketRequest $ticketRequest, TicketRepo $ticketRepo)
     {
 

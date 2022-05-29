@@ -2,6 +2,7 @@
 
 namespace ali\Ticket\Providers;
 
+use ali\RolePermissions\Models\Permission;
 use ali\Ticket\Models\Reply;
 use ali\Ticket\Models\Ticket;
 use ali\Ticket\Policies\ReplyPolicy;
@@ -30,6 +31,13 @@ class  TicketServiceProviders extends ServiceProvider
 
     public function boot()
     {
+
+        config()->set('sidebar.items.tickets', [
+            "icon" => "i-tickets",
+            "title" => "تیکت ها",
+            "url" => route("tickets.index"),
+
+        ]);
 
     }
 

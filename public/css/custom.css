@@ -125,6 +125,10 @@
     margin-top: 0px;
     margin-right: -74px;
 }
+.transition-ticket-body pre, .transition-comment-body pre{
+    font-family: irs;
+}
+
 
 /************************************* start bootstrap change style */
 
