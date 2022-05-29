@@ -1,5 +1,6 @@
 <?php
 
+use ali\Ticket\Models\Ticket;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,10 +17,10 @@ class CreateTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id");
-            $table->foreignId("ticketable_id");
-            $table->string("ticketable_type");
+/*            $table->foreignId("ticketable_id");
+            $table->string("ticketable_type");*/
             $table->string("title");
-            $table->enum("status", ["close", "open", "pending"])->default("open");
+            $table->enum("status", Ticket::$statuses)->default(Ticket::STATUS_OPEN);
             $table->timestamps();
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
         });

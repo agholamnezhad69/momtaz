@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
 {
+    protected $guarded = [];
     protected $table = "ticket_replies";
 
     public function user()
