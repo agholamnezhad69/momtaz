@@ -16,9 +16,13 @@ class TicketRepo
         ]);
     }
 
-    public function paginateAll()
+    public function paginateAll($userId = null)
     {
-        return Ticket::query()->paginate();
+        $query = Ticket::query();
+        if ($userId)
+            $query->where('user_id', $userId);
+
+        return $query->latest()->paginate();
     }
 
     public function findOrFailWithReplies($ticketId)

@@ -3,6 +3,7 @@
 namespace ali\Ticket\Http\Controllers;
 
 use ali\Media\Services\MediaFileService;
+use ali\RolePermissions\Models\Permission;
 use ali\Ticket\Http\Requests\ReplyRequest;
 use ali\Ticket\Http\Requests\TicketRequest;
 use ali\Ticket\Models\Ticket;
@@ -18,7 +19,12 @@ class TicketController extends Controller
 
     public function index(TicketRepo $ticketRepo)
     {
-        $tickets = $ticketRepo->paginateAll();
+        if (auth()->user()->can(Permission::PERMISSION_MANAGE_TICKETS)) {
+
+            $tickets = $ticketRepo->paginateAll();
+        } else {
+            $tickets = $ticketRepo->paginateAll(auth()->id());
+        }
         return view("Tickets::index", compact("tickets"));
     }
 
@@ -31,8 +37,9 @@ class TicketController extends Controller
 
     public function show($ticketId, TicketRepo $ticketRepo)
     {
-
         $ticket = $ticketRepo->findOrFailWithReplies($ticketId);
+        $this->authorize("show", $ticket);
+
 
         return view("Tickets::show", compact('ticket'));
 
@@ -55,16 +62,18 @@ class TicketController extends Controller
     public function reply(Ticket $ticket, ReplyRequest $replyRequest)
     {
 
+        $this->authorize("show", $ticket);
         ReplyService::store($ticket, $replyRequest->body, $replyRequest->attachment);
         newFeedbacks();
         return redirect()->route("tickets.show", $ticket->id);
 
     }
 
-    public function close($ticketId, TicketRepo $ticketRepo)
+    public function close(Ticket $ticket, TicketRepo $ticketRepo)
     {
 
-        $ticketRepo->setStatus($ticketId, Ticket::STATUS_CLOSE);
+        $this->authorize("show", $ticket);
+        $ticketRepo->setStatus($ticket->id, Ticket::STATUS_CLOSE);
         newFeedbacks();
         return redirect()->route("tickets.index");
 
