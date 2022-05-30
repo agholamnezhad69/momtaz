@@ -60,6 +60,15 @@ class TicketController extends Controller
         return redirect()->route("tickets.show", $ticket->id);
 
     }
+
+    public function close($ticketId, TicketRepo $ticketRepo)
+    {
+
+        $ticketRepo->setStatus($ticketId, Ticket::STATUS_CLOSE);
+        newFeedbacks();
+        return redirect()->route("tickets.index");
+
+    }
 }
 
 

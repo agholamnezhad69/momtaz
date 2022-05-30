@@ -55,9 +55,12 @@
                         <td>{{$ticket->updated_at}}</td>
                         <td class="text-info">@lang($ticket->status)</td>
                         <td>
-                            <a href="#">بستن تیکت</a>
-                            <a href="" onclick="deleteItem(event, '{{ route('tickets.destroy', $ticket->id) }}')"
-                               class="item-delete mlg-15" title="حذف"></a>
+                            <a href="{{route("tickets.close",$ticket->id)}}">بستن تیکت</a>
+
+                            @can(\ali\RolePermissions\Models\Permission::PERMISSION_MANAGE_TICKETS)
+                                <a href="" onclick="deleteItem(event, '{{ route('tickets.destroy', $ticket->id) }}')"
+                                   class="item-delete mlg-15" title="حذف"></a>
+                            @endcan
 
                         </td>
                     </tr>

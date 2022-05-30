@@ -39,7 +39,6 @@ class  TicketServiceProviders extends ServiceProvider
             "icon" => "i-tickets",
             "title" => "تیکت ها",
             "url" => route("tickets.index"),
-
         ]);
 
     }
