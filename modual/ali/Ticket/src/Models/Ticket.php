@@ -12,7 +12,7 @@ class Ticket extends Model
     const  STATUS_OPEN = "open";
     const  STATUS_CLOSE = "close";
     const  STATUS_PENDING = "pending";
-    const  STATUS_REPLIED = "Replied";
+    const  STATUS_REPLIED = "replied";
 
     static $statuses = [
 

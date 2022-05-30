@@ -3,7 +3,7 @@
 namespace ali\Ticket\Repositories;
 
 use ali\Ticket\Models\Ticket;
-use Illuminate\Database\Eloquent\Model;
+
 
 class TicketRepo
 {
@@ -26,6 +26,14 @@ class TicketRepo
 
         return Ticket::query()->with('ticketReplies')->findOrFail($ticketId);
 
+
+    }
+
+    public function setStatus($ticketId, $status)
+    {
+        return Ticket::query()->where('id', $ticketId)->update([
+            "status" => $status
+        ]);
 
     }
 

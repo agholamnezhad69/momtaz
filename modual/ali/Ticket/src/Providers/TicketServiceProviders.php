@@ -20,10 +20,13 @@ class  TicketServiceProviders extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', "Tickets");
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadJsonTranslationsFrom(__DIR__ . '/../Resources/Lang');
 
         Route::middleware('web')
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../Routes/web.php');
+
+
         Gate::policy(Ticket::class, TicketPolicy::class);
         Gate::policy(Reply::class, ReplyPolicy::class);
 

@@ -46,9 +46,13 @@
         </div>
         <div class="answer-comment">
             <p class="p-answer-comment">ارسال پاسخ</p>
-            <form action="" method="post">
-                <textarea class="textarea" placeholder="متن پاسخ نظر"></textarea>
-                <button class="btn btn-brand">ارسال پاسخ</button>
+            <form action="{{route('tickets.reply',$ticket->id)}}" method="post" enctype="multipart/form-data" class="padding-30">
+                @csrf
+                <x-textarea placeholder="متن تیکت" name="body" class="text" required/>
+
+                <x-file name="attachment" placeholder="آپلود فایل پیوست"/>
+
+                <button class="btn btn-brand">ایجاد تیکت</button>
             </form>
         </div>
     </div>
