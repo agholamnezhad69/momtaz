@@ -6,6 +6,7 @@ use ali\Category\Repositories\CategoryRepo;
 use ali\Common\Responses\AjaxResponses;
 use ali\Course\Http\Requests\CourseRequest;
 use ali\Course\Models\Course;
+use ali\Course\Models\Lesson;
 use ali\Course\Repositories\CourseRepo;
 
 use ali\Course\Repositories\LessonRepo;
@@ -61,7 +62,22 @@ class CourseController extends Controller
     public function destroy($id, CourseRepo $courseRepo)
     {
         $this->authorize('delete', Course::class);
+
+
         $course = $courseRepo->findById($id);
+
+
+        if ($course->lessons) {
+
+            foreach ($course->lessons as $lesson) {
+
+                if ($lesson->media) {
+                    $lesson->media->delete();
+                }
+            }
+
+        }
+
         if ($course->banner) {
             $course->banner->delete();
         }
@@ -185,7 +201,6 @@ class CourseController extends Controller
             newFeedbacks("عملیات موفق آمیز ", "شما با موفقیت در دوره ثبت نام کردید", 'success');
             return redirect($course->path());
         }
-
 
 
         $payment = PaymentService::generate($amount, $course, auth()->user(), $course->teacher_id, $discounts);

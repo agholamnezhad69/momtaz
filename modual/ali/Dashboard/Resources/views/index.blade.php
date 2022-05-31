@@ -88,7 +88,9 @@
                         <td><a href="">{{ number_format($payment->amount)}}</a></td>
                         <td><a href="">{{number_format($payment->seller_share)}}</a></td>
                         <td><a href="">{{number_format($payment->site_share)}}</a></td>
-                        <td><a href="">{{$payment->paymentable->title}}</a></td>
+                        <td>
+                            <a href="">{{isset($payment->paymentable->title)?$payment->paymentable->title :"این دوره حذف شده"}}</a>
+                        </td>
                         <td><a href=""> {{ createJalaliFromCarbon($payment->created_at)}}</a></td>
                         <td class="{{$payment->status == \ali\Payment\Models\Payment::STATUS_SUCCESS ? 'text-success':'text-error' }}">
                             @lang($payment->status)
@@ -101,6 +103,7 @@
             </table>
         </div>
     </div>
+
 @endsection
 
 @section('js')

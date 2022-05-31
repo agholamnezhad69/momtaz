@@ -91,7 +91,9 @@
                         <td><a href="">{{number_format($payment->seller_share)}}</a></td>
                         <td><a href="">{{number_format($payment->site_share)}}</a></td>
 
-                        <td><a href="">{{$payment->paymentable->title}}</a></td>
+                        <td>
+                            <a href="">{{isset($payment->paymentable->title) ? $payment->paymentable->title :'این دوره پاک شده'  }}</a>
+                        </td>
 
                         <td><a href=""> {{\Morilog\Jalali\Jalalian::fromCarbon($payment->created_at)}}</a></td>
                         <td>

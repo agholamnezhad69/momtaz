@@ -9,7 +9,6 @@ class Media extends Model
 {
 
     protected $casts = [
-
         'files' => 'json'
     ];
 

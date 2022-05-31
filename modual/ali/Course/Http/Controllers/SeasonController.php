@@ -56,7 +56,6 @@ class SeasonController extends Controller
     public function destroy($seasonId)
     {
         $season = $this->seasonRepo->findById($seasonId);
-
         $this->authorize('delete', $season);
         $season = $this->seasonRepo->findById($seasonId);
         $season->delete();

@@ -2,10 +2,12 @@
 
 namespace ali\Ticket\Http\Controllers;
 
+use ali\Common\Responses\AjaxResponses;
 use ali\Media\Services\MediaFileService;
 use ali\RolePermissions\Models\Permission;
 use ali\Ticket\Http\Requests\ReplyRequest;
 use ali\Ticket\Http\Requests\TicketRequest;
+use ali\Ticket\Models\Reply;
 use ali\Ticket\Models\Ticket;
 use ali\Ticket\Repositories\ReplyRepo;
 use ali\Ticket\Repositories\TicketRepo;
@@ -76,6 +78,26 @@ class TicketController extends Controller
         $ticketRepo->setStatus($ticket->id, Ticket::STATUS_CLOSE);
         newFeedbacks();
         return redirect()->route("tickets.index");
+
+
+    }
+
+    public function destroy(Ticket $ticket)
+    {
+        $this->authorize('delete', $ticket);
+
+        $hasAttachment = Reply::query()
+            ->where('ticket_id', $ticket->id)
+            ->whereNotNull("media_id")
+            ->get();
+
+        foreach ($hasAttachment as $reply) {
+            $reply->media->delete();
+        }
+
+        $ticket->delete();
+        return AjaxResponses::SuccessResponse();
+
 
     }
 }

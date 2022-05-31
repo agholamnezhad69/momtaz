@@ -20,8 +20,9 @@
                 <tbody>
                 @foreach($purchases as $purchase)
                     <tr>
-                        <td><a href="{{$purchase->paymentable->path()}}"
-                               target="_blank">{{$purchase->paymentable->title}}</a></td>
+                        <td><a href="{{isset($purchase->paymentable->title)? $purchase->paymentable->path() : ''}}"
+                               target="_blank">{{isset($purchase->paymentable->title) ?$purchase->paymentable->title :"دوره حذف شده"}}</a>
+                        </td>
                         <td>{{createJalaliFromCarbon($purchase->created_at)}}</td>
                         <td>{{number_format($purchase->amount)}}</td>
                         <td class="{{$purchase->status == \ali\Payment\Models\Payment::STATUS_SUCCESS ? 'text-success':'text-error' }}">@lang($purchase->status)</td>

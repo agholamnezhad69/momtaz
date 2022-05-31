@@ -28,7 +28,6 @@ class CreateCoursesTable extends Migration
             $table->foreign('teacher_id')->references('id')->on('users')->onDelete("CASCADE");
             $table->foreign('banner_id')->references('id')->on('media')->onDelete("SET NULL");
 
-
         });
 
         Schema::enableForeignKeyConstraints();

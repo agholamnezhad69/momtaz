@@ -35,7 +35,6 @@ class CreateLessonsTable extends Migration
             $table->foreign('season_id')->references('id')->on('seasons')->onDelete('SET NULL');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
             $table->foreign('media_id')->references('id')->on('media')->onDelete('SET NULL');
-
         });
     }
 
