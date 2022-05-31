@@ -37,6 +37,9 @@
                         </pre>
                         <div>
 
+                            @if($reply->media_id)
+                                <a class="attachement" href="{{$reply->attachmentLink()}}">دانلود فایل پیوست</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -46,7 +49,8 @@
         </div>
         <div class="answer-comment">
             <p class="p-answer-comment">ارسال پاسخ</p>
-            <form action="{{route('tickets.reply',$ticket->id)}}" method="post" enctype="multipart/form-data" class="padding-30">
+            <form action="{{route('tickets.reply',$ticket->id)}}" method="post" enctype="multipart/form-data"
+                  class="padding-30">
                 @csrf
                 <x-textarea placeholder="متن تیکت" name="body" class="text" required/>
 

@@ -121,12 +121,25 @@
     position: relative;
     left: 40px;
 }
+
 .header__logo {
     margin-top: 0px;
     margin-right: -74px;
 }
-.transition-ticket-body pre, .transition-comment-body pre{
+
+.transition-ticket-body pre, .transition-comment-body pre {
     font-family: irs;
+}
+
+.attachement {
+    display: inline-block;
+    margin: 26px;
+    font-size: 13px;
+    background-color: #24d94b;
+    padding: 11px;
+    border-radius: 24px;
+    color: #fff;
+    font-weight: 800;
 }
 
 

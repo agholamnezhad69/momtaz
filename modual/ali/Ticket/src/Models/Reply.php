@@ -5,6 +5,7 @@ namespace ali\Ticket\Models;
 use ali\Media\Models\Media;
 use ali\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\URL;
 
 
 class Reply extends Model
@@ -30,6 +31,15 @@ class Reply extends Model
     {
 
         return $this->belongsTo(Media::class);
+
+    }
+
+    public function attachmentLink()
+    {
+        if ($this->media_id)
+
+            return URL::temporarySignedRoute('media.download', now()->addDay(), ['media' => $this->media_id]);
+
 
     }
 
