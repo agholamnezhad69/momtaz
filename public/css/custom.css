@@ -142,6 +142,25 @@
     font-weight: 800;
 }
 
+.btn {
+    padding: 7px 25px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    font-weight: 500;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
 
 /************************************* start bootstrap change style */
 
@@ -167,6 +186,7 @@ html {
 }
 
 .t-header-search .btn-success {
+    display: inline-block;
     margin-top: 10px;
 }
 

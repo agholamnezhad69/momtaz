@@ -13,17 +13,25 @@ use ali\Ticket\Repositories\ReplyRepo;
 use ali\Ticket\Repositories\TicketRepo;
 use ali\Ticket\Services\ReplyService;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 use Illuminate\Http\UploadedFile;
 
 class TicketController extends Controller
 {
 
-    public function index(TicketRepo $ticketRepo)
+    public function index(TicketRepo $ticketRepo, Request $request)
     {
-        if (auth()->user()->can(Permission::PERMISSION_MANAGE_TICKETS)) {
 
-            $tickets = $ticketRepo->paginateAll();
+        if (auth()->user()->can(Permission::PERMISSION_MANAGE_TICKETS)) {
+            $tickets = $ticketRepo
+                ->joinUsers()
+                ->searchEmail($request->email)
+                ->searchName($request->name)
+                ->searchTitle($request->title)
+                ->searchDate($request->date)
+                ->searchStatus($request->status)
+                ->paginate();
         } else {
             $tickets = $ticketRepo->paginateAll(auth()->id());
         }
