@@ -16,14 +16,30 @@ use Illuminate\Http\Request;
 class SettlementController extends Controller
 {
 
-    public function index(SettlementRepo $settlementRepo)
+    public function index(Request $request, SettlementRepo $settlementRepo)
     {
 
         $this->authorize('index', Settlement::class);
         if (auth()->user()->can([Permission::PERMISSION_MANAGE_SETTLEMENT]))
-            $settlements = $settlementRepo->paginate();
+            $settlements = $settlementRepo
+                ->joinUsers()
+                ->searchToCart($request->toCart)
+                ->searchFromCart($request->fromCart)
+                ->searchDate($request->date)
+                ->searchEmail($request->email)
+                ->searchName($request->name)
+                ->searchStatus($request->status)
+                ->paginate();
         else
-            $settlements = $settlementRepo->paginateUserSettlements(auth()->id());
+            $settlements = $settlementRepo
+                ->joinUsers()
+                ->searchToCart($request->toCart)
+                ->searchFromCart($request->fromCart)
+                ->searchDate($request->date)
+                ->searchEmail($request->email)
+                ->searchName($request->name)
+                ->searchStatus($request->status)
+                ->paginateUserSettlements(auth()->id());
 
         return view("Payment::settlements.index", compact('settlements'));
 
@@ -44,6 +60,7 @@ class SettlementController extends Controller
 
     public function store(SettlementRequest $settlementRequest, SettlementRepo $settlementRepo)
     {
+//        dd($settlementRequest->all());
         $this->authorize('store', Settlement::class);
 
         if ($settlementRepo->getLatestPendingSettlement(auth()->id())) {

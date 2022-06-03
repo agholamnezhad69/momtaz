@@ -9,6 +9,80 @@ use Illuminate\Support\Str;
 
 class CourseRepo
 {
+    private $query;
+
+    public function __construct()
+    {
+        $this->query = Course::query();
+    }
+
+    public function joinTeacher()
+    {
+        $this->query
+            ->join("users", "courses.teacher_id", "users.id")
+            ->join("categories", "courses.category_id", "categories.id")
+            ->select("courses.*", "users.id as userId", "users.name", "users.email");
+
+        return $this;
+    }
+
+    public function searchCourseTitle($title)
+    {
+        if (!is_null($title))
+            $this->query
+                ->where('courses.title', "like", "%" . $title . "%");
+
+        return $this;
+    }
+
+    public function searchCoursePriority($priority)
+    {
+        if (!is_null($priority))
+            $this->query
+                ->where('priority', "=", $priority);
+
+        return $this;
+    }
+
+    public function searchCoursePrice($price)
+    {
+        if (!is_null($price))
+            $this->query
+                ->where('price', "=", $price);
+
+        return $this;
+    }
+
+    public function searchCourseTeacher($teacherName)
+    {
+        if (!is_null($teacherName))
+            $this->query
+                ->where('name', "like", "%" . $teacherName . "%");
+
+        return $this;
+
+    }
+
+    public function searchCategory($categoryId)
+    {
+
+        if (!is_null($categoryId))
+            $this->query
+                ->where("categories.id", "=", $categoryId);
+
+        return $this;
+
+    }
+    public function searchStatus($status)
+    {
+
+        if (!is_null($status))
+            $this->query
+                ->where("confirmation_status", "=", $status);
+
+        return $this;
+
+    }
 
     public function store($values)
     {
@@ -36,7 +110,7 @@ class CourseRepo
     public function paginate()
     {
 
-        return Course::paginate();
+        return $this->query->latest()->paginate();
 
     }
 
@@ -84,7 +158,7 @@ class CourseRepo
     public function getCourseByTeacherId()
     {
 
-        return Course::query()->where('teacher_id', auth()->id())->get();
+        return $this->query->where('teacher_id', auth()->id())->get();
 
 
     }
@@ -154,7 +228,6 @@ class CourseRepo
         return $query->latest()->get();
 
     }
-
 
 
 }

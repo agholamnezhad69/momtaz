@@ -6,7 +6,7 @@
 
 
 @section('content')
-    
+
     <div class="main-content tickets">
         <div class="tab__box">
             <div class="tab__items">

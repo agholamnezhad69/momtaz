@@ -53,7 +53,7 @@ class TicketRepo
     {
         $this->query
             ->join("users", "tickets.user_id", "users.id")
-            ->select("tickets.*", "users.id", "users.name", "users.email");
+            ->select("tickets.*", "users.id as userId", "users.name", "users.email");
 
         return $this;
     }

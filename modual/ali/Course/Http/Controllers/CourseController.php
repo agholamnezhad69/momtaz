@@ -18,24 +18,43 @@ use ali\RolePermissions\Models\Permission;
 use ali\User\Http\Requests\UpdateUserRequest;
 use ali\User\Repositories\UserRepo;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 
 class CourseController extends Controller
 {
 
 
-    public function index(CourseRepo $courseRepo)
+    public function index(Request $request, CourseRepo $courseRepo, CategoryRepo $categoryRepo)
     {
         $this->authorize('index', Course::class);
 
         if (auth()->user()->hasAnyPermission([Permission::PERMISSION_MANAGE_COURSES, Permission::PERMISSION_SUPER_ADMIN])) {
-            $courses = $courseRepo->paginate();
+
+            $courses = $courseRepo
+                ->joinTeacher()
+                ->searchCourseTitle($request->title)
+                ->searchCoursePriority($request->priority)
+                ->searchCoursePrice($request->price)
+                ->searchCourseTeacher($request->teacher_name)
+                ->searchCategory($request->category_id)
+                ->searchStatus($request->status)
+                ->paginate();
 
         } else {
 
-            $courses = $courseRepo->getCourseByTeacherId();
+            $courses = $courseRepo
+                ->joinTeacher()
+                ->searchCourseTitle($request->title)
+                ->searchCoursePriority($request->priority)
+                ->searchCoursePrice($request->price)
+                ->searchCourseTeacher($request->teacher_name)
+                ->searchCategory($request->category_id)
+                ->searchStatus($request->status)
+                ->getCourseByTeacherId();
         }
-        return view("Courses::index", compact("courses"));
+        $categories = $categoryRepo->all();
+        return view("Courses::index", compact("courses", "categories"));
     }
 
     public function create(UserRepo $userRepo, CategoryRepo $categoryRepo)
@@ -50,6 +69,9 @@ class CourseController extends Controller
 
     public function store(CourseRequest $request, CourseRepo $courseRepo)
     {
+
+
+        $this->authorize('store', [Course::class, $request->teacher_id]);
         $request->request->add(['banner_id' =>
             MediaFileService::publicUpload($request->file('image'))->id]);
         $courseRepo->store($request);
@@ -88,6 +110,7 @@ class CourseController extends Controller
 
     public function edit($id, UserRepo $userRepo, CategoryRepo $categoryRepo, CourseRepo $courseRepo)
     {
+
         $course = $courseRepo->findById($id);
         $this->authorize('edit', $course);
         $teachers = $userRepo->getTeachers();

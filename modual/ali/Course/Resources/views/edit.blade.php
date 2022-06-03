@@ -38,16 +38,33 @@
                 </div>
 
 
+{{--                <x-select name="teacher_id" required>--}}
+{{--                    <option value="">انتخاب مدرس دوره</option>--}}
+{{--                    @foreach($teachers as $row)--}}
+{{--                        <option value="{{$row->id}}"--}}
+{{--                                @if($row->id ==$course->teacher_id)  selected @endif >--}}
+{{--                            {{$row->name}}--}}
+{{--                        </option>--}}
+{{--                    @endforeach--}}
+
+{{--                </x-select>--}}
+
                 <x-select name="teacher_id" required>
                     <option value="">انتخاب مدرس دوره</option>
-                    @foreach($teachers as $row)
-                        <option value="{{$row->id}}"
-                                @if($row->id ==$course->teacher_id)  selected @endif >
-                            {{$row->name}}
-                        </option>
-                    @endforeach
+                    @can([\ali\RolePermissions\Models\Permission::PERMISSION_SUPER_ADMIN,\ali\RolePermissions\Models\Permission::PERMISSION_MANAGE_COURSES])
+                        @foreach($teachers as $row)
+                            <option value="{{$row->id}}"
+                                    @if($row->id ==$course->teacher_id)  selected @endif >
+                                {{$row->name}}
+                            </option>
+                        @endforeach
+                    @else
+                        <option value="{{auth()->id()}}">{{auth()->user()->name}}</option>
+                    @endcan
 
                 </x-select>
+
+
 
                 <x-tag-select name="tags"/>
 

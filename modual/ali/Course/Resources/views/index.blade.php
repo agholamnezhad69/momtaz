@@ -12,13 +12,57 @@
         <div class="col-12 margin-left-10 margin-bottom-15 border-radius-3">
             <div class="tab__box">
                 <div class="tab__items">
-                    <a class="tab__item is-active" href="courses.html">لیست دوره ها</a>
-                    <a class="tab__item" href="approved.html">دوره های تایید شده</a>
-                    <a class="tab__item" href="new-course.html">دوره های تایید نشده</a>
-                    <a class="tab__item" href="{{route('courses.create')}}">ایجاد دوره جدید</a>
+                    <a class="tab__item {{request()->status=="" ? "is-active":""}}" href="{{route("courses.index")}}">لیست
+                        دوره ها</a>
+
+                    <a class="tab__item {{request()->status==\ali\Course\Models\Course::CONFIRMATION_STATUS_ACCEPTED ? "is-active":""}}"
+                       href="?{{ request()->getQueryString() }}&status={{\ali\Course\Models\Course::CONFIRMATION_STATUS_ACCEPTED}}">دوره
+                        های تایید شده</a>
+
+                    <a class="tab__item {{request()->status==\ali\Course\Models\Course::CONFIRMATION_STATUS_REJECTED  ? "is-active":""}}"
+                       href="?{{ request()->getQueryString() }}&status={{\ali\Course\Models\Course::CONFIRMATION_STATUS_REJECTED}}">دوره
+                        های تایید
+                        نشده</a>
+
+                    <a class="tab__item {{request()->status==\ali\Course\Models\Course::CONFIRMATION_STATUS_PENDING? "is-active":""}}"
+                       href="?{{ request()->getQueryString() }}&status={{\ali\Course\Models\Course::CONFIRMATION_STATUS_PENDING}}">دوره
+                        های در حال
+                        بررسی</a>
+
+                    <a class="tab__item " href="{{route('courses.create')}}">ایجاد
+                        دوره جدید</a>
                 </div>
             </div>
+            <div class="bg-white padding-20">
+                <div class="t-header-search">
+                    <form action="{{route("courses.index")}}">
+                        <div class="t-header-searchbox font-size-13">
+                            <div type="text" class="text search-input__box ">جستجوی دوره</div>
+                            <div class="t-header-search-content " style="display: none;">
+                                <x-select name="category_id" required>
+                                    <option value="">دسته بندی</option>
+                                    @foreach($categories as $row)
+                                        <option value="{{$row->id}}"
+                                                @if($row->id==request()->category_id) selected @endif >
+                                            {{$row->title}}</option>
+                                    @endforeach
 
+                                </x-select>
+                                <input type="text" name="title" value="{{request()->title}}" class="text"
+                                       placeholder="نام دوره">
+                                <input type="text" name="priority" value="{{request()->priority}}" class="text"
+                                       placeholder="ردیف">
+                                <input type="text" name="price" value="{{request()->price}}" class="text"
+                                       placeholder="قیمت">
+                                <input type="text" name="teacher_name" value="{{request()->teacher_name}}" class="text"
+                                       placeholder="نام مدرس">
+
+                                <input type="submit" class="btn btn-success" value="جستجو"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <div class="table__box">
                 <table class="table">
                     <thead role="rowgroup">
