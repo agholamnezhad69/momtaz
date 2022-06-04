@@ -74,6 +74,7 @@
                         <th>بنبر</th>
                         <th>عنوان</th>
                         <th>مدرس</th>
+                        <th>دسته</th>
                         <th>قیمت</th>
                         <th>جزئیات</th>
                         <th>نوع</th>
@@ -92,6 +93,7 @@
                             <td><img width="80" src="{{$row->banner->thumb}}" alt=""></td>
                             <td><a href="">{{$row->title}}</a></td>
                             <td><a href="">{{$row->teacher->name}}</a></td>
+                            <td><a href="">{{$row->category->title}}</a></td>
                             <td><a href="">{{$row->price}}</a></td>
                             <td><a class="text-error bold-900" href="{{route('courses.details',$row->id)}}">مشاهده</a>
                             </td>
