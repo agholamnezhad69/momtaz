@@ -15,6 +15,7 @@
       <sourceFolder url="file://$MODULE_DIR$/modual/ali/Media" isTestSource="false" packagePrefix="ali\Media\" />
       <sourceFolder url="file://$MODULE_DIR$/modual/ali/Discount/src" isTestSource="false" packagePrefix="ali\Discount\" />
       <sourceFolder url="file://$MODULE_DIR$/modual/ali/Ticket/src" isTestSource="false" packagePrefix="ali\Ticket\" />
+      <sourceFolder url="file://$MODULE_DIR$/modual/ali/Comment/src" isTestSource="false" packagePrefix="ali\Comment\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/inflector" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mockery/mockery" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/php-text-template" />

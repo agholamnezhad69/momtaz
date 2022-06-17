@@ -185,6 +185,7 @@ return [
         \ali\Media\Providers\MediaServiceProviders::class,
         \ali\Discount\Providers\DiscountServiceProvider::class,
         \ali\Ticket\Providers\TicketServiceProviders::class,
+        \ali\Comment\Providers\CommentServiceProvider::class,
     ],
 
     /*
