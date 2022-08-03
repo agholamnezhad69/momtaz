@@ -3,6 +3,7 @@
 namespace ali\Course\Models;
 
 use ali\Category\Models\Category;
+use ali\Comment\Models\Comment;
 use ali\Course\Repositories\CourseRepo;
 use ali\Course\Repositories\LessonRepo;
 use ali\Discount\Models\Discount;
@@ -87,6 +88,13 @@ class Course extends Model
     public function tickets()
     {
         return $this->morphMany(Ticket::class, "ticketable");
+    }
+
+    public function comments()
+    {
+
+        return $this->morphMany(Comment::class, 'commentable');
+
     }
 
     public function getConfirmationStatusCssClass()
@@ -247,6 +255,7 @@ class Course extends Model
         return $this->morphToMany(Discount::class, 'discountable');
 
     }
+
 
 
 }
