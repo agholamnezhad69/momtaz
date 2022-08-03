@@ -84,9 +84,7 @@
     </div>
 @endsection
 
-@section('bootstrap_css')
-    <link rel="stylesheet" href="/assets/persianDataPicker/css/bootstrap.min.css">
-@endsection
+
 @section('css')
     <link rel="stylesheet" href="/assets/persianDataPicker/css/jquery.md.bootstrap.datetimepicker.style.css"/>
 @endsection

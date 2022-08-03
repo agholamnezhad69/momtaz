@@ -3,14 +3,15 @@
 @section('content')
     <form action="{{route('password.checkVerifyCode')}}" class="form" method="post">
         @csrf
-
-        <input type="hidden" name="email" value="{{request()->email}}">
+        {{--       {{dd( $errors)}}--}}
+        <input type="hidden" name="mobile" value="{{request()->mobile}}">
         <a class="account-logo" href="/">
             <img src="img/weblogo.png" alt="">
         </a>
+
         <div class="card-header">
-            <p class="activation-code-title">کد فرستاده شده به ایمیل <span>{{request()->email}}</span>
-                را وارد کنید . ممکن است ایمیل به پوشه spam فرستاده شده باشد
+            <p class="activation-code-title">کد فرستاده شده به تلفن همراه <span>{{request()->mobile}}</span>
+                را وارد کنید
             </p>
         </div>
         <div class="form-content form-content1">
@@ -21,23 +22,24 @@
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
+            @if(session()->has('message'))
+                <span class="invalid-feedback" role="alert">
+                                <strong>{{ session()->get('message') }}</strong>
+                 </span>
+            @endif
+
+
             <button class="btn i-t">تایید</button>
-            <a href="#" onclick="
-            event.preventDefault();
-            document.getElementById('resend-conde').submit();">
+            <a href="{{route("password.sendVerifyCodeEmail")}}?mobile={{request()->mobile}}">
                 ارسال مجدد کد فعالسازی
             </a>
+
         </div>
         <div class="form-footer">
             <a href="{{route('register')}}">صفحه ثبت نام</a>
         </div>
     </form>
 
-    <form id="resend-conde" action="{{route('verification.resend')}}" method="post">
-
-        @csrf
-
-    </form>
 
 @endsection
 

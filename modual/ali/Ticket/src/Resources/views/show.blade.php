@@ -52,7 +52,7 @@
             <form action="{{route('tickets.reply',$ticket->id)}}" method="post" enctype="multipart/form-data"
                   class="padding-30">
                 @csrf
-                <x-textarea placeholder="متن تیکت" name="body" class="text" required/>
+                <x-TextArea placeholder="متن تیکت" name="body" class="text" required/>
 
                 <x-file name="attachment" placeholder="آپلود فایل پیوست"/>
 

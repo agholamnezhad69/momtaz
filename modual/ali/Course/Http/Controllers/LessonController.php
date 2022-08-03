@@ -10,9 +10,12 @@ use ali\Course\Models\Lesson;
 use ali\Course\Repositories\CourseRepo;
 use ali\Course\Repositories\LessonRepo;
 use ali\Course\Repositories\SeasonRepo;
+use ali\Media\Models\Media;
+use ali\Media\Repositories\MediaRepo;
 use ali\Media\Services\MediaFileService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 
 class LessonController extends Controller
@@ -37,12 +40,27 @@ class LessonController extends Controller
 
     }
 
-    public function store($courseId, CourseRepo $courseRepo, LessonRequest $request)
+    public function store($courseId, CourseRepo $courseRepo, LessonRequest $request, MediaRepo $mediaRepo)
     {
+//        $course = $courseRepo->findById($courseId);
+//        $this->authorize('creatLesson', $course);
+//
+//        $request->request->add(["media_id" => MediaFileService::privateUpload($request->file('lesson_file'))->id]);
+//        $this->lessonRepo->store($courseId, $request);
+//        newFeedbacks();
+//        return redirect(route('courses.details', $courseId));
+
+
+
+
         $course = $courseRepo->findById($courseId);
         $this->authorize('creatLesson', $course);
 
-        $request->request->add(["media_id" => MediaFileService::privateUpload($request->file('lesson_file'))->id]);
+
+        //  $request->request->add(["media_id" => MediaFileService::privateUploadVideoAddress($request->video)->id]);
+
+        $request->request->add(["media_id" => $mediaRepo->privateUpload($request->filePath)->id]);
+
         $this->lessonRepo->store($courseId, $request);
         newFeedbacks();
         return redirect(route('courses.details', $courseId));
@@ -63,22 +81,25 @@ class LessonController extends Controller
         return view("Courses::lesson.edit", compact('course', 'seasons', 'lesson'));
     }
 
-    public function update($courseId, $lessonId, LessonRequest $request)
+    public function update($courseId, $lessonId, LessonRequest $request, MediaRepo $mediaRepo)
     {
         $lesson = $this->lessonRepo->findById($lessonId);
         $this->authorize('edit', $lesson);
 
 
-        if ($request->hasFile('lesson_file')) {
+        if ($request->video == $lesson->media->filename) {
 
-            $request->request->add(['media_id' => MediaFileService::privateUpload($request->file('lesson_file'))->id]);
+            $request->request->add(["media_id" => $lesson->media_id]);
+
+        } else {
+            $request->request->add(["media_id" => $mediaRepo->privateUpload($request->filePath)->id]);
             if ($lesson->media) {
 
                 $lesson->media->delete();
             }
-        } else {
-            $request->request->add(['media_id' => $lesson->media_id]);
         }
+
+
         $this->lessonRepo->update($lessonId, $courseId, $request);
 
         newFeedbacks();
@@ -111,6 +132,7 @@ class LessonController extends Controller
 
                 $lesson->media->delete();
             }
+
             $lesson->delete();
         }
         newFeedbacks();
@@ -190,8 +212,6 @@ class LessonController extends Controller
         }
         return AjaxResponses::failResponse();
     }
-
-
 
 
 }

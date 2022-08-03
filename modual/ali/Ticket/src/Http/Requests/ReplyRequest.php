@@ -21,7 +21,9 @@ class ReplyRequest extends FormRequest
 
         return [
             "body" => "required",
-            "attachment" => "nullable|file|mimes:avi,mkv,mp4,zip,rar|max:10240",
+//            "attachment" => "nullable|file|mimes:avi,mkv,mp4,zip,rar|max:10240",
+//            "attachment" => "nullable|file|mimes:jpg,png,jpeg|max:10240",
+               "attachment" => "nullable|file|mimes:zip,rar,jpg,png,jpeg|max:10240",
         ];
 
     }

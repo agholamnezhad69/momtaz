@@ -44,7 +44,7 @@
 
                 <x-file name="image" placeholder="آپلود بنر کاربر" :value="$user->image"/>
                 <x-input name="password" type="password" placeholder="پسورد جدید " value=""/>
-                <x-textarea name="bio" placeholder="بیوگرافی " value="{{$user->bio}}"/>
+                <x-TextArea name="bio" placeholder="بیوگرافی " value="{{$user->bio}}"/>
 
 
                 <br>

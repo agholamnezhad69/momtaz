@@ -19,6 +19,8 @@ class CourseRequest extends FormRequest
     public function rules()
     {
 
+
+
         $rules = [
             "title" => "required|min:3|max:190",
             "slug" => "required|min:3|max:190|unique:courses,slug",

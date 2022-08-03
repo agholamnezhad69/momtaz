@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.4.25",
+        "alexusmai/laravel-file-manager": "^2.5",
         "ali/common": "dev-main",
         "ali/front": "dev-main",
         "ali/payment": "dev-main",
@@ -16,6 +17,7 @@
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.7",
+        "kavenegar/php": "^1.2",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
@@ -37,11 +39,11 @@
         },
         {
             "type": "path",
-            "url": "modual/ali/Front"
+            "url": "modual/ali/Payment"
         },
         {
             "type": "path",
-            "url": "modual/ali/Payment"
+            "url": "modual/ali/Front"
         }
     ],
     "config": {

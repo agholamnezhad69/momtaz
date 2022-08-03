@@ -11,6 +11,8 @@ use phpDocumentor\Reflection\Types\True_;
 
 class CoursePolicy
 {
+
+
     use HandlesAuthorization;
 
 
@@ -33,7 +35,7 @@ class CoursePolicy
             $user->hasPermissionTo(Permission::PERMISSION_MANAGE_OWN_COURSES)) return true;
     }
 
-    public function store($user,$teacherId)
+    public function store($user, $teacherId)
     {
 
         if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_COURSES)) return true;

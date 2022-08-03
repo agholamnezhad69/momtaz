@@ -38,10 +38,10 @@
             <div class="t-header-search">
                 <form action="">
                     <div class="t-header-searchbox font-size-13">
-                        <div type="text" class="text search-input__box ">جستجوی دوره</div>
+                        <div type="text" class="text search-input__box ">جستجوی تراکنش ها</div>
                         <div class="t-header-search-content ">
-                            <input type="text" class="text" name="email" value="{{request("email")}}"
-                                   placeholder="ایمیل">
+                            <input type="text" class="text" name="mobile" value="{{request("mobile")}}"
+                                   placeholder="موبایل">
                             <input type="text" class="text" name="amount" value="{{request("amount")}}"
                                    placeholder="مبلغ به تومان">
                             <input type="text" class="text" name="invoice_id" value="{{request("invoice_id")}}"
@@ -66,7 +66,7 @@
                     <th>شناسه پرداخت</th>
                     <th>شماره تراکنش</th>
                     <th>نام و نام خانوادگی</th>
-                    <th>ایمیل پرداخت کننده</th>
+                    <th>شماره تلفن</th>
                     <th>مبلغ (تومان)</th>
                     <th>درامد شما</th>
                     <th>درامد سایت</th>
@@ -84,9 +84,14 @@
                     <tr role="row">
                         <td><a href=""> {{$payment->id}}</a></td>
                         <td><a href="">{{$payment->invoice_id}}</a></td>
-                        <td><a href="">{{$payment->buyer->name}}</a></td>
-                        <td><a href="">{{$payment->buyer->email}}</a></td>
-
+                        {{--                        <td><a href="">{{$payment->buyer->name}}</a></td>--}}
+                        <td>
+                            <a href="">{{isset($payment->buyer->name) ? $payment->buyer->name :'بدون نام'  }}</a>
+                        </td>
+                        {{--                        <td><a href="">{{$payment->buyer->email}}</a></td>--}}
+                        <td>
+                            <a href="">{{isset($payment->buyer->mobile) ? $payment->buyer->mobile :'بدون شماره'  }}</a>
+                        </td>
                         <td><a href="">{{number_format($payment->amount)}}</a></td>
                         <td><a href="">{{number_format($payment->seller_share)}}</a></td>
                         <td><a href="">{{number_format($payment->site_share)}}</a></td>
@@ -116,14 +121,15 @@
 
                 </tbody>
             </table>
-            {{$payments->render()}}
+            {{--            {{$payments->render()}}--}}
+            {{--            {{ $payments->links() }}--}}
+            {{ $payments->render('pagination::bootstrap-4') }}
+            {{--            {{ $payments->links('pagination::bootstrap-4') }}--}}
         </div>
     </div>
 @endsection
 
-@section('bootstrap_css')
-    <link rel="stylesheet" href="/assets/persianDataPicker/css/bootstrap.min.css">
-@endsection
+
 @section('css')
     <link rel="stylesheet" href="/assets/persianDataPicker/css/jquery.md.bootstrap.datetimepicker.style.css"/>
 @endsection

@@ -8,11 +8,11 @@
         <div class="form-content form-account">
             @csrf
 
-            <input id="password" type="password" class="txt txt-l @error('password') is-invalid @enderror"
+            <input style="direction: ltr" id="password" type="password" class="txt txt-l @error('password') is-invalid @enderror"
                    placeholder="رمز عبور جدید *"
                    name="password" required autocomplete="new-password"
             >
-            <input  id="password-confirm" type="password" class="txt txt-l @error('password') is-invalid @enderror"
+            <input style="direction: ltr"  id="password-confirm" type="password" class="txt txt-l @error('password') is-invalid @enderror"
                     placeholder="تایید رمز عبور جدید *"
                     name="password_confirmation" required autocomplete="new-password"
             >

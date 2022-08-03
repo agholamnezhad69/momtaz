@@ -1,6 +1,8 @@
 <?php
 
-Route::group([], function ($route) {
+Route::group([
+    'middleware' => ['web', 'auth', 'verified']
+], function ($route) {
 
 
     $route->any('payments/callback', 'PaymentController@callback')->name('payments.callback');

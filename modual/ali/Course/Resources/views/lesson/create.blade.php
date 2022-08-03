@@ -17,12 +17,11 @@
                 @csrf
 
 
-
                 <x-input name="title" type="text" placeholder="عنوان جلسه جدید * " required/>
 
                 <x-input type="text" name="slug" class="text-left" placeholder="  نام انگلیسی درس اختیاری"/>
                 <x-input type="number" name="time" class="text-left" placeholder="مدت زمان جلسه *" required/>
-                <x-input type="number" name="number" class="text-left" placeholder="شماره جلسه" />
+                <x-input type="number" name="number" class="text-left" placeholder="شماره جلسه"/>
                 @if(count($seasons))
                     <x-select name="season_id" required>
                         <option value="">انتخاب فصل *</option>
@@ -50,10 +49,26 @@
                 </div>
 
 
-                <x-file name="lesson_file" placeholder="آپلود درس *" required/>
+                {{--                <x-file name="lesson_file" placeholder="آپلود درس *" />--}}
+
+                <div class="w-100 mlg-15">
+                    <input style="width: 88%;border: 1px solid #ddd; margin-bottom: 20px;   direction: ltr;" type="text"
+                           id="image_label"
+                           class="text text-left" name="filePath"
+                           aria-label="Image" aria-describedby="button-image">
+                    <div style="display: inline-block;width: 10%" class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="button-image">انتخاب درس</button>
+                    </div>
+                </div>
+
+                @error('filePath')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                 </span>
+                @enderror
 
 
-                <x-textarea name="body" placeholder="توضیحات درس"/>
+                <x-TextArea name="body" id="body" placeholder="توضیحات درس"/>
 
 
                 <br>

@@ -7,9 +7,8 @@
             <img src="img/weblogo.png" alt="">
         </a>
         <div class="card-header">
-            <p class="activation-code-title">کد فرستاده شده به ایمیل <span>{{auth()->user()->email}}</span>
-                . را وارد کنید . ممکن است ایمیل به پوشه spam فرستاده شده باشد
-                ایمیلتان را اشتباه وارد کرده اید ؟ <a href="{{route('users.profile')}}"> برای ویرایش ایمیل کلیک کنید</a>
+            <p class="activation-code-title">کد فرستاده شده به شماره <span>{{$mobile}}</span>
+                را تایید کنید
             </p>
         </div>
         <div class="form-content form-content1">
@@ -20,6 +19,12 @@
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
+            @if(session()->has('message'))
+                <span class="invalid-feedback" role="alert">
+                                <strong>{{ session()->get('message') }}</strong>
+                 </span>
+            @endif
+
             <button class="btn i-t">تایید</button>
             <a href="#" onclick="
             event.preventDefault();

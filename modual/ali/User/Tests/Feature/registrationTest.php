@@ -94,7 +94,7 @@ class registrationTest extends TestCase
             ]
         );
         $code = verifyCodeService::generate();
-        verifyCodeService::store($user->id, $code, now()->day);
+        verifyCodeService::store($user->id, $code, 60);
         auth()->loginUsingId($user->id);
         $this->assertAuthenticated();
         $this->post(route('verification.verify'), [

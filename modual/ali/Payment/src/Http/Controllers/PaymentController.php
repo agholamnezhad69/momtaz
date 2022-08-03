@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 
-
 class PaymentController extends Controller
 {
 
@@ -23,13 +22,11 @@ class PaymentController extends Controller
     {
 
 
-
-
         $this->authorize('manage', Payment::class);
 
 
         $payments = $paymentRepo
-            ->searchEmail($request->email)
+            ->searchMobile($request->mobile)
             ->searchAmount($request->amount)
             ->searchInvoiceId($request->invoice_id)
             ->searchAfterDate(getDateFromJalaliToCarbon(convertPersianNumberToEnglish($request->start_date)))
@@ -71,8 +68,12 @@ class PaymentController extends Controller
     public function callback(Request $request)
     {
 
+
+//       dd($request->all());
+
         $gateway = resolve(Gateway::class);
         $paymentRepo = new PaymentRepo();
+
 
         $payment = $paymentRepo->findByInvoiceId($gateway->getInvoiceIdFromRequest($request));
 
@@ -86,6 +87,7 @@ class PaymentController extends Controller
 
 
         $result = $gateway->verify($payment);
+
 
         if (is_array($result)) {
 

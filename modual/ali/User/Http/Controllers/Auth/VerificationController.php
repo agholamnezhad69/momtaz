@@ -7,6 +7,7 @@ use ali\User\Services\verifyCodeService;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class VerificationController extends Controller
@@ -45,13 +46,18 @@ class VerificationController extends Controller
     public function show(Request $request)
     {
 
+
         return $request->user()->hasVerifiedEmail()
             ? redirect($this->redirectPath())
-            : view('User::front.verify');
+            : view('User::front.verify', ['mobile' => $request->user()->mobile]);
+
+
     }
 
     public function verify(verifyCodeRequest $request)
     {
+
+
 
 
         $check = verifyCodeService::check(auth()->id(), $request->verify_code);
@@ -59,10 +65,35 @@ class VerificationController extends Controller
         if (!$check) return back()->withErrors(['verify_code' => 'کد وارد شده معتبر نمی باشد']);
 
         auth()->user()->markEmailAsVerified();
+
+
         return redirect()->route('home');
 
 
     }
+
+    public function resend(Request $request)
+    {
+
+        if (verifyCodeService::get(auth()->id())) {
+
+         return back()->withErrors(['verify_code' => 'کد تایید برای شما ارسال گردید. در صورت عدم دریافت، بعد از 1 دقیقه مجددا تلاش فرمایید']);
+
+        }
+
+        if ($request->user()->hasVerifiedEmail()) {
+            return $request->wantsJson()
+                ? new JsonResponse([], 204)
+                : redirect($this->redirectPath());
+        }
+
+        $request->user()->sendEmailVerificationNotification();
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 202)
+            : back()->with('resent', true);
+    }
+
 
 
 }

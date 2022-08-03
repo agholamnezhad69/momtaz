@@ -13,13 +13,37 @@
     <div class="episodes-list-section">
 
         @foreach($lessons as $lesson)
-            {{-- <div class="episodes-list-item lock"> --}}
+
+            {{--            @can('download', $lesson)--}}
+            {{--            <div class="episodes-list-item     ">--}}
+            {{--            @else--}}
+            {{--             <div class="episodes-list-item lock">--}}
+            {{--             @endcan--}}
+
             <div
-                class="episodes-list-item @cannot("download",$lesson)  lock  @endcannot">
+                class="episodes-list-item
+                @can("download",$lesson)
+                @else
+                @if($lesson->is_free)
+                @else
+                    lock
+                @endif
+
+                @endcannot">
                 <div class="section-right">
                     <span class="episodes-list-number">{{$lesson->number}}</span>
                     <div class="episodes-list-title">
-                        <a href="{{$lesson->path()}}">{{$lesson->title}}</a>
+                        <a
+                            @if($lesson->is_free)
+                            href="{{$lesson->path()}}"
+                            @else
+                            @can("download", $lesson)
+                            href="{{$lesson->path()}}"
+                        @endcan
+                        @endif
+
+
+                        ">{{$lesson->title}}</a>
                     </div>
                 </div>
                 <div class="section-left">
@@ -27,9 +51,21 @@
                         <div class="episodes-list-details">
                             <span class="detail-type">{{$lesson->is_free()}}</span>
                             <span class="detail-time">{{$lesson->time}} دقیقه</span>
-                            <a @can("download",$lesson) href="{{$lesson->downloadLink()}}"
-                               @endcan class="detail-download">
+                            <a
+                                class="detail-download"
+                                @if($lesson->is_free)
+                                href="{{$lesson->downloadLink()}}"
+                                @else
+                                @can("download", $lesson)
+                                href="{{$lesson->downloadLink()}}"
+                                @endcan
+                                @endif
+                            >
+
+
                                 <i class="icon-download"></i>
+
+
                             </a>
                         </div>
                     </div>

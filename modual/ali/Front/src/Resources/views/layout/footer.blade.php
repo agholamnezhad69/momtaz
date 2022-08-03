@@ -10,12 +10,12 @@
     <a class="scrollToTop"></a>
     <div class="container">
         <div class="f-links">
-            <div class="col--2"><a href="">خدمات هاستینگ بستلا</a></div>
-            <div class="col--2"><a href="">لینک اول</a></div>
-            <div class="col--2"><a href="">لینک اول</a></div>
-            <div class="col--2"><a href="">لینک اول</a></div>
-            <div class="col--2"><a href="">لینک اول</a></div>
-            <div class="col--2"><a href="">لینک اول</a></div>
+            <div class="col--2"><a href="">خدمات ممتاز</a></div>
+            <div class="col--2"><a href="https://rismanapp.ir/">ریسمان : نرم افزار دفتر برنامه ریزی ویژه ی دانش آموزان</a></div>
+            <div class="col--2"><a href="https://www.kanoon.ir/">کانون</a></div>
+            <div class="col--2"><a href="https://gozine2.ir/">کزینه دو</a></div>
+            <div class="col--2"><a href="https://www.instagram.com/Momtaz_group">اینستاگرام</a></div>
+            <div class="col--2"><a href="https://t.me/MomtazTeam">تلگرام</a></div>
         </div>
     </div>
     <div class="line"></div>
@@ -23,19 +23,13 @@
         <div class="f-about">
             <div class="col--8">
                 <p>
-                    وب اموز مرجعی تخصصی برای یادگیری طراحی و برنامه نویسی وب و موبایل است. ما در وب اموز با بهره گیری از
-                    نیروهای متخصص، باتجربه تمام تلاش خود را برای تهیه و تولید آموزش های با کیفیت و کامل و حرفه ای انجام
-                    می دهیم. باور ما اینست که کاربران ایرانی لایق بهترین ها هستند و باید بهترین و بروزترین فیلم های
-                    آموزشی، در اختیار آنها قرار بگیرد تا بتوانند به سرعت پیشرفت کنند و جزء بهترین ها شوند. امید است که
-                    با همراهی هر چه بیشتر شما کاربران عزیز در این راه، ما را برای حرکتی قدرتمند در مسیر این هدف باارزش
-                    یاری دهید.
+                    گروه مشاوره ممتاز آماده ارائه خدمات مشاوره تحصیلی شامل، برنامه ریزی و پیگیری، برگزاری دوره های آموزشی، انتخاب رشته تحصیلی ویژه ی دانش آموزان پایه نهم و دوازدهم می باشد.
                 </p>
             </div>
         </div>
     </div>
-    <div class="webamooz">
-        طراحی و توسعه با لاراول توسط تیم
-        <a href="https://webamooz.net">وب آموز</a>
-        © 1399
+    <div class="foot">
+        طراحی و توسعه سایت
+        <a href="/">ممتاز</a>
     </div>
 </footer>

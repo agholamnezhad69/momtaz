@@ -74,6 +74,7 @@ class CourseController extends Controller
         $this->authorize('store', [Course::class, $request->teacher_id]);
         $request->request->add(['banner_id' =>
             MediaFileService::publicUpload($request->file('image'))->id]);
+
         $courseRepo->store($request);
 
         return redirect()->route("courses.index");
@@ -89,16 +90,16 @@ class CourseController extends Controller
         $course = $courseRepo->findById($id);
 
 
-        if ($course->lessons) {
-
-            foreach ($course->lessons as $lesson) {
-
-                if ($lesson->media) {
-                    $lesson->media->delete();
-                }
-            }
-
-        }
+//        if ($course->lessons) {
+//
+//            foreach ($course->lessons as $lesson) {
+//
+//                if ($lesson->media) {
+//                    $lesson->media->delete();
+//                }
+//            }
+//
+//        }
 
         if ($course->banner) {
             $course->banner->delete();

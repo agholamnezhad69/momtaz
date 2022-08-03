@@ -38,16 +38,16 @@
                 </div>
 
 
-{{--                <x-select name="teacher_id" required>--}}
-{{--                    <option value="">انتخاب مدرس دوره</option>--}}
-{{--                    @foreach($teachers as $row)--}}
-{{--                        <option value="{{$row->id}}"--}}
-{{--                                @if($row->id ==$course->teacher_id)  selected @endif >--}}
-{{--                            {{$row->name}}--}}
-{{--                        </option>--}}
-{{--                    @endforeach--}}
+                {{--                <x-select name="teacher_id" required>--}}
+                {{--                    <option value="">انتخاب مدرس دوره</option>--}}
+                {{--                    @foreach($teachers as $row)--}}
+                {{--                        <option value="{{$row->id}}"--}}
+                {{--                                @if($row->id ==$course->teacher_id)  selected @endif >--}}
+                {{--                            {{$row->name}}--}}
+                {{--                        </option>--}}
+                {{--                    @endforeach--}}
 
-{{--                </x-select>--}}
+                {{--                </x-select>--}}
 
                 <x-select name="teacher_id" required>
                     <option value="">انتخاب مدرس دوره</option>
@@ -63,7 +63,6 @@
                     @endcan
 
                 </x-select>
-
 
 
                 <x-tag-select name="tags"/>
@@ -100,10 +99,11 @@
                 </x-select>
 
 
-                <x-file name="image" placeholder="آپلود بنر دوره" :value="$course->banner" />
+                <x-file name="image" placeholder="آپلود بنر دوره" :value="$course->banner"/>
 
 
-                <x-textarea name="body" placeholder="توضیحات دوره" value="{{$course->body}}"/>
+                <x-TextArea id="body" rows="100" dir="rtl" name="body" placeholder="توضیحات دوره"
+                            value="{!!$course->body!!}"/>
 
 
                 <br>

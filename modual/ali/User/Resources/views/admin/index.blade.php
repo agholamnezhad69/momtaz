@@ -87,6 +87,7 @@
 
                     </tbody>
                 </table>
+                {{ $users->render('pagination::bootstrap-4') }}
             </div>
         </div>
     </div>

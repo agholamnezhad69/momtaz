@@ -4,11 +4,13 @@ namespace ali\User\Notifications;
 
 
 use ali\User\Mail\verifyCodeMail;
+use ali\User\Notifications\Channels\KavenegharChannel;
 use ali\User\Services\verifyCodeService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+
 
 class verifyEmailNotification extends Notification
 {
@@ -33,25 +35,26 @@ class verifyEmailNotification extends Notification
     public function via($notifiable)
     {
 
-        return ['mail'];
+        return [KavenegharChannel::class];
     }
 
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param mixed $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    public function toMail($notifiable)
+
+    public function toKavenegharSms($notifiable)
     {
 
         $code = verifyCodeService::generate();
-        verifyCodeService::store($notifiable->id, $code,now()->addDay());
+        verifyCodeService::store($notifiable->id, $code, 60);
 
-        return (new verifyCodeMail($code))
-            ->to($notifiable->email);
+        return [
+            "text" => $code,
+            "template" => 'verify',
+        ];
+
 
     }
+
+
+
 
     /**
      * Get the array representation of the notification.

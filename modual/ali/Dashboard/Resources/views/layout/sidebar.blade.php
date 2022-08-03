@@ -1,6 +1,6 @@
 <div class="sidebar__nav border-top border-left  ">
     <span class="bars d-none padding-0-18"></span>
-    <a class="header__logo  d-none" href=""></a>
+    <a class="header__logo  d-none" href="/"></a>
     <x-user-photo/>
 
     <ul>

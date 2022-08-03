@@ -25,7 +25,8 @@ class ValidPassword implements Rule
      */
     public function passes($attribute, $value)
     {
-        return preg_match('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{6,}$/', $value) ;
+       // return preg_match('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{6,}$/', $value) ;
+        return preg_match('/^.{6,}$/', $value) ;
     }
 
     /**
@@ -35,6 +36,6 @@ class ValidPassword implements Rule
      */
     public function message()
     {
-        return 'فرمت پسورد نامتعبر هست';
+        return 'فرمت پسورد  حداقل باید 6 کاراکتر باشد';
     }
 }

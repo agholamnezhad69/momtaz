@@ -57,7 +57,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'mobile'
+        'password', 'mobile'
     ];
 
     /**
@@ -87,6 +87,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function ResetPasswordRequestNotification()
     {
+
         $this->notify(new ResetPasswordRequestNotification());
 
     }
@@ -140,6 +141,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function profilePath()
     {
+        return null;
 
         return $this->username ? route("viewProfile", $this->username) : route("viewProfile", "username");
 
@@ -154,6 +156,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getThumbAttribute()
     {
+
+//        if ($this->image)
+//            return "/storage/" . $this->image->files[300];
+//        return "/panel/img/profile.jpg/";
 
         if ($this->image)
             return "/storage/" . $this->image->files[300];
@@ -178,6 +184,11 @@ class User extends Authenticatable implements MustVerifyEmail
             ->join('course_user', 'courses.id', '=', 'course_user.course_id')
             ->count();
 
+    }
+
+    public function routeNotificationForSms()
+    {
+        return $this->mobile; // where `phone` is a field in your users table;
     }
 
 

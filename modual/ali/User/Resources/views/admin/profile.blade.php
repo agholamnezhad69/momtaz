@@ -43,7 +43,8 @@
                         </a>
                     </p>
                     <x-input name="headline" type="text" placeholder="عنوان " value="{{auth()->user()->headline}}"/>
-                    <x-textarea name="bio" placeholder="بیوگرافی " value="{{auth()->user()->bio}}"/>
+                    <x-TextArea name="bio" placeholder="بیوگرافی " value="{!!auth()->user()->bio!!}"/>
+
                 @endcan
 
                 <x-input name="website" type="text" placeholder="وب سایت " value="{{auth()->user()->website}}"/>

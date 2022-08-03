@@ -857,7 +857,7 @@ footer {
     line-height: 1.7rem;
 }
 
-.webamooz {
+.foot {
     background: #46b2f0;
     text-align: center;
     color: rgba(255, 255, 255, .6);
@@ -865,8 +865,8 @@ footer {
 
 }
 
-.webamooz a {
-    color: #fff;
+.foot a {
+    color: #fff !important;
 }
 
 .scrollToTop {
@@ -1470,7 +1470,7 @@ footer {
 }
 
 .course-description img {
-    width: 100%;
+    width: 100% !important;
 }
 
 .course-description p {
@@ -2668,7 +2668,8 @@ footer {
 }
 
 .dark-mode .t-header-searchbox input, .dark-mode .t-header-search-content {
-    background: #2d3648 !important;
+    background-color: rgba(14, 35, 56, 1) !important;
+    /*background: #2d3648 !important;*/
     color: #fff !important;
     border-color: #d1d1d2 !important;
 }
@@ -2692,7 +2693,8 @@ footer {
 .dark-mode .modal-content, .dark-mode .modal-header, .dark-mode .pagination a, .dark-mode .contact-us,
 .dark-mode .comment-main,
 .dark-mode .comment-list-ul {
-    background: #212d39 !important;
+    /*background: #212d39 !important;*/
+    background-color: rgba(27, 52, 77, 1);
     color: #d1d1d2 !important;
 }
 
@@ -2733,10 +2735,11 @@ footer {
 }
 
 .dark-mode .product-info-box .total_sales span {
-    background: #2d3648 !important;
+    /*background: #2d3648 !important;*/
+    background-color: rgba(27, 52, 77, 1) !important;
 }
 
-.dark-mode .webamooz, .dark-mode .bt-accrdion {
+.dark-mode .foot, .dark-mode .bt-accrdion {
     background: #2d3648 !important;
 }
 
@@ -2768,15 +2771,15 @@ footer {
 }
 
 
-.dark-mode .time, .dark-mode .total_sales, .dark-mode a, .dark-mode h2,
-.dark-mode h1, .dark-mode h3, .dark-mode span,
-.dark-mode p, .dark-mode strong, .dark-mode .course-description-title,
-.dark-mode .head-right div,
-.dark-mode .episodes-list--title,
-.dark-mode .comments .comment-header-detail .comment-header-name,
-.dark-mode .comments .comment-header-detail .comment-header-date, .dark-mode .card-details .author-name, .dark-mode .card-details .date {
-    color: #d1d1d2 !important;
-}
+/*.dark-mode .time, .dark-mode .total_sales, .dark-mode a, .dark-mode h2,*/
+/*.dark-mode h1, .dark-mode h3, .dark-mode span,*/
+/*.dark-mode p, .dark-mode strong, .dark-mode .course-description-title,*/
+/*.dark-mode .head-right div,*/
+/*.dark-mode .episodes-list--title,*/
+/*.dark-mode .comments .comment-header-detail .comment-header-name,*/
+/*.dark-mode .comments .comment-header-detail .comment-header-date, .dark-mode .card-details .author-name, .dark-mode .card-details .date {*/
+/*    color: #d1d1d2;*/
+/*}*/
 
 .dark-mode .discountBadge p {
     color: #fff !important;
@@ -2797,9 +2800,11 @@ footer {
 }
 
 
-.dark-mode .product-info-box, .dark-mode .course-teacher-details, .dark-mode .short-link, .dark-mode .short--link {
-    background: #212d39 !important;
+.dark-mode .product-info-box, .dark-mode .course-teacher-details,
+.dark-mode .short-link, .dark-mode .short--link {
+    /*background: #212d39 !important;*/
     border-color: #212d39;
+    background-color: rgba(27, 52, 77, 1) !important;
 }
 
 .dark-mode .episode-download, .dark-mode .bt-top, .dark-mode .pagination .page.current {
@@ -3814,7 +3819,7 @@ a, span {
 }
 
 .t-header-logo a {
-    height: 44px;
+    height: 76px;
     display: block;
     background: url("../img/weblogo.png") no-repeat;
 }
@@ -4536,7 +4541,7 @@ footer {
     line-height: 1.7rem;
 }
 
-.webamooz {
+.foot {
     background: #46b2f0;
     text-align: center;
     color: rgba(255, 255, 255, .6);
@@ -4544,7 +4549,7 @@ footer {
 
 }
 
-.webamooz a {
+.foot a {
     color: #fff;
 }
 
@@ -5850,7 +5855,7 @@ footer {
 }
 
 .act .form {
-    padding: 2em 0 !important;
+    padding: 2em 2em !important;
 }
 
 .account h1 {
@@ -6342,7 +6347,8 @@ footer {
 
 
 .dark-mode {
-    background: #17212b !important;
+    /*background: #17212b !important;*/
+    background-color: rgba(14, 35, 56, 1) !important;
     color: #d1d1d2 !important;
 }
 
@@ -6390,7 +6396,8 @@ footer {
 .dark-mode .modal-content, .dark-mode .modal-header, .dark-mode .pagination a, .dark-mode .contact-us,
 .dark-mode .comment-main,
 .dark-mode .comment-list-ul {
-    background: #212d39 !important;
+    /*background: #212d39 !important;*/
+    background-color: rgba(27, 52, 77, 1);
     color: #d1d1d2 !important;
 }
 
@@ -6431,10 +6438,11 @@ footer {
 }
 
 .dark-mode .product-info-box .total_sales span {
-    background: #2d3648 !important;
+    /*background: #2d3648 !important;*/
+    background-color: rgba(27, 52, 77, 1) !important;
 }
 
-.dark-mode .webamooz, .dark-mode .bt-accrdion {
+.dark-mode .foot, .dark-mode .bt-accrdion {
     background: #2d3648 !important;
 }
 
@@ -6466,15 +6474,15 @@ footer {
 }
 
 
-.dark-mode .time, .dark-mode .total_sales, .dark-mode a, .dark-mode h2,
-.dark-mode h1, .dark-mode h3, .dark-mode span,
-.dark-mode p, .dark-mode strong, .dark-mode .course-description-title,
-.dark-mode .head-right div,
-.dark-mode .episodes-list--title,
-.dark-mode .comments .comment-header-detail .comment-header-name,
-.dark-mode .comments .comment-header-detail .comment-header-date, .dark-mode .card-details .author-name, .dark-mode .card-details .date {
-    color: #d1d1d2 !important;
-}
+/*.dark-mode .time, .dark-mode .total_sales, .dark-mode a, .dark-mode h2,*/
+/*.dark-mode h1, .dark-mode h3, .dark-mode span,*/
+/*.dark-mode p, .dark-mode strong, .dark-mode .course-description-title,*/
+/*.dark-mode .head-right div,*/
+/*.dark-mode .episodes-list--title,*/
+/*.dark-mode .comments .comment-header-detail .comment-header-name,*/
+/*.dark-mode .comments .comment-header-detail .comment-header-date, .dark-mode .card-details .author-name, .dark-mode .card-details .date {*/
+/*    color: #d1d1d2;*/
+/*}*/
 
 .dark-mode .discountBadge p {
     color: #fff !important;
@@ -6496,8 +6504,9 @@ footer {
 
 
 .dark-mode .product-info-box, .dark-mode .course-teacher-details, .dark-mode .short-link, .dark-mode .short--link {
-    background: #212d39 !important;
+    /*background: #212d39 !important;*/
     border-color: #212d39;
+    background-color: rgba(27, 52, 77, 1) !important;
 }
 
 .dark-mode .episode-download, .dark-mode .bt-top, .dark-mode .pagination .page.current {
@@ -6552,8 +6561,8 @@ footer {
 }
 
 .dark-mode .join-teachers a {
-    background: #980c46 !important;
-    border-color: #980c46 !important;;
+    background: #13547c !important;
+    border-color: #13547c !important;;
 }
 
 .bt-top {

@@ -1,7 +1,8 @@
-<div class="box-filter">
+<!--<div class="box-filter">
     <div class="b-head">
         <h2>پر مخاطب ترین دوره ها</h2>
         <a href="all-courses.html">مشاهده همه</a>
+        <a href="#">مشاهده همه</a>
     </div>
     <div class="posts">
         <div class="col">
@@ -180,4 +181,4 @@
             </a>
         </div>
     </div>
-</div>
+</div>-->

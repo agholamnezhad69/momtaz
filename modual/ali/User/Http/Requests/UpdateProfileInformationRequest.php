@@ -17,7 +17,6 @@ class UpdateProfileInformationRequest extends FormRequest
     {
         return auth()->check() == true;
 
-
     }
 
     /**

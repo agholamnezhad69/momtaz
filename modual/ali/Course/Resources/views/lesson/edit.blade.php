@@ -54,14 +54,29 @@
                     </div>
                 </div>
 
-                <x-file name="lesson_file" placeholder="آپلود درس *" :value="$lesson->media" />
 
-                <x-textarea name="body" placeholder="توضیحات درس" {{$lesson->body}}/>
+                <div class="w-100 mlg-15">
+                    <input style="width: 88%;border: 1px solid #ddd;margin-bottom: 20px;    direction: ltr;" type="text"
+                           id="image_label"
+                           class="text text-left" name="filePath"
+                           value="{{$lesson->media->filename}}"
+                           aria-label="Image" aria-describedby="button-image">
+                    <div style="display: inline-block;width: 10%" class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="button-image">انتخاب درس</button>
+                    </div>
+                </div>
+
+                @error('filePath')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                 </span>
+                @enderror
 
 
-                <br>
+                <x-TextArea name="body" placeholder="توضیحات درس" value="{!!$lesson->body!!}"/>
 
-                <button class="btn btn-brand">بروزرسانی درس</button>
+
+                <button style="margin-top: 30px" class="btn btn-brand">بروزرسانی درس</button>
             </form>
         </div>
     </div>

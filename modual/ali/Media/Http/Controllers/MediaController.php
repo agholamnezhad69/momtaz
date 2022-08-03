@@ -20,6 +20,8 @@ class MediaController extends Controller
         }
 
         return MediaFileService::stream($media);
+
+
     }
 
 

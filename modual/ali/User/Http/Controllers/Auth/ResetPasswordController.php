@@ -38,9 +38,9 @@ class ResetPasswordController extends Controller
         return view('User::front.passwords.reset');
 
 
-        return view('User::front.passwords.reset')->with(
-            ['token' => $token, 'email' => $request->email]
-        );
+//        return view('User::front.passwords.reset')->with(
+//            ['token' => $token, 'email' => $request->email]
+//        );
     }
 
     public function reset(changePasswordRequest $request)

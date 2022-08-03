@@ -1,3 +1,7 @@
+.dark-light {
+
+    display: none;
+}
 
 .d-none {
     display: none;
@@ -160,6 +164,237 @@
     background-color: #28a745;
     border-color: #28a745;
 }
+
+.sidebar-pic {
+    width: 100%;
+}
+
+.sidebar-pic a {
+    width: 100%;
+}
+
+.dark-mode .table-striped tbody tr:nth-of-type(2n+1) {
+    background-color: #212d39;
+}
+
+.dark-mode .slideshow .item-inner {
+    background: #ffffff !important;
+}
+
+
+.dark-mode #navigation a {
+    color: #ffffff !important;
+}
+
+.dark-mode #single .article .title {
+    color: #FFFFFF;
+}
+
+.dark-mode .breadcrumb ul li a {
+    color: rgba(209, 218, 231, 1);
+}
+
+.dark-mode footer .f-links a {
+    color: rgba(209, 218, 231, 1);
+}
+
+.dark-mode .course-description p {
+    color: rgba(209, 218, 231, 1);
+    line-height: 32px;
+    margin: 32px 0;
+}
+
+.dark-mode .product-meta-info-list .meta-info-unit span {
+    color: rgba(209, 218, 231, 1);
+
+}
+
+.dark-mode .product-info-box .total_sales {
+    color: #d1d1d2 !important;
+}
+
+.dark-mode .course-teacher-details .top-part .name a {
+    color: #d1d1d2 !important;
+}
+
+.dark-mode .ct-header h3 {
+    color: #fff !important;
+}
+
+.dark-mode .ct-header p {
+    color: #d1d1d2 !important;
+}
+
+.dark-mode .col--8 p {
+
+    color: rgba(209, 218, 231, 1);
+}
+
+
+.dark-mode .course-description-title {
+    color: rgba(209, 218, 231, 1);
+
+}
+
+
+.dark-mode .episodes-list--title {
+    color: #FFFFFF
+}
+
+.dark-mode .episodes-list--title a {
+    color: #FFFFFF
+}
+
+.dark-mode .product-info-box .price .amount {
+    color: #FFFFFF
+}
+
+.dark-mode .webamooz a {
+    color: #fff;
+}
+
+.dark-mode .user-menu-account span {
+    color: #fff;
+    font-size: .855rem;
+}
+
+.dark-mode .user-menu-account-dropdown ul li a {
+    color: #fff;
+}
+
+.dark-mode .posts .col, .dark-mode .episodes-list-item,
+.dark-mode .ct-textarea-field, .dark-mode .how-to-become-a--teacher-form input, .dark-mode .how-to-become-a--teacher-form textarea, .dark-mode .txt, .dark-mode textarea {
+    background: rgba(27, 52, 77, 1) !important;
+}
+
+.dark-mode .t-header, .dark-mode .t-header .container, .dark-mode footer,
+.dark-mode #navigation, .dark-mode .triangle, .dark-mode .sub-menu, .dark-mode .nav,
+.dark-mode .posts .col, .dark-mode .articles .col,
+.dark-mode #single .article > .h-t, .dark-mode .product-info-box .sell_course,
+.dark-mode .product-info-box .sell_course::after, .dark-mode .product-info-box .sell_course::before,
+.dark-mode .course-description,
+.dark-mode .episodes-list,
+.dark-mode .episodes-list-details .detail-type, .dark-mode .episodes-list-details .detail-time,
+.dark-mode .entry-content, .dark-mode .bt-accrdion-li,
+.dark-mode .user-menu-account-dropdown, .dark-mode .course-teacher-details, .dark-mode .slideshow .prev, .dark-mode .slideshow .next, .dark-mode .slideshow .items,
+.dark-mode .bt-1-top,
+.dark-mode .modal-content, .dark-mode .modal-header, .dark-mode .pagination a, .dark-mode .contact-us,
+.dark-mode .comment-main,
+.dark-mode .comment-list-ul {
+    background-color: rgba(27, 52, 77, 1) !important;
+}
+
+.dark-mode .card-title h2 {
+    color: #fff;
+}
+
+.dark-mode .card-body span {
+    color: rgba(209, 218, 231, 1) !important;
+}
+
+.dark-mode .card-details .time {
+
+    color: rgba(209, 218, 231, 1) !important;
+}
+
+.dark-mode .b-head h2 {
+    color: rgba(209, 218, 231, 1) !important;
+}
+
+.dark-mode .b-head a {
+    color: rgba(209, 218, 231, 1) !important;
+}
+
+.dark-mode .endPrice {
+    background-color: rgba(27, 52, 77, 1) !important;
+}
+
+.dark-mode .t-header-search-result {
+    background-color: rgba(14, 35, 56, 1) !important;
+}
+
+.dark-mode .t-header-searchbox input, .dark-mode .t-header-search-content {
+    background-color: rgba(14, 35, 56, 1) !important;
+
+}
+
+.dark-mode .slideshow .item {
+    background: #acafb5 !important;
+}
+
+
+.dark-mode .episodes-list .episodes-list-section .episodes-list-title a {
+
+
+    color: rgba(209, 218, 231, 1);
+
+}
+
+.dark-mode .user-menu-account-dropdown:before {
+    background-color: rgba(27, 52, 77, 1) !important;
+}
+
+.dark-mode #Modal-buy .modal-header p {
+    color: #919899;
+}
+
+.dark-mode .table tbody tr:nth-of-type(2n+1) {
+    background-color: #1b344d;
+}
+
+.dark-mode .btn {
+    background: #0d439b !important;
+    color: #fff;
+}
+
+.dark-mode .btn {
+    background: #0d439b !important;
+    color: #fff;
+}
+
+.dark-mode .act .form {
+    background-color: rgba(27, 52, 77, 1) !important;
+}
+
+.dark-mode .act .form input::placeholder {
+    color: rgba(209, 218, 231, 1);
+}
+
+.dark-mode .act .form .ui-checkbox {
+    color: rgba(209, 218, 231, 1);
+}
+
+.dark-mode .act .form .form-content .rules {
+    color: rgba(209, 218, 231, 1);
+}
+
+.dark-mode .act .form .activation-code-title {
+    color: rgba(209, 218, 231, 1);
+}
+
+.dark-mode .act .form .activation-code-title span {
+    color: #46b2f0;
+}
+
+.dark-mode .comments .comment-header-detail .comment-header-name {
+    color: #d1d1d2 !important;
+}
+
+.dark-mode .comment-content p {
+    color: rgba(209, 218, 231, 1);
+}
+
+.dark-mode .t-header-search-result a,
+.dark-mode .comment-list-ul .is-comment,
+.dark-mode .comment-list-ul .is-answer {
+    background: #0e2338;
+
+}
+.comments .modal-header p {
+    color: #d1d1d2 !important;
+}
+
+
 
 
 /************************************* start bootstrap change style */

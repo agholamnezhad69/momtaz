@@ -11,11 +11,14 @@
                     {{ session('status') }}
                 </div>
             @endif
-            <input type="email" name="email" id="email" class="txt-l txt @error('email') is-invalid @enderror"
-                   placeholder="ایمیل"
-                   value="{{ old('email') }}" required autocomplete="email" autofocus
+            <input style="direction: ltr"
+                   type="text"
+                   name="mobile" id="mobile"
+                   class="txt-l txt @error('mobile') is-invalid @enderror"
+                   placeholder="تلفن همراه (9127654321)"
+                   value="{{ old('mobile') }}" required autocomplete="mobile" autofocus
             >
-            @error('email')
+            @error('mobile')
             <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

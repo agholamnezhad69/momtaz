@@ -15,7 +15,7 @@
                       class="padding-30">
                     @csrf
                     <x-input type="text" class="text" name="title" placeholder="عنوان تیکت" required/>
-                    <x-textarea placeholder="متن تیکت" name="body" class="text" required/>
+                    <x-TextArea placeholder="متن تیکت" name="body" class="text" required/>
 
                     <x-file name="attachment" placeholder="آپلود فایل پیوست"/>
 

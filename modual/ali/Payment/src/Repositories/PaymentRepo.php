@@ -22,16 +22,16 @@ class PaymentRepo
 
     }
 
-    public function searchEmail($email)
+    public function searchMobile($mobile)
     {
 
 
-        if (!is_null($email)) {
+        if (!is_null($mobile)) {
 
             $this->query
                 ->join("users", "payments.buyer_id", 'users.id')
-                ->select("payments.*", "users.email")
-                ->where("email", "like", "%" . $email . "%");
+                ->select("payments.*", "users.mobile")
+                ->where("mobile", "like", "%" . $mobile . "%");
         }
 
 

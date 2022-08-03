@@ -836,11 +836,17 @@ textarea {
 }
 
 .header__logo {
-    height: 44px;
-    width: 200px;
-    background: url("../img/weblogo.png") no-repeat;
+    /*height: 44px;*/
+    /*width: 200px;*/
+    /*background: url("../img/weblogo.png") no-repeat;*/
+    /*margin-top: -10px;*/
+    /*margin-right: 20px;*/
+
+    height: 80px;
+    width: 150px;
+    background: url(../img/weblogo.png) no-repeat;
     margin-top: -10px;
-    margin-right: 20px;
+    margin-right: 20px !important;
 }
 
 .logout:before {

@@ -7,7 +7,7 @@
             <img src="img/weblogo.png" alt="">
         </a>
         <div class="form-content form-account">
-            <input id="email" type="text" class="txt-l  txt @error('email') is-invalid @enderror"
+            <input style="direction: ltr" id="email" type="text" class="txt-l  txt @error('email') is-invalid @enderror"
                    placeholder="ایمیل یا شماره موبایل"
                    name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
             >
@@ -17,7 +17,7 @@
                             </span>
             @enderror
 
-            <input id="password" type="password" class="txt-l txt" placeholder="رمز عبور"
+            <input style="direction: ltr" id="password" type="password" class="txt-l txt" placeholder="رمز عبور"
                    name="password" required autocomplete="current-password"
             >
             @error('password')

@@ -80,7 +80,9 @@
                 <x-file name="image" placeholder="آپلود بنر دوره" required/>
 
 
-                <x-textarea name="body" placeholder="توضیحات دوره"/>
+                <x-TextArea  id="body" name="body" placeholder="توضیحات دوره" rows="100" cols="80"/>
+
+
 
 
                 <br>

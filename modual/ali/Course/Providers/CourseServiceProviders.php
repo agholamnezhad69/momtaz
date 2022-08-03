@@ -5,9 +5,9 @@ namespace ali\Course\Providers;
 use ali\Course\Models\Course;
 use ali\Course\Models\Lesson;
 use ali\Course\Models\Season;
-use ali\Course\policies\CoursePolicy;
-use ali\Course\policies\LessonPolicy;
-use ali\Course\policies\SeasonPolicy;
+use ali\Course\Policies\CoursePolicy;
+use ali\Course\Policies\LessonPolicy;
+use ali\Course\Policies\SeasonPolicy;
 
 use ali\RolePermissions\Models\Permission;
 use Illuminate\Support\Facades\Gate;

@@ -20,94 +20,18 @@
                                 <div class="t-header-search-filter-item f-teacher "><span>مدرسین (2)</span></div>
                             </div>
                             <div class="t-header-search-result">
-                                <a href="">
-                                    <div class="t-header-search-result-right">
-                                        <p>دوره ساخت فریم ورک مشابه لاراول</p>
-                                        <p class="t-header-search-result-right-info">
-                                            مدرس دوره : محمد نیکو
-                                        </p>
-                                    </div>
-                                    <div class="t-header-search-result-left">
-                                        <img src="img/banner/laravel-payment-processing.jpg" alt="">
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="t-header-search-result-right">
-                                        <p>دوره ساخت فریم ورک مشابه لاراول</p>
-                                        <p class="t-header-search-result-right-info">
-                                            مدرس دوره : محمد نیکو
-                                        </p>
-                                    </div>
-                                    <div class="t-header-search-result-left">
-                                        <img src="img/banner/laravel-payment-processing.jpg" alt="">
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="t-header-search-result-right">
-                                        <p>دوره ساخت فریم ورک مشابه لاراول</p>
-                                        <p class="t-header-search-result-right-info">
-                                            مدرس دوره : محمد نیکو
-                                        </p>
-                                    </div>
-                                    <div class="t-header-search-result-left">
-                                        <img src="img/banner/laravel-payment-processing.jpg" alt="">
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="t-header-search-result-right">
-                                        <p>دوره ساخت فریم ورک مشابه لاراول</p>
-                                        <p class="t-header-search-result-right-info">
-                                            مدرس دوره : محمد نیکو
-                                        </p>
-                                    </div>
-                                    <div class="t-header-search-result-left">
-                                        <img src="img/banner/laravel-payment-processing.jpg" alt="">
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="t-header-search-result-right">
-                                        <p>دوره ساخت فریم ورک مشابه لاراول</p>
-                                        <p class="t-header-search-result-right-info">
-                                            مدرس دوره : محمد نیکو
-                                        </p>
-                                    </div>
-                                    <div class="t-header-search-result-left">
-                                        <img src="img/banner/laravel-payment-processing.jpg" alt="">
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="t-header-search-result-right">
-                                        <p>دوره ساخت فریم ورک مشابه لاراول</p>
-                                        <p class="t-header-search-result-right-info">
-                                            مدرس دوره : محمد نیکو
-                                        </p>
-                                    </div>
-                                    <div class="t-header-search-result-left">
-                                        <img src="img/banner/laravel-payment-processing.jpg" alt="">
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="t-header-search-result-right">
-                                        <p>دوره ساخت فریم ورک مشابه لاراول</p>
-                                        <p class="t-header-search-result-right-info">
-                                            مدرس دوره : محمد نیکو
-                                        </p>
-                                    </div>
-                                    <div class="t-header-search-result-left">
-                                        <img src="img/banner/laravel-payment-processing.jpg" alt="">
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="t-header-search-result-right">
-                                        <p>دوره ساخت فریم ورک مشابه لاراول</p>
-                                        <p class="t-header-search-result-right-info">
-                                            مدرس دوره : محمد نیکو
-                                        </p>
-                                    </div>
-                                    <div class="t-header-search-result-left">
-                                        <img src="img/banner/laravel-payment-processing.jpg" alt="">
-                                    </div>
-                                </a>
+                                {{--                                <a href="">--}}
+                                {{--                                    <div class="t-header-search-result-right">--}}
+                                {{--                                        <p>دوره ساخت فریم ورک مشابه لاراول</p>--}}
+                                {{--                                        <p class="t-header-search-result-right-info">--}}
+                                {{--                                            مدرس دوره : محمد نیکو--}}
+                                {{--                                        </p>--}}
+                                {{--                                    </div>--}}
+                                {{--                                    <div class="t-header-search-result-left">--}}
+                                {{--                                        <img src="img/banner/laravel-payment-processing.jpg" alt="">--}}
+                                {{--                                    </div>--}}
+                                {{--                                </a>--}}
+
                             </div>
                         </div>
                     </div>
@@ -122,7 +46,7 @@
 
 
                 <div class="join-teachers">
-                    <a href="become-a-teacher.html">تدریس در وب آموز</a>
+                    <a href="#">مدرس ممتاز شو</a>
                 </div>
                 @auth()
                     <div class="user-menu-account">
@@ -159,12 +83,14 @@
             <ul class="nav">
                 @foreach($cats as $cat)
                     <li class="main-menu {{count($cat->subCategory) ? 'has-sub' :''}} ">
-                        <a href="{{$cat->path()}}">{{$cat->title}}</a>
+                        {{--                        <a href="{{$cat->path()}}">{{$cat->title}}</a>--}}
+                        <a href="#">{{$cat->title}}</a>
                         @if(count($cat->subCategory))
                             <div class="sub-menu">
                                 <div class="container">
                                     @foreach($cat->subCategory as $subCat)
-                                        <div><a href="{{$subCat->path()}}">{{$subCat->title}}</a></div>
+                                        {{--                                        <div><a href="{{$subCat->path()}}">{{$subCat->title}}</a></div>--}}
+                                        <div><a href="#">{{$subCat->title}}</a></div>
                                     @endforeach
                                 </div>
                             </div>
@@ -184,9 +110,9 @@
                 </li>-->
                 <li class="main-menu"><a href="#">کسب و کار</a></li>
                 <li class="main-menu d-none"><a href="#">درباره ما</a></li>
-                <li class="main-menu"><a href="contact-us.html">تماس ما</a></li>
-                <li class="main-menu join-teachers-li"><a href="become-a-teacher.html">تدریس در وب آموز</a></li>
-                <li class="main-menu"><a href="https://www.webamooz.net/blog">مقالات</a></li>
+                <li class="main-menu"><a href="#">تماس ما</a></li>
+                <li class="main-menu join-teachers-li"><a href="#">مدرس ممتاز شو</a></li>
+                <li class="main-menu"><a href="#">مقالات</a></li>
             </ul>
 
             <div class="dark-light">

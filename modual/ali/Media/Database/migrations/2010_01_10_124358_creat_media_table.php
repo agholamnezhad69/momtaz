@@ -20,6 +20,7 @@ class CreatMediaTable extends Migration
             $table->json('files')->nullable();
             $table->string('filename', 255);
             $table->boolean('is_private');
+            $table->boolean('is_media_address')->default(0);
             $table->timestamps();
             /* $table->foreign('user_id')->references('id')->on('users')->onDelete("SET NULL");*/
 

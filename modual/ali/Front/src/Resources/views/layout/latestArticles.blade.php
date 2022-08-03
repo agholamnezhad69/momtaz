@@ -1,7 +1,7 @@
-<article class="container blog">
+<!--<article class="container blog">
     <div class="b-head">
         <h2>آخرین مقالات</h2>
-        <a href="https://webamooz.net/blog">مشاهده همه</a>
+        <a href="#">مشاهده همه</a>
     </div>
     <div class="articles">
         <div class="col">
@@ -65,4 +65,5 @@
             </a>
         </div>
     </div>
-</article>
+</article>-->
+

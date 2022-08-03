@@ -1,5 +1,8 @@
 <?php
-Route::group(["middleware" => "auth"], function ($router) {
+Route::group(
+    [ 'middleware' => ['web', 'auth', 'verified']],
+
+    function ($router) {
 
     $router->get("settlements",
         [

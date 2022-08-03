@@ -4,6 +4,14 @@ Route::group([
     'middleware' => ['web', 'auth']
 ], function () {
 
+    Route::post('edit-profile',
+        [
+            "uses" => "UserController@updateProfile",
+            "as" => 'users.profile'
+        ]
+    );
+
+
     Route::get('edit-profile',
         [
             "uses" => "UserController@profile",
@@ -12,7 +20,10 @@ Route::group([
         ]
     );
 
-    Route::post('edit-profile', 'UserController@updateProfile')->name('users.profile');
+
+//    Route::post('edit-profile', 'UserController@updateProfile')->name('users.profile');
+
+
 
 });
 

@@ -180,15 +180,31 @@
 
                     @if($lesson)
 
-                        @if( $lesson->media->type=='video')
-                            <div class="preview">
-                                <video width="100%" controls>
-                                    <source src="{{$lesson->downloadLink()}}" type="video/mp4">
-                                </video>
-                            </div>
+
+                        @if( $lesson->media->type=='video' )
+
+                            @if($lesson->is_free)
+                                <div class="play-btn" id="player"></div>
+                            @else
+                                @can("download", $lesson)
+                                    <div class="preview">
+                                        <div class="play-btn" id="player"></div>
+                                    </div>
+                                @endcan
+                            @endif
                         @endif
-                        <a href="{{$lesson->downloadLink()}}" class="episode-download">دانلود این قسمت
-                            (قسمت {{$lesson->id}})</a>
+                        <a
+                            @if($lesson->is_free)
+                            href="{{$lesson->downloadLink()}}"
+                            @else
+                            @can("download", $lesson)
+                            href="{{$lesson->downloadLink()}}"
+                            @endcan
+                            @endif
+                            class="episode-download">دانلود این قسمت
+                            (قسمت {{$lesson->number}})
+                        </a>
+
 
                     @endif
 
@@ -196,18 +212,22 @@
                         <div class="course-description-title">توضیحات دوره</div>
                         {!!$course->body!!}
                         <div class="tags">
-                            <ul>
-                                <li><a href="">ری اکت</a></li>
-                                <li><a href="">reactjs</a></li>
-                                <li><a href="">جاوااسکریپت</a></li>
-                                <li><a href="">javascript</a></li>
-                                <li><a href="">reactjs چیست</a></li>
-                            </ul>
+                            {{--                            <ul>--}}
+                            {{--                                <li><a href="">ری اکت</a></li>--}}
+                            {{--                                <li><a href="">reactjs</a></li>--}}
+                            {{--                                <li><a href="">جاوااسکریپت</a></li>--}}
+                            {{--                                <li><a href="">javascript</a></li>--}}
+                            {{--                                <li><a href="">reactjs چیست</a></li>--}}
+                            {{--                            </ul>--}}
                         </div>
                     </div>
                     @include('Front::layout.episodes-list')
                 </div>
             </div>
+
+            <!--todo         -->
+
+            @include("Front::comments.index")
 
 
         </div>
@@ -236,21 +256,24 @@
                             <tr>
                                 <th>درصد تخفیف</th>
                                 <td>
-                                    <span data-value="{{$course->getDiscountPercent()}}" id="discountPercent">{{$course->getDiscountPercent()}}</span>
+                                    <span data-value="{{$course->getDiscountPercent()}}"
+                                          id="discountPercent">{{$course->getDiscountPercent()}}</span>
                                     %
                                 </td>
                             </tr>
                             <tr>
                                 <th> مبلغ تخفیف</th>
-                                <td  class="text-red">
-                                    <span data-value="{{$course->getDiscountAmount()}}" id="discountAmount">{{$course->getDiscountAmount()}}</span>تومان
+                                <td class="text-red">
+                                    <span data-value="{{$course->getDiscountAmount()}}"
+                                          id="discountAmount">{{$course->getDiscountAmount()}}</span>تومان
 
                                 </td>
                             </tr>
                             <tr>
                                 <th> قابل پرداخت</th>
-                                <td  class="text-blue">
-                                    <span data-value="{{$course->getFinalPrice()}}" id="payableAmount">{{$course->getFormattedFinalPrice()}}</span> تومان
+                                <td class="text-blue">
+                                    <span data-value="{{$course->getFinalPrice()}}"
+                                          id="payableAmount">{{$course->getFormattedFinalPrice()}}</span> تومان
 
                                 </td>
                             </tr>
@@ -293,5 +316,36 @@
             });
 
         }
+    </script>
+@endsection
+@section('js-player')
+    <script src="/assets/player/playerjs.js"></script>
+    <script>
+        @if($lesson)
+            @if( $lesson->media->type=='video' )
+            @if($lesson->is_free)
+            player = new Playerjs({id: "player", file: "{{$lesson->downloadLink()}}"});
+        $(document).ready(function () {
+            var text = "{{$lesson->downloadLink()}}";
+
+            $("#player video")[0].src = text.replace("&amp;", "&");
+
+        })
+        @else
+            @can("download", $lesson)
+
+            player = new Playerjs({id: "player", file: "{{$lesson->downloadLink()}}"});
+        $(document).ready(function () {
+            var text = "{{$lesson->downloadLink()}}";
+
+            $("#player video")[0].src = text.replace("&amp;", "&");
+        })
+
+        @endcan
+        @endif
+        @endif
+        @endif
+
+
     </script>
 @endsection

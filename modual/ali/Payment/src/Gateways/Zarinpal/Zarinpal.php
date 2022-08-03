@@ -1,16 +1,12 @@
 <?php
-/*
- * ZarinPal Advanced Class
- *
- * version 	: 1.0
- * link 	: https://vrl.ir/zpc
- *
- * author 	: milad maldar
- * e-mail 	: miladworkshop@gmail.com
- * website 	: https://miladworkshop.ir
-*/
+
 
 namespace ali\Payment\Gateways\Zarinpal;
+
+
+
+
+use SoapClient;
 
 class zarinpal
 {

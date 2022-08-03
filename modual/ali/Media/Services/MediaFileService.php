@@ -64,7 +64,7 @@ class MediaFileService
         $fileName = self::fileNameGenerator();
 
         $media = new Media();
-        $media->files = $handler::upload(self::$file, $fileName, self::$dir);
+        $media->files = $handler::upload(self::$file, $fileName, self::$dir,self::$is_private);
         $media->type = $type;
         $media->user_id = auth()->id();
         $media->filename = self::$file->getClientOriginalName();
@@ -111,8 +111,10 @@ class MediaFileService
 
     public static function stream(Media $media)
     {
+
         foreach (config('mediaFile.mediaTypeServices') as $type => $service) {
             if ($media->type == $type) {
+
                 return $service["handler"]::stream($media);
             }
         }
