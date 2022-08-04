@@ -197,3 +197,8 @@ $('.study-mode').click(function () {
     $('.sidebar-right').toggleClass('d-none');
     $('.content-left').toggleClass('on');
 })
+
+
+function setCommentId(comment_id) {
+    $("#comment_id").val(comment_id);
+}

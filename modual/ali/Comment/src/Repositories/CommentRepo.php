@@ -17,14 +17,24 @@ class CommentRepo
             "commentable_type" => $data["commentable_type"],
             "body" => $data["body"],
             "status" =>
-            auth()->user()->can(Permission::PERMISSION_MANAGE_COMMENTS) ||
-            auth()->user()->can(Permission::PERMISSION_TEACH)
-                ?
-                Comment::STATUS_APPROVED
-                :
-                Comment::STATUS_NEW
+                auth()->user()->can(Permission::PERMISSION_MANAGE_COMMENTS) ||
+                auth()->user()->can(Permission::PERMISSION_TEACH)
+                    ?
+                    Comment::STATUS_APPROVED
+                    :
+                    Comment::STATUS_NEW
 
         ]);
+    }
+
+    public function findApproved($commentId)
+    {
+
+        return Comment::query()
+            ->where("id", $commentId)
+            ->where("status", Comment::STATUS_APPROVED)
+            ->first();
+
     }
 
 }

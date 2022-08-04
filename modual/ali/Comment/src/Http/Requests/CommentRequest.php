@@ -2,6 +2,7 @@
 
 namespace ali\Comment\Http\Requests;
 
+use ali\Comment\Rules\ApprovedComment;
 use ali\Comment\Rules\CommentableRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -26,6 +27,7 @@ class CommentRequest extends FormRequest
     {
         return [
             "body" => "required",
+            "comment_id" => ["nullable", new ApprovedComment()],
             "commentable_type" => ["required", new CommentableRule()],
             "commentable_id" => "required",
         ];

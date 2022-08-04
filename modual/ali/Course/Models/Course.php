@@ -101,7 +101,10 @@ class Course extends Model
     {
 
         return $this->morphMany(Comment::class, 'commentable')
-            ->where('status',Comment::STATUS_APPROVED);
+            ->where('status', Comment::STATUS_APPROVED)
+            ->whereNull("comment_id")
+            ->with("replies");
+
 
     }
 
@@ -264,7 +267,6 @@ class Course extends Model
         return $this->morphToMany(Discount::class, 'discountable');
 
     }
-
 
 
 }

@@ -13,6 +13,7 @@ class CommentController extends Controller
     public function store(CommentRequest $commentRequest, CommentRepo $commentRepo)
     {
 
+
         $commentable = $commentRequest->commentable_type::findOrFail($commentRequest->commentable_id);
 
         $commentRepo->store($commentRequest->all());
