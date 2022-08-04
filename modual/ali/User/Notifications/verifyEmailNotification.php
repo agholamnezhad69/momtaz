@@ -3,12 +3,9 @@
 namespace ali\User\Notifications;
 
 
-use ali\User\Mail\verifyCodeMail;
 use ali\User\Notifications\Channels\KavenegharChannel;
 use ali\User\Services\verifyCodeService;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 

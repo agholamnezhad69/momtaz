@@ -8,10 +8,9 @@ use ali\Course\Models\Season;
 use ali\Course\Policies\CoursePolicy;
 use ali\Course\Policies\LessonPolicy;
 use ali\Course\Policies\SeasonPolicy;
-
 use ali\RolePermissions\Models\Permission;
 use Illuminate\Support\Facades\Gate;
-use  Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
 class CourseServiceProviders extends ServiceProvider
 {

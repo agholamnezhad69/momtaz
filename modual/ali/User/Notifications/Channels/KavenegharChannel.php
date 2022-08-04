@@ -2,7 +2,6 @@
 
 namespace ali\User\Notifications\Channels;
 
-use ali\User\Services\verifyCodeService;
 use Illuminate\Notifications\Notification;
 use Kavenegar\Exceptions\ApiException;
 use Kavenegar\Exceptions\HttpException;

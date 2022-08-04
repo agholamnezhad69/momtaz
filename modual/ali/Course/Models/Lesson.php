@@ -3,7 +3,6 @@
 namespace ali\Course\Models;
 
 use ali\Media\Models\Media;
-use ali\Media\Services\MediaFileService;
 use ali\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\URL;

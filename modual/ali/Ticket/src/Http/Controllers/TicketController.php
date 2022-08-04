@@ -3,19 +3,15 @@
 namespace ali\Ticket\Http\Controllers;
 
 use ali\Common\Responses\AjaxResponses;
-use ali\Media\Services\MediaFileService;
 use ali\RolePermissions\Models\Permission;
 use ali\Ticket\Http\Requests\ReplyRequest;
 use ali\Ticket\Http\Requests\TicketRequest;
 use ali\Ticket\Models\Reply;
 use ali\Ticket\Models\Ticket;
-use ali\Ticket\Repositories\ReplyRepo;
 use ali\Ticket\Repositories\TicketRepo;
 use ali\Ticket\Services\ReplyService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
-use Illuminate\Http\UploadedFile;
 
 class TicketController extends Controller
 {

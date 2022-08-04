@@ -3,7 +3,6 @@
 namespace ali\Payment\Events;
 
 use ali\Payment\Models\Payment;
-
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;

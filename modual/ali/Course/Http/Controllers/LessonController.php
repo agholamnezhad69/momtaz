@@ -10,12 +10,9 @@ use ali\Course\Models\Lesson;
 use ali\Course\Repositories\CourseRepo;
 use ali\Course\Repositories\LessonRepo;
 use ali\Course\Repositories\SeasonRepo;
-use ali\Media\Models\Media;
 use ali\Media\Repositories\MediaRepo;
-use ali\Media\Services\MediaFileService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 
 class LessonController extends Controller

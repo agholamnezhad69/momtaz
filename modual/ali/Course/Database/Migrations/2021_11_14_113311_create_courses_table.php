@@ -1,9 +1,9 @@
 <?php
 
+use ali\Course\Models\Course;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use ali\Course\Models\Course;
 
 class CreateCoursesTable extends Migration
 {

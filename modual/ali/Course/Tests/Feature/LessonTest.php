@@ -5,14 +5,12 @@ namespace ali\Course\Tests\Feature;
 use ali\Category\Models\Category;
 use ali\Course\Models\Course;
 use ali\Course\Models\Lesson;
-use ali\Course\Models\Season;
 use ali\RolePermissions\Database\seeds\RolePermissionTableSeeder;
 use ali\RolePermissions\Models\Permission;
 use ali\User\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class LessonTest extends TestCase

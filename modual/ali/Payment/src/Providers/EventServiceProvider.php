@@ -2,9 +2,7 @@
 
 namespace ali\Payment\Providers;
 
-use ali\Course\Listeners\RegisterUserInCourse;
 use ali\Payment\Events\PaymentWasSuccessfull;
-
 use ali\Payment\Listeners\AddSellersShareToHisAccount;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 

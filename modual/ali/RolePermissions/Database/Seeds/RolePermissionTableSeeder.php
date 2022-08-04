@@ -2,9 +2,9 @@
 
 namespace ali\RolePermissions\Database\seeds;
 
-use Illuminate\Database\Seeder;
 use ali\RolePermissions\Models\Permission;
 use ali\RolePermissions\Models\Role;
+use Illuminate\Database\Seeder;
 
 class RolePermissionTableSeeder extends Seeder
 {

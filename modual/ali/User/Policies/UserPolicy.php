@@ -3,7 +3,6 @@
 namespace ali\User\Policies;
 
 use ali\RolePermissions\Models\Permission;
-use ali\User\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy

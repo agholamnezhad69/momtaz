@@ -2,10 +2,7 @@
 
 namespace ali\User\Tests\Feature;
 
-use ali\User\Models\User;
-use ali\User\Services\verifyCodeService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class resetPasswordTest extends TestCase

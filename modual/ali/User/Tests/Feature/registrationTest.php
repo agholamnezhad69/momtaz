@@ -3,11 +3,9 @@
 namespace ali\User\Tests\Feature;
 
 use ali\RolePermissions\Database\seeds\RolePermissionTableSeeder;
-use ali\RolePermissions\Models\Permission;
 use ali\User\Models\User;
 use ali\User\Services\verifyCodeService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class registrationTest extends TestCase

@@ -2,14 +2,13 @@
 
 namespace ali\Ticket\Providers;
 
-use ali\RolePermissions\Models\Permission;
 use ali\Ticket\Models\Reply;
 use ali\Ticket\Models\Ticket;
 use ali\Ticket\Policies\ReplyPolicy;
 use ali\Ticket\Policies\TicketPolicy;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 
 class  TicketServiceProviders extends ServiceProvider
 {

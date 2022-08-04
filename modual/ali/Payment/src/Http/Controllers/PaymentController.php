@@ -8,10 +8,8 @@ use ali\Payment\Events\PaymentWasSuccessfull;
 use ali\Payment\Gateways\Gateway;
 use ali\Payment\Models\Payment;
 use ali\Payment\Repositories\PaymentRepo;
-
-
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 
 class PaymentController extends Controller

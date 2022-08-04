@@ -3,9 +3,8 @@
 namespace ali\Course\Models;
 
 use ali\Category\Models\Category;
-use ali\Comment\Models\Comment;
+use ali\Comment\Traits\HasComments;
 use ali\Course\Repositories\CourseRepo;
-use ali\Course\Repositories\LessonRepo;
 use ali\Discount\Models\Discount;
 use ali\Discount\Repositories\DiscountRepo;
 use ali\Discount\Services\DiscountService;
@@ -17,9 +16,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-    /**
-     * @var mixed
-     */
+
+    use HasComments;
 
     protected $guarded = [];
 
@@ -90,23 +88,7 @@ class Course extends Model
         return $this->morphMany(Ticket::class, "ticketable");
     }
 
-    public function comments()
-    {
 
-        return $this->morphMany(Comment::class, 'commentable');
-
-    }
-
-    public function approvedComments()
-    {
-
-        return $this->morphMany(Comment::class, 'commentable')
-            ->where('status', Comment::STATUS_APPROVED)
-            ->whereNull("comment_id")
-            ->with("replies");
-
-
-    }
 
 
     public function getConfirmationStatusCssClass()

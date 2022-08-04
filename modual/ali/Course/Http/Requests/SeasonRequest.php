@@ -2,10 +2,7 @@
 
 namespace ali\Course\Http\Requests;
 
-use ali\Course\Models\Course;
-use ali\Course\Rules\ValidTeacher;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class SeasonRequest extends FormRequest
 {

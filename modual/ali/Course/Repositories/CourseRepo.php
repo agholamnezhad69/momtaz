@@ -4,7 +4,6 @@ namespace ali\Course\Repositories;
 
 use ali\Course\Models\Course;
 use ali\Course\Models\Lesson;
-use ali\Course\Models\Season;
 use Illuminate\Support\Str;
 
 class CourseRepo

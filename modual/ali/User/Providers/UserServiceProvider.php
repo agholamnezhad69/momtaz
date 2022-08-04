@@ -6,12 +6,12 @@ namespace ali\User\Providers;
 
 use ali\RolePermissions\Models\Permission;
 use ali\User\Database\seeds\UserTableSeeder;
+use ali\User\Http\Middleware\StoreUserIp;
 use ali\User\Models\User;
 use ali\User\Policies\UserPolicy;
-use ali\User\Http\Middleware\StoreUserIp;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserServiceProvider extends ServiceProvider
 {

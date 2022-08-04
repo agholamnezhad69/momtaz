@@ -4,7 +4,6 @@ namespace ali\Payment\Http\Controllers;
 
 
 use ali\Payment\Http\Requests\SettlementRequest;
-
 use ali\Payment\Models\Settlement;
 use ali\Payment\Repositories\SettlementRepo;
 use ali\Payment\Services\SettlementService;

@@ -3,9 +3,7 @@
 namespace ali\Course\policies;
 
 use ali\RolePermissions\Models\Permission;
-use ali\User\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use phpDocumentor\Reflection\Types\True_;
 
 
 class LessonPolicy

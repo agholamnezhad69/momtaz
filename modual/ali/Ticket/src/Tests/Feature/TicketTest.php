@@ -9,7 +9,6 @@ use ali\Ticket\Models\Ticket;
 use ali\User\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-
 use Tests\TestCase;
 
 class TicketTest extends TestCase

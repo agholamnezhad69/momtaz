@@ -4,7 +4,6 @@ namespace ali\Discount\Models;
 
 
 use ali\Course\Models\Course;
-
 use ali\Payment\Models\Payment;
 use Illuminate\Database\Eloquent\Model;
 

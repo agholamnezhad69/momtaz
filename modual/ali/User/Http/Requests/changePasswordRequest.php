@@ -4,7 +4,6 @@ namespace ali\User\Http\Requests;
 
 
 use ali\User\Rules\ValidPassword;
-use ali\User\Services\verifyCodeService;
 use Illuminate\Foundation\Http\FormRequest;
 
 class changePasswordRequest extends FormRequest

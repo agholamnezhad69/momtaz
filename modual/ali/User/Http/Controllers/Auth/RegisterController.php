@@ -2,11 +2,11 @@
 
 namespace ali\User\Http\Controllers\Auth;
 
+use ali\User\Models\User;
+use ali\User\Rules\ValidMobile;
+use ali\User\Rules\ValidPassword;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use  ali\User\Rules\ValidPassword;
-use ali\User\Rules\ValidMobile;
-use ali\User\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;

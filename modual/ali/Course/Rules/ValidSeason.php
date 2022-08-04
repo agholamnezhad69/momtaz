@@ -3,9 +3,6 @@
 namespace ali\Course\Rules;
 
 
-use ali\Course\Models\Season;
-use ali\RolePermissions\Models\Permission;
-use ali\User\Repositories\UserRepo;
 use ali\Course\Repositories\SeasonRepo;
 use Illuminate\Contracts\Validation\Rule;
 

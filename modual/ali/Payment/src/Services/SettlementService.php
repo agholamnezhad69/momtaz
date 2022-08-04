@@ -2,12 +2,8 @@
 
 namespace ali\Payment\Services;
 
-use ali\Payment\Gateways\Gateway;
-use ali\Payment\Models\Payment;
 use ali\Payment\Models\Settlement;
-use ali\Payment\Repositories\PaymentRepo;
 use ali\Payment\Repositories\SettlementRepo;
-use ali\User\Models\User;
 
 class SettlementService
 {

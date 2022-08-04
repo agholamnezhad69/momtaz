@@ -11,7 +11,6 @@ use ali\Discount\Models\Discount;
 use ali\Discount\Repositories\DiscountRepo;
 use ali\Discount\Services\DiscountService;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Response;
 
 
 class DiscountController extends Controller

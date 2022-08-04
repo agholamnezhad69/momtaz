@@ -2,12 +2,8 @@
 
 namespace ali\Course\Http\Requests;
 
-use ali\Course\Models\Course;
 use ali\Course\Rules\ValidSeason;
-use ali\Course\Rules\ValidTeacher;
-use ali\Media\Services\MediaFileService;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class LessonRequest extends FormRequest
 {

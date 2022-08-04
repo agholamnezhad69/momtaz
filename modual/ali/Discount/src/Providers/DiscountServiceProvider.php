@@ -6,7 +6,6 @@ namespace ali\Discount\Providers;
 use ali\Discount\Models\Discount;
 use ali\Discount\Policies\DiscountPolicy;
 use ali\RolePermissions\Models\Permission;
-
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;

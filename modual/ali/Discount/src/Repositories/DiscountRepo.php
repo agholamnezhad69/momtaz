@@ -3,9 +3,6 @@
 namespace ali\Discount\Repositories;
 
 use ali\Discount\Models\Discount;
-use ali\Payment\Models\Payment;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Collection;
 use Morilog\Jalali\Jalalian;
 
 

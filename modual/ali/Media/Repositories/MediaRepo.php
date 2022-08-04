@@ -2,9 +2,7 @@
 
 namespace ali\Media\Repositories;
 
-use ali\Media\Contracts\FileServiceContract;
 use ali\Media\Models\Media;
-use Morilog\Jalali\Jalalian;
 
 
 class MediaRepo

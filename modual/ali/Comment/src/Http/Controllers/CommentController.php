@@ -2,9 +2,9 @@
 
 namespace ali\Comment\Http\Controllers;
 
+use ali\Comment\Http\Requests\CommentRequest;
 use ali\Comment\Repositories\CommentRepo;
 use App\Http\Controllers\Controller;
-use ali\Comment\Http\Requests\CommentRequest;
 
 class CommentController extends Controller
 {

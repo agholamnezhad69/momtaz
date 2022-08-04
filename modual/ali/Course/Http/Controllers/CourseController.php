@@ -6,16 +6,12 @@ use ali\Category\Repositories\CategoryRepo;
 use ali\Common\Responses\AjaxResponses;
 use ali\Course\Http\Requests\CourseRequest;
 use ali\Course\Models\Course;
-use ali\Course\Models\Lesson;
 use ali\Course\Repositories\CourseRepo;
-
 use ali\Course\Repositories\LessonRepo;
 use ali\Media\Services\MediaFileService;
 use ali\Payment\Gateways\Gateway;
-use ali\Payment\Repositories\PaymentRepo;
 use ali\Payment\Services\PaymentService;
 use ali\RolePermissions\Models\Permission;
-use ali\User\Http\Requests\UpdateUserRequest;
 use ali\User\Repositories\UserRepo;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
