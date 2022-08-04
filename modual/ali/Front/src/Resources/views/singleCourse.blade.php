@@ -225,9 +225,8 @@
                 </div>
             </div>
 
-            <!--todo         -->
 
-            @include("Front::comments.index")
+            @include("Front::comments.index",["commentable"=>$course])
 
 
         </div>

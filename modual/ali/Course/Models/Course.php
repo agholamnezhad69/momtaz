@@ -97,6 +97,15 @@ class Course extends Model
 
     }
 
+    public function approvedComments()
+    {
+
+        return $this->morphMany(Comment::class, 'commentable')
+            ->where('status',Comment::STATUS_APPROVED);
+
+    }
+
+
     public function getConfirmationStatusCssClass()
     {
         if ($this->confirmation_status == self:: CONFIRMATION_STATUS_ACCEPTED) return "text-success";

@@ -2,6 +2,7 @@
 
 namespace ali\User\Models;
 
+use ali\Comment\Models\Comment;
 use ali\Course\Models\Course;
 use ali\Course\Models\Lesson;
 use ali\Course\Models\Season;
@@ -138,6 +139,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
+    public function comment()
+    {
+
+        return $this->hasMany(Comment::class);
+
+    }
+
 
     public function profilePath()
     {
@@ -190,6 +198,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->mobile; // where `phone` is a field in your users table;
     }
+
+
+
 
 
 }

@@ -2,6 +2,7 @@
 
 namespace ali\Comment\Models;
 
+use ali\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
@@ -24,6 +25,13 @@ class Comment extends Model
 
         return $this->morphTo();
 
+    }
+
+
+    public function user()
+    {
+
+        return $this->belongsTo(User::class);
     }
 
 
