@@ -15,6 +15,18 @@ class CommentRepo
 
     }
 
+    public function paginateParents()
+    {
+
+        return Comment::query()
+            ->latest()
+            ->whereNull("comment_id")
+            ->latest()
+            ->withCount("notApprovedComments")
+            ->paginate();
+
+    }
+
 
     public function store($data)
     {

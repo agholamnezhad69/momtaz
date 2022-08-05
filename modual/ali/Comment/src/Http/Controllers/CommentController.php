@@ -13,7 +13,10 @@ class CommentController extends Controller
     public function index(CommentRepo $commentRepo)
     {
 
-        $comments = $commentRepo->paginate();
+        $comments = $commentRepo->paginateParents();
+
+
+
 
         return view("Comment::index", compact("comments"));
 

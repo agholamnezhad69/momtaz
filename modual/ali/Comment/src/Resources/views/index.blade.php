@@ -54,7 +54,7 @@
                         <td><a href="">{{$comment->commentable->title}}</a></td>
                         <td>{{$comment->body}}</td>
                         <td>{{createJalaliFromCarbon($comment->created_at)}}</td>
-                        <td>{{$comment->replies->count()}}</td>
+                        <td>{{$comment->replies->count()}} ({{ $comment->not_approved_comments_count}})</td>
                         <td class="{{$comment->getStatusCssClass()}}">@lang($comment->status)</td>
                         <td>
                             <a

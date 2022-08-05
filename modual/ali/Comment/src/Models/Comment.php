@@ -58,5 +58,11 @@ class Comment extends Model
 
     }
 
+    public function notApprovedComments()
+    {
+        return $this->hasMany(Comment::class)->where("status", self::STATUS_NEW);
+
+    }
+
 
 }
