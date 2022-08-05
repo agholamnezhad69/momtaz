@@ -10,7 +10,7 @@ class Comment extends Model
     protected $guarded = [];
     const STATUS_NEW = "new";
     const STATUS_APPROVED = "approved";
-    const STATUS_REJECT = "reject";
+    const STATUS_REJECT = "rejected";
 
     public static $statues = [
 

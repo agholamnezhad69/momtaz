@@ -3,6 +3,7 @@
 namespace ali\Comment\Http\Controllers;
 
 use ali\Comment\Http\Requests\CommentRequest;
+use ali\Comment\Models\Comment;
 use ali\Comment\Repositories\CommentRepo;
 use ali\Common\Responses\AjaxResponses;
 use App\Http\Controllers\Controller;
@@ -46,6 +47,32 @@ class CommentController extends Controller
         return AjaxResponses::successResponse();
 
 
+    }
+
+    public function accept($comment_id, CommentRepo $commentRepo)
+    {
+
+
+        if ($commentRepo->updateStatus($comment_id, Comment::STATUS_APPROVED)) {
+
+            return AjaxResponses::successResponse();
+
+        }
+
+        return AjaxResponses::failResponse();
+    }
+
+    public function reject($comment_id, CommentRepo $commentRepo)
+    {
+
+
+        if ($commentRepo->updateStatus($comment_id, Comment::STATUS_REJECT)) {
+
+            return AjaxResponses::successResponse();
+
+        }
+
+        return AjaxResponses::failResponse();
     }
 
 

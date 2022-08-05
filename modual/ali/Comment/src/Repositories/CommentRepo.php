@@ -64,4 +64,11 @@ class CommentRepo
 
     }
 
+    public function updateStatus($comment_id, string $status)
+    {
+        return Comment::query()
+            ->where('id', $comment_id)
+            ->update(["status" => $status]);
+    }
+
 }

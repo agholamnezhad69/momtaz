@@ -55,7 +55,7 @@
                         <td>{{$comment->body}}</td>
                         <td>{{createJalaliFromCarbon($comment->created_at)}}</td>
                         <td>{{$comment->replies->count()}} ({{ $comment->not_approved_comments_count}})</td>
-                        <td class="{{$comment->getStatusCssClass()}}">@lang($comment->status)</td>
+                        <td class="confirmation_status {{$comment->getStatusCssClass()}}">@lang($comment->status)</td>
                         <td>
                             <a
                                 href=""
@@ -63,10 +63,22 @@
                                 class="item-delete mlg-15"
                                 title="حذف">
                             </a>
+                            <a href=""
+                               onclick="updateConfirmationStatus(event,'{{route('comments.accept',$comment->id)}}',
+                                   'آیا از تایید این مورد اطمینان دارید؟',
+                                   '@lang(\ali\Comment\Models\Comment::STATUS_APPROVED)')"
+                               class="item-confirm mlg-15" title="تایید">
 
-                            <a href="show-comment.html" class="item-reject mlg-15" title="رد"></a>
+                            </a>
+                            <a href=""
+                               onclick="updateConfirmationStatus(event,'{{route('comments.reject',$comment->id)}}',
+                                   'آیا از رد شدن این مورد اطمینان دارید؟',
+                                   '@lang(\ali\Comment\Models\Comment::STATUS_REJECT)')"
+                               class="item-reject mlg-15" title="رد">
+
+                            </a>
                             <a href="show-comment.html" target="_blank" class="item-eye mlg-15" title="مشاهده"></a>
-                            <a href="show-comment.html" class="item-confirm mlg-15" title="تایید"></a>
+
                             <a href="edit-comment.html" class="item-edit " title="ویرایش"></a>
                         </td>
                     </tr>
