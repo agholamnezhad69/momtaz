@@ -9,6 +9,15 @@ use App\Http\Controllers\Controller;
 class CommentController extends Controller
 {
 
+    public function index()
+    {
+
+        $comments = [];
+
+        return view("Comment::index",$comments);
+
+    }
+
 
     public function store(CommentRequest $commentRequest, CommentRepo $commentRepo)
     {
