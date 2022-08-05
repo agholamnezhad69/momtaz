@@ -45,4 +45,11 @@ class CommentRepo
 
     }
 
+    public function findOrFail($comment_id)
+    {
+
+        return Comment::query()->findOrFail($comment_id);
+
+    }
+
 }

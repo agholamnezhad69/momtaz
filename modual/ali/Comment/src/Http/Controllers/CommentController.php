@@ -4,6 +4,7 @@ namespace ali\Comment\Http\Controllers;
 
 use ali\Comment\Http\Requests\CommentRequest;
 use ali\Comment\Repositories\CommentRepo;
+use ali\Common\Responses\AjaxResponses;
 use App\Http\Controllers\Controller;
 
 class CommentController extends Controller
@@ -31,6 +32,16 @@ class CommentController extends Controller
 
 
         return redirect($commentable->path());
+
+    }
+
+    public function destroy($comment_id, CommentRepo $commentRepo)
+    {
+        $comment = $commentRepo->findOrFail($comment_id);
+        $comment->delete();
+
+        return AjaxResponses::successResponse();
+
 
     }
 

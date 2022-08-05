@@ -14,6 +14,11 @@ Route::group([], function ($router) {
             "as" => "comments.store"
         ]
     );
+    $router->delete('comments/{comment}/delete', [
+            "uses" => "CommentController@destroy",
+            "as" => "comments.destroy"
+        ]
+    );
 
     $router->get('comments', [
             "uses" => "CommentController@index",
