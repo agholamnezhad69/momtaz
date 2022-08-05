@@ -18,7 +18,7 @@
                             </div>
                             <div class="comment-header-detail">
                                 <div class="comment-header-name">کاربر : {{$comment->user->name }}</div>
-                                <div class="comment-header-date">{{$comment->created_at }}</div>
+                                <div class="comment-header-date">{{createJalaliFromCarbon($comment->created_at) }}</div>
                             </div>
                         </div>
                         <div class="comment-content">
@@ -35,7 +35,8 @@
                                 </div>
                                 <div class="comment-header-detail">
                                     <div class="comment-header-name">کاربر : {{$reply->user->name }}</div>
-                                    <div class="comment-header-date">{{$reply->created_at }}</div>
+                                    <div
+                                        class="comment-header-date">{{createJalaliFromCarbon( $reply->created_at )}}</div>
                                 </div>
                             </div>
                             <div class="comment-content">

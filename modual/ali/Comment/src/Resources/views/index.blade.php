@@ -46,38 +46,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr role="row">
-                    <td><a href="">1</a></td>
-                    <td><a href="">محمد نیکو</a></td>
-                    <td><a href="">دوره لاراول</a></td>
-                    <td>دوره خوبی بود</td>
-                    <td>1399/05/01</td>
-                    <td>13</td>
-                    <td class="text-success">تاییده شده</td>
-                    <td>
-                        <a href="" class="item-delete mlg-15" title="حذف"></a>
-                        <a href="show-comment.html" class="item-reject mlg-15" title="رد"></a>
-                        <a href="show-comment.html" target="_blank" class="item-eye mlg-15" title="مشاهده"></a>
-                        <a href="show-comment.html" class="item-confirm mlg-15" title="تایید"></a>
-                        <a href="edit-comment.html" class="item-edit " title="ویرایش"></a>
-                    </td>
-                </tr>
-                <tr role="row">
-                    <td><a href="">1</a></td>
-                    <td><a href="">محمد نیکو</a></td>
-                    <td><a href="">دوره لاراول</a></td>
-                    <td>دوره خوبی بود</td>
-                    <td>1399/05/01</td>
-                    <td>13</td>
-                    <td class="text-error">تاییده نشده</td>
-                    <td>
-                        <a href="" class="item-delete mlg-15" title="حذف"></a>
-                        <a href="show-comment.html" class="item-reject mlg-15" title="رد"></a>
-                        <a href="show-comment.html" target="_blank" class="item-eye mlg-15" title="مشاهده"></a>
-                        <a href="show-comment.html" class="item-confirm mlg-15" title="تایید"></a>
-                        <a href="edit-comment.html" class="item-edit " title="ویرایش"></a>
-                    </td>
-                </tr>
+
+                @foreach($comments as $comment)
+                    <tr role="row">
+                        <td><a href="">{{$comment->id}}</a></td>
+                        <td><a href="">{{$comment->user->name}}</a></td>
+                        <td><a href="">{{$comment->commentable->title}}</a></td>
+                        <td>{{$comment->body}}</td>
+                        <td>{{createJalaliFromCarbon($comment->created_at)}}</td>
+                        <td>{{$comment->replies->count()}}</td>
+                        <td class="{{$comment->getStatusCssClass()}}">@lang($comment->status)</td>
+                        <td>
+                            <a href="" class="item-delete mlg-15" title="حذف"></a>
+                            <a href="show-comment.html" class="item-reject mlg-15" title="رد"></a>
+                            <a href="show-comment.html" target="_blank" class="item-eye mlg-15" title="مشاهده"></a>
+                            <a href="show-comment.html" class="item-confirm mlg-15" title="تایید"></a>
+                            <a href="edit-comment.html" class="item-edit " title="ویرایش"></a>
+                        </td>
+                    </tr>
+                @endforeach
 
                 </tbody>
             </table>

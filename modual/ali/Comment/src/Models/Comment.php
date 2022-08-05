@@ -48,4 +48,15 @@ class Comment extends Model
     }
 
 
+    public function getStatusCssClass()
+    {
+
+        if ($this->status == Comment::STATUS_APPROVED) return "text-success";
+        elseif ($this->status == Comment::STATUS_REJECT) return "text-error";
+
+        return "text-warning";
+
+    }
+
+
 }

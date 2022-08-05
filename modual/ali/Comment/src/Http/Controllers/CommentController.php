@@ -9,12 +9,12 @@ use App\Http\Controllers\Controller;
 class CommentController extends Controller
 {
 
-    public function index()
+    public function index(CommentRepo $commentRepo)
     {
 
-        $comments = [];
+        $comments = $commentRepo->paginate();
 
-        return view("Comment::index",$comments);
+        return view("Comment::index", compact("comments"));
 
     }
 
