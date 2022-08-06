@@ -27,6 +27,12 @@ Route::group([], function ($router) {
         ]
     );
 
+    $router->get('comments/{comment}', [
+            "uses" => "CommentController@show",
+            "as" => "comments.show"
+        ]
+    );
+
     $router->patch('comments/{comment}/accept', [
             "uses" => "CommentController@accept",
             "as" => "comments.accept"

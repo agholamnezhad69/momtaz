@@ -399,6 +399,7 @@
     background: #0e2338 !important;
 
 }
+
 .dark-mode .posts .col, .dark-mode .episodes-list-item, .dark-mode .ct-textarea-field, .dark-mode .how-to-become-a--teacher-form input, .dark-mode .how-to-become-a--teacher-form textarea, .dark-mode .txt, .dark-mode textarea {
     background: #0e2338 !important;
 }
@@ -466,6 +467,19 @@ a, a:active, a:focus, a:visited {
 
 .invalid-feedback {
     display: block;
+}
+
+.nav-comment-status {
+    top: 20px
+
+}
+.transition-comment {
+    position: relative;
+}
+.comment-actions {
+    position: absolute;
+    top: 31px;
+    left: 5px;
 }
 
 /************************************* end bootstrap change style */

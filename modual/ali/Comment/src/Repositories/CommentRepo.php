@@ -71,4 +71,14 @@ class CommentRepo
             ->update(["status" => $status]);
     }
 
+    public function findWithRelations($comment_id)
+    {
+
+        return Comment::query()
+            ->where("id", $comment_id)
+            ->with("commentable", "user", "replies")
+            ->firstOrFail();
+
+    }
+
 }

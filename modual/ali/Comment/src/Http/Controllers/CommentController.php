@@ -17,9 +17,17 @@ class CommentController extends Controller
         $comments = $commentRepo->paginateParents();
 
 
-
-
         return view("Comment::index", compact("comments"));
+
+    }
+
+    public function show($comment_id, CommentRepo $commentRepo)
+    {
+        $comment = $commentRepo->findWithRelations($comment_id);
+
+
+
+        return view("Comment::show", compact("comment"));
 
     }
 

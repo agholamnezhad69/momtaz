@@ -1,7 +1,7 @@
 @extends('Dashboard::master')
 
 @section('breadcrumb')
-    <li><a href="{{route('tickets.index')}}" title="نظرات">نظرات</a></li>
+    <li><a href="{{route('comments.index')}}" title="نظرات">نظرات</a></li>
 @endsection
 
 
@@ -77,9 +77,10 @@
                                class="item-reject mlg-15" title="رد">
 
                             </a>
-                            <a href="show-comment.html" target="_blank" class="item-eye mlg-15" title="مشاهده"></a>
+                            <a href="{{route("comments.show",$comment->id)}}"  class="item-eye mlg-15"
+                               title="مشاهده"></a>
 
-                            <a href="edit-comment.html" class="item-edit " title="ویرایش"></a>
+
                         </td>
                     </tr>
                 @endforeach
