@@ -226,6 +226,7 @@ $('.discounts #discounts-field-1').on('click', function (e) {
 
 function deleteItem(event, route, element = "tr") {
 
+
     if (confirm('آیا از حذف این مورد اطمینان دارید؟')) {
         event.preventDefault()
         $.post(route, {_method: 'delete', _token: $('meta[name="_token"]').attr('content')})
@@ -250,16 +251,16 @@ function deleteItem(event, route, element = "tr") {
     }
 }
 
-function updateConfirmationStatus(event, route, message, status, field = "confirmation_status") {
+function updateConfirmationStatus(event, route, message, status, field = "confirmation_status", parent = "tr", target = "td.") {
 
     if (confirm(message)) {
         event.preventDefault()
         $.post(route, {_method: 'PATCH', _token: $('meta[name="_token"]').attr('content')})
             .done(function (response) {
                 if (status == "تایید شده")
-                    $(event.target).closest('tr').find('td.' + field).html("<span class='text-success'>" + status + "</span>");
+                  $(event.target).closest(parent).find(target + field).html("<span class='text-success'>" + status + "</span>");
                 else if (status == "رد شده") {
-                    $(event.target).closest('tr').find('td.' + field).html("<span class='text-error'>" + status + "</span>");
+                    $(event.target).closest(parent).find(target + field).html("<span class='text-error'>" + status + "</span>");
                 } else if (status == "باز") {
                     $(event.target).closest('tr').find('td.' + field).html("<span class='text-success'>" + status + "</span>");
                     var aTag = $(event.target);

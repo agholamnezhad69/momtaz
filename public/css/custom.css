@@ -473,13 +473,24 @@ a, a:active, a:focus, a:visited {
     top: 20px
 
 }
+
 .transition-comment {
     position: relative;
 }
+
 .comment-actions {
     position: absolute;
-    top: 31px;
+    top: 25px;
     left: 5px;
+}
+
+span.confirmation_status {
+    border: 1px solid #eee;
+    padding: 5px 20px 5px 20px;
+    background: #eee;
+    border-radius: 5px;
+    width: 126px;
+    text-align: center;
 }
 
 /************************************* end bootstrap change style */

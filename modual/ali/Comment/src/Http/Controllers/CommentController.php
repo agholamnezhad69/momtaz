@@ -49,6 +49,7 @@ class CommentController extends Controller
 
     public function destroy($comment_id, CommentRepo $commentRepo)
     {
+
         $comment = $commentRepo->findOrFail($comment_id);
         $comment->delete();
 
