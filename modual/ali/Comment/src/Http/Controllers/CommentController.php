@@ -26,7 +26,6 @@ class CommentController extends Controller
         $comment = $commentRepo->findWithRelations($comment_id);
 
 
-
         return view("Comment::show", compact("comment"));
 
     }
@@ -43,7 +42,7 @@ class CommentController extends Controller
         newFeedbacks("عملیات موفق آمیز", "دیدگاه شما با موفقیت ثبت گردید");
 
 
-        return redirect($commentable->path());
+        return back();
 
     }
 

@@ -493,4 +493,19 @@ span.confirmation_status {
     text-align: center;
 }
 
+button.btn.btn-brand {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+    margin-top: 15px;
+}
+
+.comment-alert {
+    color: darkred;
+    padding: 28px;
+    font-size: 18px;
+    background: #fff;
+
+}
+
 /************************************* end bootstrap change style */

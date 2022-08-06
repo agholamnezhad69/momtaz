@@ -25,13 +25,21 @@
                 @include("Comment::comment",["comment"=>$reply,"isAnswer"=>true])
             @endforeach
         </div>
-        <div class="answer-comment">
-            <p class="p-answer-comment">ارسال پاسخ</p>
-            <form action="" method="post">
-                <textarea class="textarea" placeholder="متن پاسخ نظر"></textarea>
-                <button class="btn btn-brand">ارسال پاسخ</button>
-            </form>
-        </div>
+        @if($comment->status == \ali\Comment\Models\Comment::STATUS_APPROVED)
+            <div class="answer-comment">
+                <p class="p-answer-comment">ارسال پاسخ</p>
+                <form action="{{route('comments.store')}}" method="post">
+                    @csrf
+                    <input type="hidden" name="commentable_type" value="{{get_class($comment->commentable)}}">
+                    <input type="hidden" name="commentable_id" value="{{$comment->commentable->id}}">
+                    <input type="hidden" name="comment_id" value="{{$comment->id}}">
+                    <x-TextArea name="body" placeholder="متن پاسخ نظر.........."/>
+                    <button class="btn btn-brand">ارسال پاسخ</button>
+                </form>
+            </div>
+        @else
+            <p class="comment-alert">برای ارسال پاسخ  کامنت باید تایید بشود </p>
+        @endif
     </div>
 
 @endsection

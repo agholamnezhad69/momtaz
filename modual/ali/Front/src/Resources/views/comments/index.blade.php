@@ -41,7 +41,7 @@
                             </div>
                             <div class="comment-content">
                                 <p>
-                                    {{$reply->body}}
+                                    {!!$reply->body!!}
                                 </p>
                             </div>
                         </li>

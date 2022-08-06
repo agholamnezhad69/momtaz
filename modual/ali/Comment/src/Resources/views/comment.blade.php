@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="transition-comment-body">
-        <pre>{{ $comment->body}} </pre>
+        <pre>{!! $comment->body!!} </pre>
     </div>
 
     @if($isAnswer)
