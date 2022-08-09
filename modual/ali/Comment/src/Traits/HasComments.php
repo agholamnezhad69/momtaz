@@ -24,6 +24,14 @@ trait HasComments
             ->whereNull("comment_id")
             ->with("replies");
 
+    }
+
+    public function commentsCount()
+    {
+
+        return $this->morphMany(Comment::class, 'commentable')
+            ->where("status", Comment::STATUS_APPROVED)
+            ->count();
 
     }
 

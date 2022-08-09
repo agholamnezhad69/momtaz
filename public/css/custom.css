@@ -493,7 +493,7 @@ span.confirmation_status {
     text-align: center;
 }
 
-button.btn.btn-brand {
+.btn.btn-brand {
     color: #fff;
     background-color: #28a745;
     border-color: #28a745;
@@ -506,6 +506,9 @@ button.btn.btn-brand {
     font-size: 18px;
     background: #fff;
 
+}
+.dark-mode .ct-header a{
+    color: #46b2f0;
 }
 
 /************************************* end bootstrap change style */

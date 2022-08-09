@@ -35,7 +35,7 @@
                                        value="{{request()->name}}">
                                 <input type="text" class="text margin-bottom-20" name="date" id="date"
                                        placeholder="تاریخ" value="{{request()->date}}">
-                                <button type="submit" class="btn btn-success">جستجو</button>
+                                <button type="submit" class="btn btn-brand">جستجو</button>
                             </div>
                         </div>
                     </form>

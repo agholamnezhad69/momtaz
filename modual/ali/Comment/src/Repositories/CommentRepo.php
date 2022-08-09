@@ -7,23 +7,17 @@ use ali\RolePermissions\Models\Permission;
 
 class CommentRepo
 {
+    public $query;
+
+    public function __construct()
+    {
+        $this->query = Comment::query();
+    }
 
     public function paginate()
     {
 
         return Comment::query()->latest()->paginate();
-
-    }
-
-    public function paginateParents()
-    {
-
-        return Comment::query()
-            ->latest()
-            ->whereNull("comment_id")
-            ->latest()
-            ->withCount("notApprovedComments")
-            ->paginate();
 
     }
 
@@ -80,5 +74,61 @@ class CommentRepo
             ->firstOrFail();
 
     }
+
+
+    public function searchStatus($status)
+    {
+
+        if (!is_null($status))
+            $this->query->where("comments.status", $status);
+        return $this;
+    }
+
+    public function searchBody($body)
+    {
+
+        if (!is_null($body))
+            $this->query->where("body", "like", "%" . $body . "%");
+        return $this;
+    }
+
+    public function searchEamil($email)
+    {
+        if (!is_null($email))
+            $this->query->whereHas("user", function ($q) use ($email) {
+                return $q->where("email", "like", "%" . $email . "%");
+            });
+        return $this;
+    }
+
+    public function searchName($name)
+    {
+        if (!is_null($name))
+            $this->query->whereHas("user", function ($q) use ($name) {
+                return $q->where("name", "like", "%" . $name . "%");
+            });
+        return $this;
+    }
+
+    public function paginateParents()
+    {
+        return $this->query
+            ->latest()
+            ->whereNull("comment_id")
+            ->withCount("notApprovedComments")
+            ->latest()
+            ->paginate();
+    }
+
+//    public function paginateTeacher($user_id)
+//    {
+//        return $this->query
+//            ->latest()
+//            ->where("user_id", $user_id)
+//            ->whereNull("comment_id")
+//            ->withCount("notApprovedComments")
+//            ->latest()
+//            ->paginate();
+//    }
 
 }

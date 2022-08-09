@@ -1,6 +1,6 @@
 <div class="comment-main">
     <div class="ct-header">
-        <h3>نظرات ( 180 )</h3>
+        <h3>نظرات ( {{$commentable->commentsCount()}} )</h3>
         <p>نظر خود را در مورد این مقاله مطرح کنید</p>
     </div>
     <form action="{{route('comments.store')}}" method="post">

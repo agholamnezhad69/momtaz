@@ -1,15 +1,25 @@
 <div class="container">
     <div class="comments">
-        @include("Front::comments.create",['commentable'=>$course])
 
+        @auth()
+            @include("Front::comments.create",['commentable'=>$course])
+        @else
+            <div class="ct-header">
+                <h3>نظرات ( {{$course->commentsCount()}} )</h3>
+                <p>برای ثبت دیدگاه ابتدا باید <a href="{{route("login")}}">وارد سایت</a> شوید</p>
+            </div>
+        @endauth
         <div class="comments-list">
 
-            @include("Front::comments.reply",['commentable'=>$course])
-
+            @auth()
+                @include("Front::comments.reply",['commentable'=>$course])
+            @endauth
             @foreach($commentable->approvedComments as $comment)
                 <ul class="comment-list-ul">
                     <div class="div-btn-answer">
-                        <button class="btn-answer" onclick="setCommentId({{$comment->id}})">پاسخ به دیدگاه</button>
+                        @auth()
+                            <button class="btn-answer" onclick="setCommentId({{$comment->id}})">پاسخ به دیدگاه</button>
+                        @endauth
                     </div>
                     <li class="is-comment">
                         <div class="comment-header">

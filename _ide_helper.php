@@ -5842,7 +5842,7 @@
                         return $instance->abilities();
         }
                     /**
-         * Get all of the defined policies.
+         * Get all of the defined Policies.
          *
          * @return array
          * @static
