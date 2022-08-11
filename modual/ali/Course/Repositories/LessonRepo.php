@@ -17,6 +17,7 @@ class LessonRepo
     public function store($courseId, $request)
     {
 
+
         $number = $this->generateNumber($request->number, $courseId);
         return Lesson::query()
             ->create([

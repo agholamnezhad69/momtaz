@@ -5,6 +5,7 @@ namespace ali\Course\Tests\Feature;
 use ali\Category\Models\Category;
 use ali\Course\Models\Course;
 use ali\Course\Models\Lesson;
+use ali\Media\Models\Media;
 use ali\RolePermissions\Database\seeds\RolePermissionTableSeeder;
 use ali\RolePermissions\Models\Permission;
 use ali\User\Models\User;
@@ -76,12 +77,35 @@ class LessonTest extends TestCase
 
     private function createLesson($course)
     {
+        $media = $this->createMedia();
         return Lesson::query()->create([
             "course_id" => $course->id,
             "user_id" => auth()->user()->id,
             "title" => "lesson one",
             "slug" => "lesson one",
+            "media_id" => $media->id,
         ]);
+    }
+
+    private function createMedia()
+    {
+        //        $media = Media::query()->create([
+//            "files" => ["video" => "teacherCourse/teacher1/22222.mp4"],
+//            "type" => 'video',
+//            "user_id" => auth()->id(),
+//            "filename" => "teacherCourse/teacher1/22222.mp4",
+//            "is_private" => true,
+//            "is_media_address" => true,
+//        ]);
+        $media = new Media();
+        $media->files = ["video" => "teacherCourse/teacher1/22222.mp4"];
+        $media->type = 'video';
+        $media->user_id = auth()->id();
+        $media->filename = "teacherCourse/teacher1/22222.mp4";
+        $media->is_private = true;
+        $media->is_media_address = true;
+        $media->save();
+        return $media;
     }
 
     public function test_permitted_user_can_see_create_lesson_form()
@@ -118,6 +142,25 @@ class LessonTest extends TestCase
 
     }
 
+    //with upload file
+//    public function test_permitted_user_can_store_lesson()
+//    {
+//        $this->actAsAdmin();
+//        $course = $this->createCourse();
+//
+//        $this->post(route('lessons.store', $course->id), [
+//            "title" => "title one",
+//            "time" => "20",
+//            "is_free" => "1",
+//            "lesson_file" => UploadedFile::fake()->create("film.mp4", 1024)
+//        ]);
+//
+//        $this->assertEquals(1, Lesson::query()->count());
+//
+//
+//    }
+
+    //with file manager
     public function test_permitted_user_can_store_lesson()
     {
         $this->actAsAdmin();
@@ -127,7 +170,7 @@ class LessonTest extends TestCase
             "title" => "title one",
             "time" => "20",
             "is_free" => "1",
-            "lesson_file" => UploadedFile::fake()->create("film.mp4", 1024)
+            "filePath" => "teacherCourse/teacher1/22222.mp4"
         ]);
 
         $this->assertEquals(1, Lesson::query()->count());
@@ -189,14 +232,15 @@ class LessonTest extends TestCase
         $course = $this->createCourse();
         $lesson = $this->createLesson($course);
 
+
         $this->get(route('lessons.edit', [$course->id, $lesson->id]))->assertOk();
 
 
-        $this->actAsNormalUser();
-        auth()->user()->givePermissionTo(Permission::PERMISSION_MANAGE_OWN_COURSES);
-        $course = $this->createCourse();
-        $lesson = $this->createLesson($course);
-        $this->get(route('lessons.edit', [$course->id, $lesson->id]))->assertOk();
+//        $this->actAsNormalUser();
+//        auth()->user()->givePermissionTo(Permission::PERMISSION_MANAGE_OWN_COURSES);
+//        $course = $this->createCourse();
+//        $lesson = $this->createLesson($course);
+//        $this->get(route('lessons.edit', [$course->id, $lesson->id]))->assertOk();
 
 
     }
@@ -227,11 +271,14 @@ class LessonTest extends TestCase
         $lesson = $this->createLesson($course);
 
 
+
         $this->patch(route('lessons.update', [$course->id, $lesson->id]), [
             "title" => "update title one",
             "time" => "20",
             "is_free" => "1",
+            "filePath" => $lesson->media->filename,
         ]);
+
 
         $this->assertEquals("update title one", Lesson::find(1)->title);
 
@@ -316,7 +363,6 @@ class LessonTest extends TestCase
         $this->patch(route('lessons.acceptAll', $course1->id));
 
 
-
         $this->assertEquals($course1->lessons()->count(),
             Lesson::query()->where('confirmation_status', Lesson::CONFIRMATION_STATUS_ACCEPTED)->count()
         );
@@ -335,8 +381,6 @@ class LessonTest extends TestCase
         $course1 = $this->createCourse();
         $lesson1 = $this->createLesson($course1);
         $lesson2 = $this->createLesson($course1);
-
-
 
 
         $this->actAsNormalUser();
@@ -363,6 +407,7 @@ class LessonTest extends TestCase
 
 
     }
+
     public function test_normal_user_can_not_reject_lesson()
     {
         $this->actAsAdmin();
@@ -377,6 +422,7 @@ class LessonTest extends TestCase
         $this->patch(route('lessons.reject', $course1->id))->assertStatus(403);
         $this->assertEquals(Lesson::CONFIRMATION_STATUS_PENDING, Lesson::find(1)->confirmation_status);
     }
+
     public function test_permitted_user_can_accept_multiple_lessons()
     {
         $this->actAsAdmin();
@@ -395,6 +441,7 @@ class LessonTest extends TestCase
 
 
     }
+
     public function test_normal_user_can_not_accept_multiple_lessons()
     {
         $this->actAsAdmin();
@@ -402,7 +449,6 @@ class LessonTest extends TestCase
         $this->createLesson($course);
         $this->createLesson($course);
         $this->createLesson($course);
-
 
 
         $this->actAsNormalUser();
@@ -443,6 +489,7 @@ class LessonTest extends TestCase
 
 
     }
+
     public function test_normal_user_can_not_reject_multiple_lessons()
     {
         $this->actAsAdmin();
@@ -468,6 +515,7 @@ class LessonTest extends TestCase
         $this->assertEquals(Lesson::CONFIRMATION_STATUS_PENDING, Lesson::find(3)->confirmation_status);
 
     }
+
     public function test_permitted_user_can_lock_lesson()
     {
         $this->actAsAdmin();
@@ -480,6 +528,7 @@ class LessonTest extends TestCase
         $this->assertEquals(Lesson::STATUS_OPENED, Lesson::find(2)->status);
 
     }
+
     public function test_normal_user_can_not_lock_lesson()
     {
         $this->actAsAdmin();
@@ -542,6 +591,7 @@ class LessonTest extends TestCase
         $this->delete(route('lessons.destroy', [1, 2]))->assertStatus(403);
         $this->assertEquals(1, Lesson::where('id', 2)->count());
     }
+
     public function test_permitted_user_can_destroy_multiple_lessons()
     {
         $this->actAsAdmin();

@@ -25,11 +25,13 @@ class CommentController extends Controller
 
         if (!auth()->user()->hasAnyPermission(Permission::PERMISSION_SUPER_ADMIN, Permission::PERMISSION_MANAGE_COMMENTS)) {
 
-            $comments->query->whereHasMorph("commentable", [Course::class], function ($query) {
+            $comments->query
+                ->whereHasMorph("commentable", [Course::class], function ($query) {
 
-                return $query->where("teacher_id", auth()->id());
+                    return $query->where("teacher_id", auth()->id());
 
-            });
+                })
+                ->where("status", Comment::STATUS_APPROVED);
 
         }
 
@@ -68,7 +70,7 @@ class CommentController extends Controller
 
     public function destroy($comment_id, CommentRepo $commentRepo)
     {
-        $this->authorize("manage",Comment::class);
+        $this->authorize("manage", Comment::class);
         $comment = $commentRepo->findOrFail($comment_id);
         $comment->delete();
         return AjaxResponses::successResponse();
@@ -76,15 +78,16 @@ class CommentController extends Controller
 
     public function accept($comment_id, CommentRepo $commentRepo)
     {
-        $this->authorize("manage",Comment::class);
+        $this->authorize("manage", Comment::class);
         if ($commentRepo->updateStatus($comment_id, Comment::STATUS_APPROVED)) {
             return AjaxResponses::successResponse();
         }
         return AjaxResponses::failResponse();
     }
+
     public function reject($comment_id, CommentRepo $commentRepo)
     {
-        $this->authorize("manage",Comment::class);
+        $this->authorize("manage", Comment::class);
         if ($commentRepo->updateStatus($comment_id, Comment::STATUS_REJECT)) {
 
             return AjaxResponses::successResponse();

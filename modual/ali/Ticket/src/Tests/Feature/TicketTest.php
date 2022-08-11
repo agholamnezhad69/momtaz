@@ -72,7 +72,7 @@ class TicketTest extends TestCase
     {
         $this->actAsNormalUser();
         $this->post(route("tickets.store"),
-            ["title" => $this->faker->word, "body" => $this->faker->text]
+            ["title" => "aaaaaaaaaa", "body" => $this->faker->text]
         );
         $this->assertEquals(1, Ticket::all()->count());
 
@@ -81,7 +81,7 @@ class TicketTest extends TestCase
     public function test_user_can_not_store_ticket()
     {
         $this->post(route("tickets.store"),
-            ["title" => $this->faker->word, "body" => $this->faker->text]
+            ["title" => "aaaaaaaaaaaaaaa", "body" => $this->faker->text]
         );
         $this->assertEquals(0, Ticket::all()->count());
 
@@ -113,7 +113,7 @@ class TicketTest extends TestCase
     public function createTicket(){
         $this->actAsAdmin();
         $this->post(route("tickets.store"),
-            ["title" => $this->faker->word, "body" => $this->faker->text]
+            ["title" => "aaaaaaaaa", "body" => $this->faker->text]
         );
         $this->assertEquals(1, Ticket::all()->count());
     }

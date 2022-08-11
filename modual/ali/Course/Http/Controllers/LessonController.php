@@ -49,7 +49,6 @@ class LessonController extends Controller
 
 
 
-
         $course = $courseRepo->findById($courseId);
         $this->authorize('creatLesson', $course);
 
@@ -70,6 +69,8 @@ class LessonController extends Controller
         $lesson = $this->lessonRepo->findById($lessonId);
         $this->authorize('edit', $lesson);
 
+
+
         $course = $courseRepo->findById($courseId);
         $seasons = $seasonRepo->getCourseSeasons($courseId);
         $lesson = $this->lessonRepo->findById($lessonId);
@@ -80,6 +81,9 @@ class LessonController extends Controller
 
     public function update($courseId, $lessonId, LessonRequest $request, MediaRepo $mediaRepo)
     {
+
+
+
         $lesson = $this->lessonRepo->findById($lessonId);
         $this->authorize('edit', $lesson);
 
@@ -100,6 +104,7 @@ class LessonController extends Controller
         $this->lessonRepo->update($lessonId, $courseId, $request);
 
         newFeedbacks();
+
         return redirect(route('courses.details', $courseId));
     }
 

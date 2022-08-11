@@ -23,34 +23,41 @@
 
 
         <div class="comment-actions">
-            <a
-                href=""
-                onclick="deleteItem(event,'{{route('comments.destroy',$comment->id)}}','div.transition-comment')"
-                class="item-delete mlg-15"
-                title="حذف">
-            </a>
-            <a href=""
-               onclick="updateConfirmationStatus(event,'{{route('comments.accept',$comment->id)}}',
-                   'آیا از تایید این مورد اطمینان دارید؟',
-                   '@lang(\ali\Comment\Models\Comment::STATUS_APPROVED)',
-                   'confirmation_status',
-                   'div.comment-actions',
-                   'span.',
-                   )"
-               class="item-confirm mlg-15" title="تایید">
 
-            </a>
-            <a href=""
-               onclick="updateConfirmationStatus(event,'{{route('comments.reject',$comment->id)}}',
-                   'آیا از رد شدن این مورد اطمینان دارید؟',
-                   '@lang(\ali\Comment\Models\Comment::STATUS_REJECT)',
-                   'confirmation_status',
-                   'div.comment-actions',
-                   'span.',
-                   )"
-               class="item-reject mlg-15" title="رد">
+            @if(auth()->user()->hasAnyPermission(
+\ali\RolePermissions\Models\Permission::PERMISSION_SUPER_ADMIN,
+\ali\RolePermissions\Models\Permission::PERMISSION_MANAGE_COMMENTS
+))
+                <a
+                    href=""
+                    onclick="deleteItem(event,'{{route('comments.destroy',$comment->id)}}','div.transition-comment')"
+                    class="item-delete mlg-15"
+                    title="حذف">
+                </a>
+                <a href=""
+                   onclick="updateConfirmationStatus(event,'{{route('comments.accept',$comment->id)}}',
+                       'آیا از تایید این مورد اطمینان دارید؟',
+                       '@lang(\ali\Comment\Models\Comment::STATUS_APPROVED)',
+                       'confirmation_status',
+                       'div.comment-actions',
+                       'span.',
+                       )"
+                   class="item-confirm mlg-15" title="تایید">
 
-            </a>
+                </a>
+                <a href=""
+                   onclick="updateConfirmationStatus(event,'{{route('comments.reject',$comment->id)}}',
+                       'آیا از رد شدن این مورد اطمینان دارید؟',
+                       '@lang(\ali\Comment\Models\Comment::STATUS_REJECT)',
+                       'confirmation_status',
+                       'div.comment-actions',
+                       'span.',
+                       )"
+                   class="item-reject mlg-15" title="رد">
+
+                </a>
+
+            @endif
 
             <span class="confirmation_status {{$comment->getStatusCssClass()}}">@lang($comment->status)</span>
         </div>
