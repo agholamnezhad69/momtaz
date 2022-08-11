@@ -4,6 +4,7 @@ namespace ali\Comment\Providers;
 
 use ali\Comment\Models\Comment;
 use ali\Comment\Policies\CommentPolicy;
+use ali\Comment\Providers\EventServiceProvider;
 use ali\RolePermissions\Models\Permission;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,7 @@ class CommentServiceProvider extends Serviceprovider
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', "Comment");
         $this->loadJsonTranslationsFrom(__DIR__ . '/../Resources/Lang/');
-
+        $this->app->register(EventServiceProvider::class);
         Route::middleware(['web', 'auth', 'verified'])
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../Routes/comment_routes.php');

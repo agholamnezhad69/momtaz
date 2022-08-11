@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use ali\Comment\Events\CommentSubmittedEvent;
+use ali\Comment\Listeners\CommentSubmittedListener;
 use ali\Course\Listeners\RegisterUserInCourse;
 use ali\Payment\Events\PaymentWasSuccessfull;
 use Illuminate\Auth\Events\Registered;
@@ -19,9 +21,7 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        PaymentWasSuccessfull::class => [
-            RegisterUserInCourse::class,
-        ],
+
     ];
 
     /**

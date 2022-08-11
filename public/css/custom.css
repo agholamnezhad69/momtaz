@@ -400,7 +400,7 @@
 
 }
 
-.dark-mode .posts .col, .dark-mode .episodes-list-item, .dark-mode .ct-textarea-field, .dark-mode .how-to-become-a--teacher-form input, .dark-mode .how-to-become-a--teacher-form textarea, .dark-mode .txt, .dark-mode textarea {
+  .dark-mode .episodes-list-item, .dark-mode .ct-textarea-field, .dark-mode .how-to-become-a--teacher-form input, .dark-mode .how-to-become-a--teacher-form textarea, .dark-mode .txt, .dark-mode textarea {
     background: #0e2338 !important;
 }
 

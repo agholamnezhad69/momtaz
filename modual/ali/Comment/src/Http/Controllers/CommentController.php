@@ -2,6 +2,7 @@
 
 namespace ali\Comment\Http\Controllers;
 
+use ali\Comment\Events\CommentSubmittedEvent;
 use ali\Comment\Http\Requests\CommentRequest;
 use ali\Comment\Models\Comment;
 use ali\Comment\Repositories\CommentRepo;
@@ -57,9 +58,11 @@ class CommentController extends Controller
     {
 
 
-        $commentable = $commentRequest->commentable_type::findOrFail($commentRequest->commentable_id);
+        $commentRequest->commentable_type::findOrFail($commentRequest->commentable_id);
 
-        $commentRepo->store($commentRequest->all());
+        $comment = $commentRepo->store($commentRequest->all());
+
+        event(new CommentSubmittedEvent($comment));
 
         newFeedbacks("عملیات موفق آمیز", "دیدگاه شما با موفقیت ثبت گردید");
 
