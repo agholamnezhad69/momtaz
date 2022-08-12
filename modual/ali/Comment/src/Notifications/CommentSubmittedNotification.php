@@ -23,7 +23,12 @@ class CommentSubmittedNotification extends Notification
 
     public function via($notifiable): array
     {
-        return ['mail', "telegram"];
+        $channels = [];
+
+        if (!is_null($notifiable->email)) $channels[] = "mail";
+        if (!is_null($notifiable->telegram)) $channels[] = "telegram";
+
+        return $channels;
     }
 
     public function toMail($notifiable)
@@ -36,12 +41,15 @@ class CommentSubmittedNotification extends Notification
     {
 
 
-        return TelegramMessage::create()
-//            ->to(450543066)
-            ->to(5414676121)
-            ->content("یک دیدگاه جدید برای شما در سایت ممتاز  ارسال شد ")
-            ->button('مشاهده دوره', $this->comment->commentable->path())
-            ->button('مدیریت دیدگاهها', route("comments.index"));
+
+            return TelegramMessage::create()
+                ->to($notifiable->telegram)
+                ->content("یک دیدگاه جدید برای شما در سایت ممتاز  ارسال شد ")
+                ->button('مشاهده دوره', $this->comment->commentable->path())
+                ->button('مدیریت دیدگاهها', route("comments.index"));
+
+
+
 
     }
 

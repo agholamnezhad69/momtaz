@@ -53,7 +53,7 @@
                 <x-input name="youtube" type="text" placeholder="یوتویوب " value="{{auth()->user()->youtube}}"/>
                 <x-input name="twitter" type="text" placeholder="توییتر " value="{{auth()->user()->twitter}}"/>
                 <x-input name="instagram" type="text" placeholder="اینستاگرام" value="{{auth()->user()->instagram}}"/>
-                <x-input name="telegram" type="text" placeholder="تلگرام " value="{{auth()->user()->telegram}}"/>
+                <x-input name="telegram" type="text" placeholder="آی دی شما در تلگرام جهت دریافت نوتیفیکیشن" value="{{auth()->user()->telegram}}"/>
 
 
                 <br>
