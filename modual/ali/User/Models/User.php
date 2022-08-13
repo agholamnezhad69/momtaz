@@ -194,10 +194,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
-    public function routeNotificationForSms()
-    {
-        return $this->mobile; // where `phone` is a field in your users table;
-    }
+
 
 
 

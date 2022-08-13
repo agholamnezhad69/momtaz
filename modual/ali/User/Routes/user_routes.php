@@ -24,7 +24,6 @@ Route::group([
 //    Route::post('edit-profile', 'UserController@updateProfile')->name('users.profile');
 
 
-
 });
 
 Route::group([
@@ -54,7 +53,7 @@ Route::group([
 
     // login
     Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
-    Route::post('/login', 'Auth\LoginController@login')->name('login');
+    Route::post('/login', 'Auth\LoginController@login')->name('login')->middleware('throttle:5,30');
 
     // logout
     Route::any('/logout', 'Auth\LoginController@logout')->name('logout');
@@ -65,11 +64,12 @@ Route::group([
     Route::get('/password/reset', 'Auth\ForgotPasswordController@showVerifyRequestForm')->name('password.request');
 
     Route::get('/password/reset/send', 'Auth\ForgotPasswordController@sendVerifyCodeEmail')
-        ->name('password.sendVerifyCodeEmail');
+        ->name('password.sendVerifyCodeEmail')
+        ->middleware('throttle:5,30');;
 
     Route::post('/password/reset/checkVerifyCode', 'Auth\ForgotPasswordController@checkVerifyCode')
         ->name('password.checkVerifyCode')
-        ->middleware('throttle:5,1');
+        ->middleware('throttle:5,30');
 
 
     Route::get('/password/change', 'Auth\ResetPasswordController@showResetForm')
@@ -83,7 +83,9 @@ Route::group([
 
     // register
     Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-    Route::post('/register', 'Auth\RegisterController@register')->name('register');
+    Route::post('/register', 'Auth\RegisterController@register')
+        ->name('register')
+        ->middleware('throttle:5,1');
 
 
 });

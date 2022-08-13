@@ -74,8 +74,18 @@ class UserRepo
             auth()->user()->password = bcrypt($request->password);
         }
 
+//        if (auth()->user()->email != $request->email) {
+//            auth()->user()->email = $request->email;
+//            auth()->user()->email_verified_at = null;
+//        }
+
         if (auth()->user()->email != $request->email) {
             auth()->user()->email = $request->email;
+        }
+
+
+        if (auth()->user()->mobile != $request->mobile) {
+            auth()->user()->mobile = $request->mobile;
             auth()->user()->email_verified_at = null;
 
         }
@@ -89,9 +99,6 @@ class UserRepo
             auth()->user()->username = $request->username;
 
         }
-
-
-
 
 
         auth()->user()->save();

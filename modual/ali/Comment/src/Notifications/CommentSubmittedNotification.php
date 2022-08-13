@@ -3,11 +3,10 @@
 namespace ali\Comment\Notifications;
 
 use ali\Comment\Mail\CommentSubmittedMail;
+use ali\Comment\Notifications\Channels\KavenegharChannel;
+use ali\User\Services\verifyCodeService;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Telegram\TelegramChannel;
 use NotificationChannels\Telegram\TelegramMessage;
 
 class CommentSubmittedNotification extends Notification
@@ -23,10 +22,12 @@ class CommentSubmittedNotification extends Notification
 
     public function via($notifiable): array
     {
+
         $channels = [];
 
         if (!is_null($notifiable->email)) $channels[] = "mail";
-        if (!is_null($notifiable->telegram)) $channels[] = "telegram";
+//        if (!is_null($notifiable->telegram)) $channels[] = "telegram";
+        if (!is_null($notifiable->mobile)) $channels[] = KavenegharChannel::class;
 
         return $channels;
     }
@@ -41,14 +42,24 @@ class CommentSubmittedNotification extends Notification
     {
 
 
+        return TelegramMessage::create()
+            ->to($notifiable->telegram)
+            ->content("یک دیدگاه جدید برای شما در سایت ممتاز  ارسال شد ")
+            ->button('مشاهده دوره', $this->comment->commentable->path())
+            ->button('مدیریت دیدگاهها', route("comments.index"));
 
-            return TelegramMessage::create()
-                ->to($notifiable->telegram)
-                ->content("یک دیدگاه جدید برای شما در سایت ممتاز  ارسال شد ")
-                ->button('مشاهده دوره', $this->comment->commentable->path())
-                ->button('مدیریت دیدگاهها', route("comments.index"));
+
+    }
+
+    public function toKavenegharSms($notifiable)
+    {
 
 
+
+        return [
+            "text" => "2222",
+            "template" => 'verify',
+        ];
 
 
     }
