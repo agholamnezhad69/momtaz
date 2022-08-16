@@ -13,6 +13,7 @@ class KavenegharChannel
     public function send($notifiable, Notification $notification)
     {
 
+
         if (!method_exists($notification, 'toKavenegharSms')) {
 
             throw new \Exception("کاوه نگار پیدا نشد");
@@ -22,12 +23,14 @@ class KavenegharChannel
         $data = $notification->toKavenegharSms($notifiable);
         $message = $data['text'];
         $template = $data['template'];
+        $receptor = $data['mobile'];
+
 
         $apiKey = config('services.kavenegar.key');
 
         try {
             $api = new \Kavenegar\KavenegarApi($apiKey);
-            $receptor = $notifiable->mobile;
+
             $api->VerifyLookup($receptor, $message, '', '', $template);
 
         } catch (ApiException $e) {

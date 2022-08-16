@@ -37,7 +37,7 @@
                             </p>
                         </div>
                     </li>
-                    @foreach($comment->replies as $reply)
+                    @foreach($comment->approvedReplies as $reply)
                         <li class="is-answer">
                             <div class="comment-header">
                                 <div class="comment-header-avatar">

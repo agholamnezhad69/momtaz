@@ -18,6 +18,36 @@ use Illuminate\Support\Facades\DB;
 Route::get('/test', function () {
 
 
+//    $a = null;
+//
+//    if (is_null($a)) {
+//
+//        echo "is_null";
+//    }
+//
+//
+//    $a = "";
+//
+//    if (is_null($a)) {
+//
+//        echo "is_empty";
+//    }
+//
+    $a = null;
+
+    if (empty($a)) {
+
+        echo "is_null" . "<br>";
+    }
+
+
+    $a = "";
+
+    if (empty($a)) {
+
+        echo "is_empty";
+    }
+
 //    dd(now());
 
 

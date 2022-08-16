@@ -20,6 +20,7 @@ class CommentSubmittedMail extends Mailable
     public function __construct($comment)
     {
         $this->comment = $comment;
+//        dd($this->comment);
     }
 
     /**

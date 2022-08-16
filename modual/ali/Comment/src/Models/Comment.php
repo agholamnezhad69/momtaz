@@ -47,6 +47,14 @@ class Comment extends Model
 
     }
 
+    public function approvedReplies()
+    {
+
+        return $this->hasMany(Comment::class)
+            ->where('status', Comment::STATUS_APPROVED);
+
+    }
+
 
     public function getStatusCssClass()
     {
@@ -63,8 +71,6 @@ class Comment extends Model
         return $this->hasMany(Comment::class)->where("status", self::STATUS_NEW);
 
     }
-
-
 
 
 }

@@ -30,13 +30,13 @@ class CommentPolicy
 
     }
 
+
     public function view($user, $comment)
     {
 
 
-
         if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_COMMENTS) ||
-            ($user->hasPermissionTo(Permission::PERMISSION_TEACH ) &&  $comment->commentable->teacher_id == auth()->id()))
+            ($user->hasPermissionTo(Permission::PERMISSION_TEACH) && $comment->commentable->teacher_id == auth()->id()))
             return true;
 
         return null;
@@ -48,4 +48,19 @@ class CommentPolicy
         if ($user->hasPermissionTo(Permission::PERMISSION_MANAGE_COMMENTS)) return true;
         return null;
     }
+
+    public function replies($user, $comment)
+    {
+        if ($user->hasPermissionTo(Permission::PERMISSION_SUPER_ADMIN) ||
+            $user->hasPermissionTo(Permission::PERMISSION_MANAGE_COMMENTS) ||
+            ($user->hasPermissionTo(Permission::PERMISSION_TEACH) && $comment->commentable->teacher_id == auth()->id())) {
+
+            return true;
+        }
+
+
+        return null;
+    }
+
+
 }
