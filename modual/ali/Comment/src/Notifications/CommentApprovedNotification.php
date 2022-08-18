@@ -27,11 +27,12 @@ class CommentApprovedNotification extends Notification
 
 
         $channels = [];
+        $channels[] = "database";
 
 
 //        if (!is_null($notifiable->telegram) && !empty($notifiable->telegram)) $channels[] = "telegram";
         if (!is_null($notifiable->email) && !empty($notifiable->email)) $channels[] = "mail";
-        if (!is_null($notifiable->mobile) && !empty($notifiable->mobile)) $channels[] = KavenegharChannel::class;
+//        if (!is_null($notifiable->mobile) && !empty($notifiable->mobile)) $channels[] = KavenegharChannel::class;
 
         return $channels;
     }
@@ -74,7 +75,8 @@ class CommentApprovedNotification extends Notification
     function toArray($notifiable): array
     {
         return [
-            //
+            "message" => "یک دیدگاه جدید برای شما تایید شد.",
+            "url" => $this->comment->commentable->path(),
         ];
     }
 }

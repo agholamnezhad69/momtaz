@@ -22,7 +22,7 @@ class CommentRejectedListener
 
 
 
-     $event->comment->commentable->teacher->notify(new CommentRejectedNotification($event->comment));
+     $event->comment->user->notify(new CommentRejectedNotification($event->comment));
 
 
     }

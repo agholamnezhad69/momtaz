@@ -26,17 +26,18 @@ class CommentSubmittedNotification extends Notification
 
 
         $channels = [];
+        $channels[] = "database";
 
 //        if (!is_null($this->comment->user->telegram) && !empty($this->comment->user->telegram)) $channels[] = "telegram";
-        if (!is_null($this->comment->user->email)    && !empty($this->comment->user->email)) $channels[] = "mail";
-//        if (!is_null($this->comment->user->mobile)   && !empty($this->comment->user->mobile)) $channels[] = KavenegharChannel::class;
+        if (!is_null($notifiable->email)    && !empty($notifiable->email)) $channels[] = "mail";
+//        if (!is_null($notifiable->mobile)   && !empty($notifiable->mobile)) $channels[] = KavenegharChannel::class;
 
         return $channels;
     }
 
     public function toMail($notifiable)
     {
-        return (new CommentSubmittedMail($this->comment))->to($this->comment->user->email);
+        return (new CommentSubmittedMail($this->comment))->to($notifiable->email);
     }
 
     public function toTelegram($notifiable)
@@ -44,11 +45,11 @@ class CommentSubmittedNotification extends Notification
 
 
         $telegram = TelegramMessage::create()
-            ->to($this->comment->user->telegram)
+            ->to($notifiable->telegram)
             ->content("یک دیدگاه جدید برای شما در سایت ممتاز  ارسال شد ")
             ->button('مشاهده دوره', $this->comment->commentable->path());
 
-        if ($this->comment->user->can('replies', $this->comment)) {
+        if ($notifiable->can('replies', $this->comment)) {
             $telegram = $telegram->button('مدیریت دیدگاهها', route("comments.index"));
         }
 
@@ -66,13 +67,13 @@ class CommentSubmittedNotification extends Notification
         $template = "verify";
 
         /***************for teacher and admin*/
-        if ($this->comment->user->can('replies', $this->comment)) {
+        if ($notifiable->can('replies', $this->comment)) {
             $text = "2222";
             $template = "verify";
         }
 
         return [
-            "mobile" => $this->comment->user->mobile,
+            "mobile" => $notifiable->mobile,
             "text" => $text,
             "template" => $template,
         ];
@@ -83,7 +84,8 @@ class CommentSubmittedNotification extends Notification
     public function toArray($notifiable): array
     {
         return [
-            //
+            "message" =>"یک دیدگاه جدید برای شما در سایت ممتاز  ارسال شد ",
+            "url" => $this->comment->commentable->path(),
         ];
     }
 }

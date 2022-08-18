@@ -893,7 +893,7 @@ textarea {
     border: 1px solid rgba(0, 0, 0, .1);;
     position: absolute;
     left: 27px;
-    /*z-index: 324;*/
+    z-index: 324 !important;
     display: none;
 }
 
@@ -935,6 +935,7 @@ textarea {
     max-height: 300px;
     overflow-x: hidden;
     text-align: center;
+    width: 100%;
 }
 
 .w-100-10 {
@@ -1963,7 +1964,8 @@ span.tagRemove:hover {
 .deletable-item-list:hover .item-delete {
     display: inline-block;
 }
-.bold-900{
+
+.bold-900 {
     font-weight: 900;
 }
 

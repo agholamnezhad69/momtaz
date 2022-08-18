@@ -400,7 +400,7 @@
 
 }
 
-  .dark-mode .episodes-list-item, .dark-mode .ct-textarea-field, .dark-mode .how-to-become-a--teacher-form input, .dark-mode .how-to-become-a--teacher-form textarea, .dark-mode .txt, .dark-mode textarea {
+.dark-mode .episodes-list-item, .dark-mode .ct-textarea-field, .dark-mode .how-to-become-a--teacher-form input, .dark-mode .how-to-become-a--teacher-form textarea, .dark-mode .txt, .dark-mode textarea {
     background: #0e2338 !important;
 }
 
@@ -507,8 +507,42 @@ span.confirmation_status {
     background: #fff;
 
 }
-.dark-mode .ct-header a{
+
+.dark-mode .ct-header a {
     color: #46b2f0;
+}
+
+.dropdown__notification .content__notification {
+    width: 100%;
+}
+
+.content__notification .notification {
+    text-align: right;
+}
+
+.content__notification ul.notification {
+    text-align: right;
+}
+
+.content__notification ul.notification li {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+
+}
+
+.content__notification ul.notification li:first-child {
+    padding-top: 0;
+}
+
+.content__notification ul.notification li:last-child {
+    border-bottom: none;
+}
+
+.content__notification ul.notification li a {
+    font-size: 16px;
+    color: green;
+
 }
 
 /************************************* end bootstrap change style */

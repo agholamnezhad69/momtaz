@@ -20,7 +20,7 @@ class CommentSubmittedListener
 
         /***********is replied and super admin or teacher replied*/
         if (!is_null($event->comment->comment_id) && ($event->comment->user->can('replies', $event->comment))) {
-            $event->comment->commentable->teacher->notify(new CommentSubmittedNotification($event->comment->comment));
+            $event->comment->user->notify(new CommentSubmittedNotification($event->comment->comment));
         }
 
     }

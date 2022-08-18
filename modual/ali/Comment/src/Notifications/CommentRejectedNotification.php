@@ -2,14 +2,10 @@
 
 namespace ali\Comment\Notifications;
 
-use ali\Comment\Mail\CommentApprovedMail;
 use ali\Comment\Mail\CommentRejectedMail;
-use ali\Comment\Mail\CommentSubmittedMail;
-use ali\Comment\Notifications\Channels\KavenegharChannel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Telegram\TelegramMessage;
-use function PHPUnit\Framework\isEmpty;
 
 class CommentRejectedNotification extends Notification
 {
@@ -28,17 +24,18 @@ class CommentRejectedNotification extends Notification
 
 
         $channels = [];
+        $channels[] = "database";
 
-//        if (!is_null($this->comment->user->telegram) && !empty($this->comment->user->telegram)) $channels[] = "telegram";
-        if (!is_null($this->comment->user->email) && !empty($this->comment->user->email)) $channels[] = "mail";
-        if (!is_null($this->comment->user->mobile)   && !empty($this->comment->user->mobile)) $channels[] = KavenegharChannel::class;
+//        if (!is_null($notifiable->telegram) && !empty($notifiable->telegram)) $channels[] = "telegram";
+        if (!is_null($notifiable->email) && !empty($notifiable->email)) $channels[] = "mail";
+      //  if (!is_null($notifiable->mobile)   && !empty($notifiable->mobile)) $channels[] = KavenegharChannel::class;
 
         return $channels;
     }
 
     public function toMail($notifiable)
     {
-        return (new CommentRejectedMail($this->comment))->to($this->comment->user->email);
+        return (new CommentRejectedMail($this->comment))->to($notifiable->email);
     }
 
     public function toTelegram($notifiable)
@@ -46,7 +43,7 @@ class CommentRejectedNotification extends Notification
 
 
         return TelegramMessage::create()
-            ->to($this->comment->user->telegram)
+            ->to($notifiable->telegram)
             ->content("دیدگاه شما رد شد.")
             ->button('مشاهده دوره', $this->comment->commentable->path());
 
@@ -64,7 +61,7 @@ class CommentRejectedNotification extends Notification
 
 
         return [
-            "mobile" => $this->comment->user->mobile,
+            "mobile" => $notifiable->mobile,
             "text" => $text,
             "template" => $template,
         ];
@@ -75,7 +72,8 @@ class CommentRejectedNotification extends Notification
     public function toArray($notifiable): array
     {
         return [
-            //
+            "message" =>"دیدگاه شما رد شد.",
+            "url" => $this->comment->commentable->path(),
         ];
     }
 }
