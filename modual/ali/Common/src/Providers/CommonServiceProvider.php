@@ -9,6 +9,7 @@ class CommonServiceProvider extends ServiceProvider
     public function register()
     {
         $this->loadViewsFrom(__DIR__ . "/../Resources", "Common");
+        $this->loadRoutesFrom(__DIR__ . '/../Routes/common_routes.php');
     }
 
     public function boot()
