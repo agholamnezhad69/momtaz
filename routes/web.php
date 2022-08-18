@@ -34,18 +34,11 @@ Route::get('/test', function () {
 //    }
 //
     $a = null;
+    $b = false;
+    $c = "";
 
-    if (empty($a)) {
-
-        echo "is_null" . "<br>";
-    }
-
-
-    $a = "";
-
-    if (empty($a)) {
-
-        echo "is_empty";
+    if ($c == $b) {
+        echo "isEqual";
     }
 
 //    dd(now());

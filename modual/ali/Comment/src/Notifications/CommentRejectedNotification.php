@@ -2,6 +2,8 @@
 
 namespace ali\Comment\Notifications;
 
+use ali\Comment\Mail\CommentApprovedMail;
+use ali\Comment\Mail\CommentRejectedMail;
 use ali\Comment\Mail\CommentSubmittedMail;
 use ali\Comment\Notifications\Channels\KavenegharChannel;
 use Illuminate\Bus\Queueable;
@@ -9,7 +11,7 @@ use Illuminate\Notifications\Notification;
 use NotificationChannels\Telegram\TelegramMessage;
 use function PHPUnit\Framework\isEmpty;
 
-class CommentSubmittedNotification extends Notification
+class CommentRejectedNotification extends Notification
 {
     use Queueable;
 
@@ -28,32 +30,27 @@ class CommentSubmittedNotification extends Notification
         $channels = [];
 
 //        if (!is_null($this->comment->user->telegram) && !empty($this->comment->user->telegram)) $channels[] = "telegram";
-        if (!is_null($this->comment->user->email)    && !empty($this->comment->user->email)) $channels[] = "mail";
-//        if (!is_null($this->comment->user->mobile)   && !empty($this->comment->user->mobile)) $channels[] = KavenegharChannel::class;
+        if (!is_null($this->comment->user->email) && !empty($this->comment->user->email)) $channels[] = "mail";
+        if (!is_null($this->comment->user->mobile)   && !empty($this->comment->user->mobile)) $channels[] = KavenegharChannel::class;
 
         return $channels;
     }
 
     public function toMail($notifiable)
     {
-        return (new CommentSubmittedMail($this->comment))->to($this->comment->user->email);
+        return (new CommentRejectedMail($this->comment))->to($this->comment->user->email);
     }
 
     public function toTelegram($notifiable)
     {
 
 
-        $telegram = TelegramMessage::create()
+        return TelegramMessage::create()
             ->to($this->comment->user->telegram)
-            ->content("یک دیدگاه جدید برای شما در سایت ممتاز  ارسال شد ")
+            ->content("دیدگاه شما رد شد.")
             ->button('مشاهده دوره', $this->comment->commentable->path());
 
-        if ($this->comment->user->can('replies', $this->comment)) {
-            $telegram = $telegram->button('مدیریت دیدگاهها', route("comments.index"));
-        }
 
-
-        return $telegram;
 
 
     }
@@ -61,15 +58,10 @@ class CommentSubmittedNotification extends Notification
     public function toKavenegharSms($notifiable)
     {
 
-        /***************for student*/
+
         $text = "1111";
         $template = "verify";
 
-        /***************for teacher and admin*/
-        if ($this->comment->user->can('replies', $this->comment)) {
-            $text = "2222";
-            $template = "verify";
-        }
 
         return [
             "mobile" => $this->comment->user->mobile,

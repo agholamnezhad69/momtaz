@@ -2,8 +2,11 @@
 
 namespace ali\Comment\Http\Controllers;
 
+use ali\Comment\Events\CommentApprovedEvent;
+use ali\Comment\Events\CommentRejectedEvent;
 use ali\Comment\Events\CommentSubmittedEvent;
 use ali\Comment\Http\Requests\CommentRequest;
+use ali\Comment\Listeners\CommentRejectedListener;
 use ali\Comment\Models\Comment;
 use ali\Comment\Repositories\CommentRepo;
 use ali\Common\Responses\AjaxResponses;
@@ -82,7 +85,9 @@ class CommentController extends Controller
     public function accept($comment_id, CommentRepo $commentRepo)
     {
         $this->authorize("manage", Comment::class);
+        $comment = $commentRepo->findOrFail($comment_id);
         if ($commentRepo->updateStatus($comment_id, Comment::STATUS_APPROVED)) {
+            CommentApprovedEvent::dispatch($comment);
             return AjaxResponses::successResponse();
         }
         return AjaxResponses::failResponse();
@@ -91,8 +96,9 @@ class CommentController extends Controller
     public function reject($comment_id, CommentRepo $commentRepo)
     {
         $this->authorize("manage", Comment::class);
+        $comment = $commentRepo->findOrFail($comment_id);
         if ($commentRepo->updateStatus($comment_id, Comment::STATUS_REJECT)) {
-
+            CommentRejectedEvent::dispatch($comment);
             return AjaxResponses::successResponse();
 
         }
