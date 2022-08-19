@@ -23,11 +23,13 @@ class SlideController extends Controller
         $this->authorize('manage', Slide::class);
         $request->request->add(['media_id' => MediaFileService::publicUpload($request->file('image'))->id]);
         $repo->store($request);
+        newFeedbacks();
         return redirect()->route('slides.index');
     }
 
     public function edit(Slide $slide)
     {
+        $this->authorize('manage', Slide::class);
         $this->authorize('manage', Slide::class);
         return view("Slider::edit", compact("slide"));
 

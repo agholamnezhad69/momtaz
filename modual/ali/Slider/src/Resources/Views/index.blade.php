@@ -1,6 +1,6 @@
 @extends('Dashboard::master')
 @section('breadcrumb')
-    <li><a href="{{ route('categories.index') }}" title="اسلاید ها">اسلاید ها</a></li>
+    <li><a href="{{ route('slides.index') }}" title="اسلاید ها">اسلاید ها</a></li>
 @endsection
 @section('content')
     <div class="row no-gutters  ">
@@ -25,9 +25,10 @@
                             <td width="80"><img src="{{ $slide->media->thumb }}" alt="" width="80"></td>
                             <td>{{ $slide->priority }}</td>
                             <td>{{ $slide->link }}</td>
-                            <td>{{ $slide->status }}</td>
+                            <td>{{ $slide->getStatus() }}</td>
                             <td>
-                                <a href="" onclick="deleteItem(event, '{{ route('slides.destroy', $slide->id) }}')" class="item-delete mlg-15" title="حذف"></a>
+                                <a href="" onclick="deleteItem(event, '{{ route('slides.destroy', $slide->id) }}')"
+                                   class="item-delete mlg-15" title="حذف"></a>
                                 <a href="{{ route('slides.edit',  $slide->id) }}" class="item-edit " title="ویرایش"></a>
                             </td>
                         </tr>
