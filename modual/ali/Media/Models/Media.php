@@ -23,11 +23,12 @@ class Media extends Model
 
     public function getThumbAttribute()
     {
-
-
         return MediaFileService::thumb($this);
+    }
 
-
+    public function getUrl($quality = "original"): string
+    {
+        return "/storage/" . $this->files[$quality];
     }
 
 
