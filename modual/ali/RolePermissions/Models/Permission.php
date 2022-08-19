@@ -18,6 +18,7 @@ class Permission extends \Spatie\Permission\Models\Permission
     const PERMISSION_MANAGE_DISCOUNT = "manage discount";
     const PERMISSION_MANAGE_TICKETS = "manage tickets";
     const PERMISSION_MANAGE_COMMENTS = "manage comments";
+    const PERMISSION_MANAGE_SLIDES = "manage slides";
 
     static $permissions = [
         self::PERMISSION_SUPER_ADMIN,
@@ -32,6 +33,7 @@ class Permission extends \Spatie\Permission\Models\Permission
         self::PERMISSION_MANAGE_DISCOUNT,
         self::PERMISSION_MANAGE_TICKETS,
         self::PERMISSION_MANAGE_COMMENTS,
+        self::PERMISSION_MANAGE_SLIDES
     ];
 
 

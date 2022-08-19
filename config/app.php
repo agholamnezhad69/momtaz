@@ -186,6 +186,7 @@ return [
         \ali\Discount\Providers\DiscountServiceProvider::class,
         \ali\Ticket\Providers\TicketServiceProviders::class,
         \ali\Comment\Providers\CommentServiceProvider::class,
+        \ali\Slider\Providers\SliderServiceProvider::class,
         Alexusmai\LaravelFileManager\FileManagerServiceProvider::class,
 
     ],

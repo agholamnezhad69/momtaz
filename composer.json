@@ -68,7 +68,8 @@
             "ali\\Media\\": "modual/ali/Media",
             "ali\\Discount\\": "modual/ali/Discount/src",
             "ali\\Ticket\\": "modual/ali/Ticket/src",
-            "ali\\Comment\\": "modual/ali/Comment/src"
+            "ali\\Comment\\": "modual/ali/Comment/src",
+            "ali\\Slider\\": "modual/ali/Slider/src"
         },
         "classmap": [
             "database/seeds",

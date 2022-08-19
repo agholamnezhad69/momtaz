@@ -4,9 +4,9 @@
         <a class="header__logo" href="/"></a>
     </div>
     <div class="header__left d-flex flex-end item-center margin-top-2">
-        <span class="account-balance font-size-12">موجودی : {{ number_format(auth()->user()->balance)}} تومان</span>
+        <span class="account-balance font-size-12 ">موجودی : {{ number_format(auth()->user()->balance)}} تومان</span>
         <div class="notification margin-15">
-            <a class="notification__icon"></a>
+            <a class="notification__icon {{count($notifications)>0 ? "text-error":""}}" ></a>
             <div class="dropdown__notification">
                 <div class="content__notification">
                     @if(count($notifications))
@@ -21,7 +21,8 @@
                             @endforeach
                         </ul>
 
-                        <a href="{{ route("notifications.markAllAsRead") }}" class="btn btn-brand">علامت زدن همه به عنوان خوانده شده</a>
+                        <a href="{{ route("notifications.markAllAsRead") }}" class="btn btn-brand">علامت زدن همه به
+                            عنوان خوانده شده</a>
 
 
                     @else
