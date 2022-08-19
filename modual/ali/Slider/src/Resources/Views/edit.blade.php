@@ -12,7 +12,7 @@
             @method('patch')
             <img src="{{ $slide->media->thumb }}" alt="" width="80">
             <x-input type="file" name="image" placeholder="تصویر" class="text" />
-            <x-input type="number" name="priority" placeholder="الویت" class="text" value="{{ $slide->priority }}"/>
+            <x-input type="text" name="priority" placeholder="الویت" class="text" value="{{ $slide->priority }}"/>
             <x-input type="text" name="link"  placeholder="لینک" class="text" value="{{ $slide->link }}"/>
             <p class="box__title margin-bottom-15">وضعیت نمایش</p>
             <select name="status" id="status">

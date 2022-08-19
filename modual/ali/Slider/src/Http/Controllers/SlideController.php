@@ -28,8 +28,7 @@ class SlideController extends Controller
     }
 
     public function edit(Slide $slide)
-    {
-        $this->authorize('manage', Slide::class);
+    {;
         $this->authorize('manage', Slide::class);
         return view("Slider::edit", compact("slide"));
 
@@ -46,15 +45,18 @@ class SlideController extends Controller
             $request->request->add(['media_id' => $slide->media_id]);
         }
         $repo->update($slide->id, $request);
+        newFeedbacks();
         return redirect()->route('slides.index');
     }
 
     public function destroy(Slide $slide)
     {
+
         $this->authorize('manage', Slide::class);
         if ($slide->media) {
             $slide->media->delete();
         }
+
         $slide->delete();
 
         return AjaxResponses::SuccessResponse();

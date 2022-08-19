@@ -35,4 +35,14 @@ class SlideRequest extends FormRequest
         }
         return $rules;
     }
+
+    public function attributes()
+    {
+        return [
+            "image" => "عکس",
+            "priority" => "اولویت",
+            "status" => "وضعیت",
+            "link" => "لینک",
+        ];
+    }
 }
